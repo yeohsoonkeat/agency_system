@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { AuthContext } from 'hooks/useAuth'
+import { AuthContext } from '../../../hooks/useAuth'
 
 
 export default function Pending() {

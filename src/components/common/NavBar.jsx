@@ -5,7 +5,7 @@ import { InlineIcon } from '@iconify/react'
 import { createPopper } from '@popperjs/core'
 import { changeLanguage } from '../../hooks/useTranslation'
 import ConfirmModal from './ConfirmModal'
-import { AuthProvider } from '../../hooks/useAuth'
+import { AuthContext } from '../../hooks/useAuth'
 import { useTranslation } from 'react-i18next'
 
 
@@ -15,7 +15,7 @@ export default function Navbar() {
 	const btnDropdownRef = React.createRef()
 	const popoverDropdownRef = React.createRef()
 	const { t } = useTranslation()
-	const { currentUser } = useContext(AuthProvider)
+	const { currentUser } = useContext(AuthContext)
 
 	const openDropdownPopover = () => {
 		createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
