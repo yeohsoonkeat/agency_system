@@ -1,0 +1,18 @@
+{
+    "NOT_FOUND": "Page not found",
+    "SEARCH": "Search",
+    "HOME": "Home",
+    "DASHBOARD": "Dashboard",
+    "PLAN": "Plans",
+    "AGENT": "Agents",
+    "COMMISION": "Commission",
+    "INTEREST": "Interest Reports",
+    "AGENT_REPORT": "Agent Reports",
+    "SETTING": "Setting",
+    "USER_MANAGEMENT": "User Management",
+    "MONEY_WITHDRAWN": "Withdrawn",
+    "BALANCE": "Balance",
+    "LOGOUT": "Logout",
+    "LOGOUT_WARN": "You are about to logout.",
+    "CONFIRMATION_TEXT":"Are you sure?"
+}

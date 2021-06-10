@@ -1,0 +1,32 @@
+import React, { useContext } from 'react'
+import { Route, Redirect } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { AuthContext } from '../hooks/useAuth'
+
+const ProtectedRoutes = ({ Page, ...rest }) => {
+	const { currentUser } = useContext(AuthContext)
+	const approved = currentUser?.approved || true
+	console.log(currentUser?'yes': false)
+	return (
+		<Route
+			{...rest}
+			render={routeProps =>
+				currentUser? (
+					!approved? 
+						<Redirect to="/pending"/>:
+						<Page routeProps />
+				):(
+					<Redirect to='/auth' />
+				)}
+		/>
+	)
+}
+
+ProtectedRoutes.propTypes = {
+	Page: PropTypes.oneOfType([
+		PropTypes.object,
+		PropTypes.func
+	])
+}
+
+export default ProtectedRoutes

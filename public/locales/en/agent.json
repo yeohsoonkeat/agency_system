@@ -1,0 +1,9 @@
+{
+    "FULL_NAME": "Full Name",
+    "ID": "ID",
+    "SEX": "Sex",
+    "GROUP": "Group",
+    "PHONE": "Phone",
+    "STATUS": "Status",
+    "JOINED_AT":"Joined At"
+}
