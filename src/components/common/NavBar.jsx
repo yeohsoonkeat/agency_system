@@ -5,8 +5,7 @@ import { InlineIcon } from '@iconify/react'
 import { createPopper } from '@popperjs/core'
 import { changeLanguage } from '../../hooks/useTranslation'
 import ConfirmModal from './ConfirmModal'
-import auth from 'service/auth/index'
-import { AuthContext } from 'hooks/useAuth'
+import { AuthProvider } from '../../hooks/useAuth'
 import { useTranslation } from 'react-i18next'
 
 
@@ -16,7 +15,7 @@ export default function Navbar() {
 	const btnDropdownRef = React.createRef()
 	const popoverDropdownRef = React.createRef()
 	const { t } = useTranslation()
-	const { currentUser } = useContext(AuthContext)
+	const { currentUser } = useContext(AuthProvider)
 
 	const openDropdownPopover = () => {
 		createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
@@ -26,10 +25,6 @@ export default function Navbar() {
 	}
 	const closeDropdownPopover = () => {
 		setDropdownPopoverShow(false)
-	}
-	const Logout = () => {
-		window.localStorage.clear()
-		return auth.logout()
 	}
 
 	return (
@@ -84,7 +79,6 @@ export default function Navbar() {
 						<li>
 							<ConfirmModal
 								text={t('LOGOUT')}
-								confirm={Logout}
 							>
 								<div className=" m-5">
 									<p>{ t('LOGOUT_WARN') }</p>
