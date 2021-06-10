@@ -11,7 +11,6 @@ export default function Form () {
 			<div className="flex min-h-screen bg-gray-200 items-center justify-center">
 				
 				<div className="grid bg-white rounded-lg shadow-xl w-11/12 md:w-9/12 lg:w-1/2">
-					<p className="text-red-400 text-center w-full  break-words p-3 mt-5 mb-5 bg-red-50 border-l-4"></p>
 					<div className="flex items-start justify-center p-5 border-b border-solid border-blueGray-200 rounded-t bg-primary-default">
 						<div className="flex">
 							<h1 className="text-yellow-lite font-bold md:text-2xl text-xl">{t('Fill your information')}</h1>

@@ -14,7 +14,7 @@ const NotFoundPage = lazy(() => import('./pages/404-page'))
 const Agent = lazy(() => import('./pages/Agent'))
 const Plan = lazy(() => import('./pages/Plan'))
 const Commission = lazy(() => import('./pages/Commission'))
-// const SignupForm = lazy(() => import('./pages/Login/components/form'))
+const SignupForm = lazy(() => import('./pages/Login/components/form'))
 const Pending = lazy(() => import('./pages/Login/components/Pending'))
 
 
@@ -25,9 +25,9 @@ const App = () => {
 			<AuthProvider>
 				<Suspense fallback={<Loader/>}>
 					<Switch>
-						<Route exact path='/auth' component={Login} />
+						<Route exact path='/login' component={Login} />
 						<Route exact path='/404' component={NotFoundPage} /> 
-						{/* <ProtectedFormRoute path='/signupform' component={SignupForm} />  */}
+						<Route exact path='/signupform' component={SignupForm} /> 
 						<ProtectedPendingRoute path="/pending"component={Pending} />
 
 						<BaseLayout>
