@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Loader from '@components/common/loader'
-import { login_user } from '../service/auth'
+import { get_user_profile, login_user } from '../service/auth'
 export const AuthContext = React.createContext()
 
 
@@ -12,20 +12,14 @@ const AuthProvider = ({ children }) => {
 
 	useEffect(() => {
 		// get user if user is login return user else message
-		let tmp ={
-			is_active: true,
-			is_verified: true,
-			_id: '60cd8ba12db8e2469023fa93',
-			full_name: 'Admin Page',
-			email: 'admin@gmail.com',
-			sex: 'Male',
-			address: 'Battambang',
-			phone_number: 'Battambang',
-			identify_card_number: '1234567890',
-			date: '2021-06-19T06:16:01.876Z',
-		}
-		setCurrentUser(false)
-		setPending(false)
+		const token = localStorage.getItem('token')
+		get_user_profile(token).then(x =>{			
+			setCurrentUser(x.data)
+			setPending(false)
+		}).catch(err => {
+			setCurrentUser(false)
+			setPending(false)
+		})
 	}, [])
 
 	if (pending) {
@@ -37,6 +31,7 @@ const AuthProvider = ({ children }) => {
 		login_user(param).then(x => {
 			if (x.data.auth) {
 				setCurrentUser(x.data.user)
+				localStorage.setItem('token', x.data.token)
 				setPending(false)
 			}
 		}).catch(err => {
@@ -45,7 +40,7 @@ const AuthProvider = ({ children }) => {
 			alert('Login failed')
 		})	
 	}
-	
+
 	const register = (params) => {
 		console.log(params)
 		setPending(true)
@@ -62,15 +57,12 @@ const AuthProvider = ({ children }) => {
 			date: '2021-06-19T06:16:01.876Z',
 		}
 
-		// call register service with params
-
 		setCurrentUser(tmp)
 		setPending(false)
 	}
 	const logout = () => {
 		setPending(true)
-		// logout delete cookie
-
+		localStorage.clear()
 		setCurrentUser(false)
 		setPending(false)
 	}

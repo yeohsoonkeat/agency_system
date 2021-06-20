@@ -18,3 +18,17 @@ export const login_user = (user) => {
 	}
 	return axios(config)
 }
+
+export const get_user_profile = (token) => {
+	const config =  {
+		method: 'get',
+		url: 'http://localhost:8080/api/auth/get_user/',
+		headers: { 
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${token}`
+		}
+	}
+	return axios(config)
+}
+
+
