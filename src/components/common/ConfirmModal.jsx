@@ -6,11 +6,8 @@ import PropTypes from 'prop-types'
 export default function ConfirmModal({ text, children, confirm }) {
 	const [showModal, setShowModal] = React.useState(false)
 	const onConfirm = () => {
-		confirm().then(() => {
-			setShowModal(false)
-		}).catch(err => {
-			console.log(err)
-		})
+		setShowModal(false)
+		confirm()
 	}
 
 	return (

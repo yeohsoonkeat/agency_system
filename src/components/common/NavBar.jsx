@@ -15,7 +15,7 @@ export default function Navbar() {
 	const btnDropdownRef = React.createRef()
 	const popoverDropdownRef = React.createRef()
 	const { t } = useTranslation()
-	const { currentUser } = useContext(AuthContext)
+	const { currentUser,logout } = useContext(AuthContext)
 
 	const openDropdownPopover = () => {
 		createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
@@ -79,6 +79,7 @@ export default function Navbar() {
 						<li>
 							<ConfirmModal
 								text={t('LOGOUT')}
+								confirm={logout}
 							>
 								<div className=" m-5">
 									<p>{ t('LOGOUT_WARN') }</p>

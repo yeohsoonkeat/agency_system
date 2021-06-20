@@ -5,14 +5,14 @@ import { AuthContext } from '../hooks/useAuth'
 
 const ProtectedRoutes = ({ Page, ...rest }) => {
 	const { currentUser } = useContext(AuthContext)
-	const approved = currentUser?.approved || true
-	console.log(currentUser?'yes': false)
+	const is_verified = currentUser?.is_verified
+	console.log(currentUser)
 	return (
 		<Route
 			{...rest}
 			render={routeProps =>
 				currentUser? (
-					!approved? 
+					!is_verified? 
 						<Redirect to="/pending"/>:
 						<Page routeProps />
 				):(

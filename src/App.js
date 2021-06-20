@@ -5,6 +5,7 @@ import ProtectedRoute from './routes/ProtectedRoute'
 import BaseLayout from '@components/layout/base/index'
 import Loader from '@components/common/loader'
 // import ProtectedFormRoute from 'routes/ProtectedFormRoute'
+import AuthProtectedRoute from './routes/AuthProtectedRoute'
 import ProtectedPendingRoute from './routes/ProtectPendingRoute'
 import AuthProvider from './hooks/useAuth'
 
@@ -25,18 +26,17 @@ const App = () => {
 			<AuthProvider>
 				<Suspense fallback={<Loader/>}>
 					<Switch>
-						<Route exact path='/login' component={Login} />
 						<Route exact path='/404' component={NotFoundPage} /> 
 						<Route exact path='/signupform' component={SignupForm} /> 
-						<ProtectedPendingRoute path="/pending"component={Pending} />
-
+						<AuthProtectedRoute exact path='/auth' Page={Login} />
+						<ProtectedPendingRoute exact path="/pending" Page={Pending} />
 						<BaseLayout>
 							<Switch>
 								<ProtectedRoute exact path="/" Page={Dashboard}/>
 								<ProtectedRoute  path="/agent" Page={Agent} />
 								<ProtectedRoute  path="/plan" Page={Plan} />
 								<ProtectedRoute  path="/commission" Page={Commission} />
-								{/* <Redirect from='*' to='/404' /> */}
+								<Redirect from='*' to='/404' />
 							</Switch>
 						</BaseLayout>
 					</Switch>

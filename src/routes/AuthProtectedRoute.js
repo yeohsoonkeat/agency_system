@@ -1,31 +1,32 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { AuthContext } from '../hooks/useAuth'
 
-const ProtectedPendingRoutes = ({ Page, ...rest }) => {
+const ProtectedRoutes = ({ Page, ...rest }) => {
 	const { currentUser } = useContext(AuthContext)
 	const is_verified = currentUser?.is_verified
+	console.log(currentUser)
 	return (
 		<Route
 			{...rest}
 			render={routeProps =>
-				currentUser?  (
-					!is_verified?
-						<Page routeProps/>:
-						<Redirect to="/"/>
+				currentUser? (
+					!is_verified? 
+						<Redirect to="/pending"/>:
+						<Redirect to='/' />
 				):(
-					<Redirect to={'/auth'} />
+					<Page routeProps />
 				)}
 		/>
 	)
 }
 
-ProtectedPendingRoutes.propTypes = {
+ProtectedRoutes.propTypes = {
 	Page: PropTypes.oneOfType([
 		PropTypes.object,
 		PropTypes.func
 	])
 }
 
-export default ProtectedPendingRoutes
+export default ProtectedRoutes
