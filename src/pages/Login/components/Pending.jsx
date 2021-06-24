@@ -5,7 +5,8 @@ import { AuthContext } from '../../../hooks/useAuth'
 export default function Pending() {
 	const { currentUser } = useContext(AuthContext)
 	const user = currentUser
-	
+	console.log(user.role.role)
+	let roleUser = user.role.role
 	const [showModal, setShowModal] = React.useState(false)
 
 	const handleCancel = async() =>{
@@ -31,7 +32,7 @@ export default function Pending() {
                     Full name
 							</p>
 							<p>
-								{user.fullname}
+								{user.full_name}
 							</p>
 						</div>
 						<div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
@@ -55,23 +56,32 @@ export default function Pending() {
                     Phone Number
 							</p>
 							<p>
-								{user.phonenumber}
+								{user.phone_number}
 							</p>
 						</div>
 						<div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
-							<p className="text-gray-600">
+							<p className="text-gray-600 ">
                     National ID
 							</p>
 							<p>
-								{user.idnumber}
+								{user.identify_card_number}
 							</p>
 						</div>
+
 						<div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
 							<p className="text-gray-600">
                     Address
 							</p>
 							<p>
 								{user.address}
+							</p>
+						</div>
+						<div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
+							<p className="text-gray-600">
+                    Role
+							</p>
+							<p>
+								{roleUser}
 							</p>
 						</div>
 					</div> 

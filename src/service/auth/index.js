@@ -19,6 +19,19 @@ export const login_user = (user) => {
 	return axios(config)
 }
 
+export const register_user = (user)=>{
+	const data = JSON.stringify(user)
+	const config = {
+		method: 'post',
+		url: 'http://localhost:8080/api/auth/register/',
+		headers: { 
+			'Content-Type': 'application/json'
+		},
+		data : data
+	}
+	return axios(config)
+}
+
 export const get_user_profile = (token) => {
 	const config =  {
 		method: 'get',

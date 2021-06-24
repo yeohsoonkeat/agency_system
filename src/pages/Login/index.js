@@ -9,7 +9,12 @@ export default function index() {
 	const { register, handleSubmit } = useForm()
 	const { currentUser, login } = useContext(AuthContext)
 	const onSubmit = (data) => {
+		console.log(data)
 		login(data)
+	}
+	const inputStyle={
+		'fontSize': '20px',
+		'fontFamily': 'monospace'
 	}
 	return (
 		<div className="flex min-h-screen mb-8">
@@ -20,7 +25,7 @@ export default function index() {
 				
 					<div className="mt-5 mb-5">
 						<label className="block text-xl font-semibold text-gray-400" htmlFor="fullname_or_email">{'ឈ្មោះអ្នកប្រើប្រាស់'}</label>
-						<input {...register('fullname_or_email')}  className="border-2 w-full md:w-96 p-3 mt-1 rounded-md border-gray-800 outline-none" id="fullname_or_email" autoComplete="on"
+						<input {...register('fullname_or_email')} style={inputStyle} className="border-2 w-full md:w-96 p-3 mt-1 rounded-md border-gray-800 outline-none" id="fullname_or_email" autoComplete="on"
 							autoFocus/>
 					</div>
 					<div>
