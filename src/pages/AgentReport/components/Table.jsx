@@ -10,12 +10,15 @@ import pageFirst from '@iconify-icons/mdi/page-first'
 
 import arrowDownDropCircleOutline from '@iconify-icons/mdi/arrow-down-drop-circle-outline'
 import arrowUpDropCircleOutline from '@iconify-icons/mdi/arrow-up-drop-circle-outline'
-import archiveEyeOutline from '@iconify-icons/mdi/archive-eye-outline'
+import printerOutline from '@iconify-icons/mdi/printer-outline'
+import ReactToPrint from 'react-to-print'
+
 
 
 
 export default function Table({ data, columns }) {
-	const { url } = useRouteMatch()
+	let componentRef = React.createRef()
+	
 	const {
 		getTableProps,
 		getTableBodyProps,
@@ -53,22 +56,18 @@ export default function Table({ data, columns }) {
 
 	return (
 		<>
-			<div className="mb-5 mt-10">
-                                Search:{' '}
-				<input
-					value={value || ''}
-					onChange={e => {
-						setValue(e.target.value)
-						onChange(e.target.value)
-					}}
-					placeholder={`${count} records...`}
-					className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b pl-8 pr-6 py-2 bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
+			<div className="mb-5 mt-10 ">
+				<ReactToPrint
+					trigger={() => <button className="flex space-x-2 font-bold text-primary-default p-1 px-3 rounded">
+						<InlineIcon icon={printerOutline} className="text-xl"/><span>PRINT</span>
+					</button>}
+					content={() => componentRef}
 				/>
 			</div>
-			<div className="flex flex-col mt-2 ">
+			<div className="flex flex-col mt-2 "  ref={(el) => (componentRef = el)}>
 				<div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 					<div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-						<div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+						<div className="shadow border-b border-gray-200 sm:rounded-lg">
 							<table {...getTableProps()} className="min-w-full divide-y divide-gray-200 ">
 								<thead className=" bg-primary-default text-sm lg:text-md text-white ">
 									{headerGroups.map((headerGroup,index) => (
@@ -116,15 +115,6 @@ export default function Table({ data, columns }) {
 														
 													)
 												})}
-
-												<td className="block px-6 py-4 whitespace-nowrap space-x-3 text-right text-xl font-medium">
-													<Link
-														to={`${url}/${row.original.id}`}
-														className=" inline-block"
-													>
-														<InlineIcon icon={archiveEyeOutline}/>
-													</Link>
-												</td>
 											</tr>
 										)
 									})}

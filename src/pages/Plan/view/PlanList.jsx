@@ -8,7 +8,15 @@ import { Link, useRouteMatch } from 'react-router-dom'
 function PlanList() {
 	const { t } = useTranslation()
 	const { url } = useRouteMatch()
-
+	const agents = [
+		{
+			plan_name: 'Koh kimochi',
+			location: 'Steung Mean Chei',
+			price: '$12345',
+			commision: '$240',
+			created_at: new Date().toDateString()
+		}
+	]
 	return (
 		<div >
 			<div className="flex w-full">
@@ -35,7 +43,6 @@ function PlanList() {
 				</div>
 			</div>
 			<Table />
-			<Pagination />
 		</div>
 	)
 }

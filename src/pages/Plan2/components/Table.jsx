@@ -70,7 +70,7 @@ export default function Table({ data, columns }) {
 					<div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
 						<div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 							<table {...getTableProps()} className="min-w-full divide-y divide-gray-200 ">
-								<thead className=" bg-primary-default text-sm lg:text-md text-white ">
+								<thead className=" bg-primary-default text-sm lg:text-md text-white">
 									{headerGroups.map((headerGroup,index) => (
 										<tr key={'row'+ index} {...headerGroup.getHeaderGroupProps()}>
 											{headerGroup.headers.map((column,index) => (

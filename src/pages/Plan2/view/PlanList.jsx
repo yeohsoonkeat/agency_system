@@ -4,7 +4,7 @@ import { Link, useRouteMatch } from 'react-router-dom'
 import Table from '../components/Table'
 
 
-function AgentList() {
+function PlanList() {
 	const { t } = useTranslation()
 	const { url } = useRouteMatch()
 	const data = React.useMemo(
@@ -109,7 +109,7 @@ function AgentList() {
 				joined_at: new Date().toDateString()
 			},
 			{
-				id: 'a',
+				id: '1234567gfxdg',
 				fullname: 'Yeoh Soon Keat',
 				sex: 'Male',
 				group: 'A',
@@ -124,31 +124,31 @@ function AgentList() {
 	const columns = React.useMemo(
 		() => [
 			{
-				Header: 'FULL_NAME',
+				Header: t('FULL_NAME'),
 				accessor: 'fullname', // accessor is the "key" in the data
 			},
 			{
-				Header: 'ID',
+				Header: t('ID'),
 				accessor: 'id',
 			},
 			{
-				Header: 'SEX',
+				Header: t('SEX'),
 				accessor: 'sex',
 			},
 			{
-				Header: 'GROUP',
+				Header: t('GROUP'),
 				accessor: 'group',
 			},
 			{
-				Header: 'PHONE',
+				Header: t('PHONE'),
 				accessor: 'phone',
 			},
 			{
-				Header: 'STATUS',
+				Header: t('STATUS'),
 				accessor: 'status',
 			},
 			{
-				Header: 'JOINED_AT',
+				Header: t('JOINED_AT'),
 				accessor: 'joined_at',
 			},
 		],
@@ -158,10 +158,10 @@ function AgentList() {
 	return (
 		<div >
 			<div className="flex w-full">
-				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">{t('AGENT')}</h1>
+				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">{t('Plan')}</h1>
 				<Link to={`${url}/new_agent`} className="border-2 p-2 text-white opacity-80 hover:opacity-100 rounded items-center">
 					<div>
-                        New Agent
+                        New Plan
 					</div>
 				</Link>
 			</div>
@@ -171,4 +171,4 @@ function AgentList() {
 	)
 }
 
-export default AgentList
+export default PlanList

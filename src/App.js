@@ -13,10 +13,12 @@ const Dashboard = lazy(() => import('./pages/Dashboard'))
 const Login = lazy(()=>import('./pages/Login'))
 const NotFoundPage = lazy(() => import('./pages/404-page'))
 const Agent = lazy(() => import('./pages/Agent'))
-const Plan = lazy(() => import('./pages/Plan'))
+const Plan = lazy(() => import('./pages/Plan2'))
+const AgentReport = lazy(() => import('./pages/AgentReport'))
 const Commission = lazy(() => import('./pages/Commission'))
 const SignupForm = lazy(() => import('./pages/Login/components/form'))
 const Pending = lazy(() => import('./pages/Login/components/Pending'))
+const Setting = lazy(() => import('./pages/Setting'))
 
 
 
@@ -35,7 +37,9 @@ const App = () => {
 								<ProtectedRoute exact path="/" Page={Dashboard}/>
 								<ProtectedRoute  path="/agent" Page={Agent} />
 								<ProtectedRoute  path="/plan" Page={Plan} />
+								<ProtectedRoute  path="/agent_report" Page={AgentReport} />
 								<ProtectedRoute  path="/commission" Page={Commission} />
+								<ProtectedRoute  path="/setting" Page={Setting} />
 								<Redirect from='*' to='/404' />
 							</Switch>
 						</BaseLayout>
