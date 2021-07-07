@@ -29,7 +29,7 @@ const App = () => {
 				<Suspense fallback={<Loader/>}>
 					<Switch>
 						<Route exact path='/404' component={NotFoundPage} /> 
-						<Route exact path='/signupform' component={SignupForm} /> 
+						<AuthProtectedRoute exact path='/signupform' Page={SignupForm} /> 
 						<AuthProtectedRoute exact path='/auth' Page={Login} />
 						<ProtectedPendingRoute exact path="/pending" Page={Pending} />
 						<BaseLayout>

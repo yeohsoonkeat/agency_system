@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Loader from '@components/common/loader'
-import { get_user_profile, login_user } from '../service/auth'
+import { get_user_profile, login_user, register_user } from '../service/auth'
+import { set } from 'react-hook-form'
 export const AuthContext = React.createContext()
 
 
 const AuthProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState(false)
-	const [pending, setPending] = useState(true)
+	const [pending, setPending] = useState(false)
 
 
 	useEffect(() => {
 		// get user if user is login return user else message
 		const token = localStorage.getItem('token')
+		setPending(true)
 		get_user_profile(token).then(x =>{			
 			setCurrentUser(x.data)
 			setPending(false)
@@ -20,6 +22,7 @@ const AuthProvider = ({ children }) => {
 			setCurrentUser(false)
 			setPending(false)
 		})
+		setPending(false)
 	}, [])
 
 	if (pending) {
@@ -38,27 +41,19 @@ const AuthProvider = ({ children }) => {
 			setCurrentUser(false)
 			setPending(false)
 			alert('Login failed')
-		})	
+		})
 	}
 
-	const register = (params) => {
-		console.log(params)
+	const registerAuth = (param) => {
 		setPending(true)
-		let tmp ={
-			is_active: true,
-			is_verified: false,
-			_id: '60cd8ba12db8e2469023fa93',
-			full_name: 'Admin Page',
-			email: 'admin@gmail.com',
-			sex: 'Male',
-			address: 'Battambang',
-			phone_number: 'Battambang',
-			identify_card_number: '1234567890',
-			date: '2021-06-19T06:16:01.876Z',
-		}
-
-		setCurrentUser(tmp)
-		setPending(false)
+		register_user(param).then(x => {
+			setCurrentUser(x.data.data)
+			setPending(false)
+		}).catch(err => {
+			setCurrentUser(false)
+			setPending(false)
+			alert('Login failed')
+		})
 	}
 	const logout = () => {
 		setPending(true)
@@ -73,7 +68,7 @@ const AuthProvider = ({ children }) => {
 				currentUser,
 				login,
 				logout,
-				register
+				registerAuth
 			}}
 		>
 			{children}

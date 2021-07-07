@@ -2,14 +2,13 @@ import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
 import { AuthContext } from '../../../hooks/useAuth'
-import { register_user } from '../../../service/auth'
+
 export default function Form () {
 	const { t } = useTranslation()
 	const {register,handleSubmit} = useForm()
-	// const { register } = useContext(AuthContext)
+	const { registerAuth } = useContext(AuthContext)
 	const onSubmit = (data)=>{
-		let test = register_user(data)
-		console.log(test)
+		registerAuth(data)
 	}
 	return(
 		<form onSubmit={handleSubmit(onSubmit)}>
@@ -39,7 +38,7 @@ export default function Form () {
 						</div>
 						<div className="grid grid-cols-1 ">
 							<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('SEX')}</label>
-							<select {...register('sex')} id="sex" className="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent">
+							<select {...register('gender')} id="sex" className="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent">
 								<option>{t('')}</option>
 								<option>{t('Male')}</option>
 								<option>{t('Female')}</option>
@@ -55,7 +54,7 @@ export default function Form () {
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
 						<div className="grid grid-cols-1">
 							<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('Phone Number')}r</label>
-							<input {...register('phone_number')} className="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="number" placeholder="012345678" required />
+							<input {...register('phone1')} className="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="number" placeholder="012345678" required />
 						</div>
 						<div className="grid grid-cols-1">
 							<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('Identify Card Number')}</label>

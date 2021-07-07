@@ -7,9 +7,8 @@ import { AuthContext } from '../../hooks/useAuth'
 
 export default function index() {
 	const { register, handleSubmit } = useForm()
-	const { currentUser, login } = useContext(AuthContext)
+	const { login } = useContext(AuthContext)
 	const onSubmit = (data) => {
-		console.log(data)
 		login(data)
 	}
 	const inputStyle={

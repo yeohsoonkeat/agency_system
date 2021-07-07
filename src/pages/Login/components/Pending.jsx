@@ -3,10 +3,10 @@ import { AuthContext } from '../../../hooks/useAuth'
 
 
 export default function Pending() {
-	const { currentUser } = useContext(AuthContext)
+	const { currentUser,logout } = useContext(AuthContext)
 	const user = currentUser
-	console.log(user.role.role)
-	let roleUser = user.role.role
+	console.log(user.role)
+	let roleUser = user.role.name
 	const [showModal, setShowModal] = React.useState(false)
 
 	const handleCancel = async() =>{
@@ -40,7 +40,7 @@ export default function Pending() {
                     Sex
 							</p>
 							<p>
-								{user.sex}
+								{user.gender}
 							</p>
 						</div>
 						<div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
@@ -56,7 +56,7 @@ export default function Pending() {
                     Phone Number
 							</p>
 							<p>
-								{user.phone_number}
+								{user.phone1}
 							</p>
 						</div>
 						<div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
@@ -116,7 +116,7 @@ export default function Pending() {
 									<button
 										className=" bg-accent-yellow text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
 										type="submit"
-										onClick={handleCancel}
+										onClick={logout}
 									>
                                         Confirm
 									</button>

@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useRouteMatch } from 'react-router-dom'
+import { AuthContext } from '../../../hooks/useAuth'
+import { get_commision } from '../../../service/client/Commision'
 import Table from '../components/Table'
 
 
 function AgentList() {
 	const { t } = useTranslation()
 	const { url } = useRouteMatch()
+	const [commission, setCommission] = useState([])
+
+	useEffect(() => {
+		const token = localStorage.getItem('token')
+		get_commision(token).then(x => {
+			setCommission(x.data)
+		}).catch(err => {
+			console.log(err)
+		})
+	}, [])
+
 	const data = React.useMemo(
 		() => [
 			{
@@ -24,37 +37,48 @@ function AgentList() {
 	const columns = React.useMemo(
 		() => [
 			{
-				Header: t('DATE'),
-				accessor: 'date', // accessor is the "key" in the data
+				Header: t('Date'),
+				accessor: 'date',
 			},
 			{
-				Header: t('AGENT'),
-				accessor: 'agent',
+				Header: t('Real Estate'),
+				accessor: 'real_estate',
 			},
 			{
-				Header: t('PROJECT_LOCATION'),
-				accessor: 'project_location',
+				Header: t('Plan'),
+				accessor: 'plan.plan_name',
 			},
 			{
-				Header: t('LAND_NO'),
-				accessor: 'land_no',
+				Header: t('Plan Location'),
+				accessor: 'plan.location',
 			},
 			{
-				Header: t('COMMISION'),
-				accessor: 'commision',
+				Header: t('Number Lots'),
+				accessor: 'num_lots',
 			},
 			{
-				Header: t('COMMISSION_AVAILABLE'),
-				accessor: 'commission_available',
+				Header: t('Agency'),
+				accessor: 'agency.full_name',
+			},
+			{
+				Header: t('Total Commission Money'),
+				accessor: 'total_agency_commission_money',
+			},
+			{
+				Header: t('Remaining Commission Money'),
+				accessor: 'remaining_agency_commission_money',
 			}
+			
+			
 		],
 		[]
 	)
 
 	return (
 		<div >
+			{/* {JSON.stringify(commission)} */}
 			<div className="flex w-full">
-				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">{t('AGENT')}</h1>
+				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">{t('COMMISSION')}</h1>
 				<Link to={`${url}/new_agent`} className="border-2 p-2 text-white opacity-80 hover:opacity-100 rounded items-center">
 					<div>
                         New Agent
@@ -62,7 +86,7 @@ function AgentList() {
 				</Link>
 			</div>
 			<div className="mt-4"/>
-			<Table data={data} columns={columns}/>
+			<Table data={commission} columns={columns}/>
 		</div>
 	)
 }
