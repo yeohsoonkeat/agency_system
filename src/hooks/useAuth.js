@@ -33,6 +33,7 @@ const AuthProvider = ({ children }) => {
 		setPending(true)
 		login_user(param).then(x => {
 			if (x.data.auth) {
+				console.log(x.data)
 				setCurrentUser(x.data.user)
 				localStorage.setItem('token', x.data.token)
 				setPending(false)
@@ -47,7 +48,8 @@ const AuthProvider = ({ children }) => {
 	const registerAuth = (param) => {
 		setPending(true)
 		register_user(param).then(x => {
-			setCurrentUser(x.data.data)
+			setCurrentUser(x.data.user)
+			localStorage.setItem('token', x.data.token)
 			setPending(false)
 		}).catch(err => {
 			setCurrentUser(false)

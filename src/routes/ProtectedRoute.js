@@ -6,8 +6,6 @@ import { AuthContext} from '../hooks/useAuth'
 const ProtectedRoutes = ({ Page, ...rest }) => {
 	const { currentUser } = useContext(AuthContext)
 	const is_verified = currentUser?.is_verified
-	console.log('helloworld')
-	console.log(currentUser)
 	return (
 		<Route
 			{...rest}

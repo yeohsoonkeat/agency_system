@@ -1,155 +1,166 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useRouteMatch } from 'react-router-dom'
 import Table from '../components/Table'
-
+import { get_plan } from '../../../service/client/Plan'
 
 function PlanList() {
 	const { t } = useTranslation()
 	const { url } = useRouteMatch()
-	const data = React.useMemo(
-		() => [
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'C',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'C',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'C',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'B',
-				phone: '0968663002',
-				status: 'Inactive',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'A',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'A',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'A',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'A',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'A',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'A',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'A',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'A',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
+	const [data, setData] = useState([])
+	// const data = React.useMemo(
+	// 	() => [
+	// 		{
+	// 			id: '1234567gfxdg',
+	// 			fullname: 'Yeoh Soon Keat',
+	// 			sex: 'Male',
+	// 			group: 'C',
+	// 			phone: '0968663002',
+	// 			status: 'Active',
+	// 			joined_at: new Date().toDateString()
+	// 		},
+	// 		{
+	// 			id: '1234567gfxdg',
+	// 			fullname: 'Yeoh Soon Keat',
+	// 			sex: 'Male',
+	// 			group: 'C',
+	// 			phone: '0968663002',
+	// 			status: 'Active',
+	// 			joined_at: new Date().toDateString()
+	// 		},
+	// 		{
+	// 			id: '1234567gfxdg',
+	// 			fullname: 'Yeoh Soon Keat',
+	// 			sex: 'Male',
+	// 			group: 'C',
+	// 			phone: '0968663002',
+	// 			status: 'Active',
+	// 			joined_at: new Date().toDateString()
+	// 		},
+	// 		{
+	// 			id: '1234567gfxdg',
+	// 			fullname: 'Yeoh Soon Keat',
+	// 			sex: 'Male',
+	// 			group: 'B',
+	// 			phone: '0968663002',
+	// 			status: 'Inactive',
+	// 			joined_at: new Date().toDateString()
+	// 		},
+	// 		{
+	// 			id: '1234567gfxdg',
+	// 			fullname: 'Yeoh Soon Keat',
+	// 			sex: 'Male',
+	// 			group: 'A',
+	// 			phone: '0968663002',
+	// 			status: 'Active',
+	// 			joined_at: new Date().toDateString()
+	// 		},
+	// 		{
+	// 			id: '1234567gfxdg',
+	// 			fullname: 'Yeoh Soon Keat',
+	// 			sex: 'Male',
+	// 			group: 'A',
+	// 			phone: '0968663002',
+	// 			status: 'Active',
+	// 			joined_at: new Date().toDateString()
+	// 		},
+	// 		{
+	// 			id: '1234567gfxdg',
+	// 			fullname: 'Yeoh Soon Keat',
+	// 			sex: 'Male',
+	// 			group: 'A',
+	// 			phone: '0968663002',
+	// 			status: 'Active',
+	// 			joined_at: new Date().toDateString()
+	// 		},
+	// 		{
+	// 			id: '1234567gfxdg',
+	// 			fullname: 'Yeoh Soon Keat',
+	// 			sex: 'Male',
+	// 			group: 'A',
+	// 			phone: '0968663002',
+	// 			status: 'Active',
+	// 			joined_at: new Date().toDateString()
+	// 		},
+	// 		{
+	// 			id: '1234567gfxdg',
+	// 			fullname: 'Yeoh Soon Keat',
+	// 			sex: 'Male',
+	// 			group: 'A',
+	// 			phone: '0968663002',
+	// 			status: 'Active',
+	// 			joined_at: new Date().toDateString()
+	// 		},
+	// 		{
+	// 			id: '1234567gfxdg',
+	// 			fullname: 'Yeoh Soon Keat',
+	// 			sex: 'Male',
+	// 			group: 'A',
+	// 			phone: '0968663002',
+	// 			status: 'Active',
+	// 			joined_at: new Date().toDateString()
+	// 		},
+	// 		{
+	// 			id: '1234567gfxdg',
+	// 			fullname: 'Yeoh Soon Keat',
+	// 			sex: 'Male',
+	// 			group: 'A',
+	// 			phone: '0968663002',
+	// 			status: 'Active',
+	// 			joined_at: new Date().toDateString()
+	// 		},
+	// 		{
+	// 			id: '1234567gfxdg',
+	// 			fullname: 'Yeoh Soon Keat',
+	// 			sex: 'Male',
+	// 			group: 'A',
+	// 			phone: '0968663002',
+	// 			status: 'Active',
+	// 			joined_at: new Date().toDateString()
+	// 		}
+	// 	],
+	// 	[]
+	// )
+	useEffect(() => {
+		const token = localStorage.getItem('token')
+		get_plan(token).then(res => {
+			if (!res?.data.error){
+				console.log(res.data)
+				setData(res.data)
 			}
-		],
-		[]
-	)
+		}).catch(err =>  console.log(err))
+	}, [])
 
 	const columns = React.useMemo(
 		() => [
-			{
-				Header: t('FULL_NAME'),
-				accessor: 'fullname', // accessor is the "key" in the data
-			},
 			{
 				Header: t('ID'),
 				accessor: 'id',
 			},
 			{
-				Header: t('SEX'),
-				accessor: 'sex',
+				Header: t('PLAN NAME'),
+				accessor: 'plan_name', // accessor is the "key" in the data
+			},
+			
+			{
+				Header: t('Commission Price'),
+				accessor: 'commission_price',
 			},
 			{
-				Header: t('GROUP'),
-				accessor: 'group',
+				Header: t('LOCATION'),
+				accessor: 'location',
 			},
 			{
-				Header: t('PHONE'),
-				accessor: 'phone',
+				Header: t('IS COMMISSION'),
+				accessor: 'is_commission',
 			},
 			{
-				Header: t('STATUS'),
-				accessor: 'status',
+				Header: t('CREATOR PLAN'),
+				accessor: 'creator_plan',
 			},
 			{
-				Header: t('JOINED_AT'),
-				accessor: 'joined_at',
+				Header: t('DATE'),
+				accessor: 'date',
 			},
 		],
 		[]
