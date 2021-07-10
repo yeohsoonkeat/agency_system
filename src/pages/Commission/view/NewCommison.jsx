@@ -1,93 +1,176 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useForm, Controller } from 'react-hook-form'
+import Select from 'react-select'
+import AddCommisionAgent from '../components/AddCommsionAgent'
 
 function NewCommison() {
 	const { t } = useTranslation()
+	const [Agency, setAgency] = useState([])
+	const [Plans, setPlans] = useState([])
+	const [CommissionTo, setCommissionTo] = useState([])
+	const { register, handleSubmit, control } = useForm()
+
+	useEffect(() => {
+		setAgency([{
+			'label': 'Agency',
+			'value': 'agency_id'
+		}])
+		setPlans(
+			[
+				{
+					'label': 'Plan ABC',
+					'value': 'plan_id'
+				}
+			]
+		)
+		setCommissionTo(
+			[
+				{
+					'name': 'ysk',
+					'ammount': '100'
+				}
+			]
+		)
+
+	}, [])
+
+	const onSubmit = (data) => {
+		alert(JSON.stringify(data), CommissionTo)
+	}
 
 	return (
 		<div >
-			<h1 className="mb-5 font-bold text-3xl text-yellow-lite">New Commision</h1>
-			<form >
-				<div className="relative p-6 flex-auto">
-					<div className="flex flex-wrap -mx-3 mb-6">
-						<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-							<label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
-								{t('FULL_NAME')}
-							</label>
-							<input required className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Jane" />
+			<div className="flex w-full">
+				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">{t('NEW_COMMISION')}</h1>
+			</div>
+			<div className="mt-10" />
+			<div >
+				<form onSubmit={handleSubmit(onSubmit)}>
+
+					<div className="md:grid md:grid-cols-3 md:gap-6">
+						<div className="md:col-span-1">
+							<div className="px-4 sm:px-0">
+								<h3 className="text-lg font-medium leading-6 text-gray-900">Commision</h3>
+								<p className="mt-1 text-sm text-gray-600">
+									Commision details
+								</p>
+							</div>
 						</div>
-						<div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-							<label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-state">
-								{t('SEX')}
-							</label>
-							<div className="relative">
-								<select required className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-									<option>Male</option>
-									<option>Female</option>
-									<option>Other</option>
-								</select>
-								<div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-									<svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+						<div className="mt-5 md:mt-0 md:col-span-2">
+							<div className="shadow sm:rounded-md ">
+								<div className="px-4 py-5 bg-white space-y-6 sm:p-6">
+									<div className="grid grid-cols-3 gap-6">
+										<div className="col-span-3 sm:col-span-2">
+											<label htmlFor="fullname" className="block text-sm font-medium text-gray-700">
+												{t('REAL_ESTATE')}
+											</label>
+											<div className="mt-1 flex rounded-md shadow-sm">
+												<input {...register('real_estate')} type="text" className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 p-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" />
+											</div>
+										</div>
+									</div>
+									<div className="grid grid-cols-3 gap-6">
+										<div className="col-span-3 sm:col-span-2">
+											<label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+												{t('NUMBER_LOTS')}
+											</label>
+											<div className="mt-1 flex rounded-md shadow-sm">
+												<input {...register('number_lots')} type="text" className="focus:ring-indigo-500 focus:border-indigo-500 p-1 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" />
+											</div>
+										</div>
+									</div>
+									<div className="grid grid-cols-3 gap-6">
+										<div className="col-span-3 sm:col-span-2">
+											<label htmlFor="agency" className="block text-sm font-medium text-gray-700">
+												{t('AGENCY')}
+
+											</label>
+											<Controller
+												name="agency"
+												control={control}
+												rules={{ required: true }}
+												render={({ field }) => (
+													<Select
+														{...field}
+														options={Agency}
+													/>
+												)}
+											/>
+										</div>
+										<div className="col-span-3 sm:col-span-2">
+											<label htmlFor="plan" className="block text-sm font-medium text-gray-700">
+												{t('PLAN')}
+
+											</label>
+											<Controller
+												name="plan"
+												control={control}
+												rules={{ required: true }}
+												render={({ field }) => (
+													<Select
+														{...field}
+														options={Plans}
+													/>
+												)}
+											/>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div className="md:col-span-1">
+							<div className="px-4 sm:px-0">
+								<h3 className="text-lg font-medium leading-6 text-gray-900">Agents</h3>
+								<p className="mt-1 text-sm text-gray-600">
+									Agent commision
+								</p>
+							</div>
+						</div>
+						<div className="mt-5 md:mt-0 md:col-span-2">
+							<div className="shadow sm:rounded-md ">
+								<div className="px-4 py-5 bg-white space-y-6 sm:p-6">
+									<div className="grid grid-cols-3">
+										<p className=" col-span-2 font-bold text-lg">Agent commisions</p>
+										<AddCommisionAgent />
+										<div className=" col-span-3">
+											<table className="rounded-t-lg m-5 w-11/12 mx-auto bg-gray-200 text-gray-800">
+												<tbody className=" text-center">
+													<tr className="border-b-2 py-2 border-gray-300">
+														<th className=" px-1">No. </th>
+														<th className=" px-1">Name</th>
+														<th className=" px-1">Ammount</th>
+													</tr>
+
+													{CommissionTo.length === 0 && <tr className="py-2"><td colSpan={3} className="text-center">Nothing to show</td></tr>}
+													{CommissionTo.length > 0 &&
+														CommissionTo.map((x, index) => (
+															<tr key={'agent_commision' + index} className="py-2">
+																<td className=" p-1">{index + 1}</td>
+																<td className="p-1">{x.name}</td>
+																<td className="p-1">{x.ammount}</td>
+															</tr>
+														))
+													}
+
+												</tbody>
+
+											</table>
+										</div>
+									</div>
+
 								</div>
 							</div>
 						</div>
-						<div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-							<label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-state">
-								{t('LEADER')}
-							</label>
-							<div className="relative">
-								<select required className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-									<option>Jonh</option>
-									<option>Cena</option>
-									<option>Other</option>
-								</select>
-								<div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-									<svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div className="flex flex-wrap -mx-3 mb-2">
-						<div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-							<label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-city">
-								Address
-							</label>
-							<input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Steung Mean Chei" />
-						</div>
-						<div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-							<label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-zip">
-								Phone Number
-							</label>
-							<input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-zip" type="phone" placeholder="+8550000000" />
-						</div>
-					</div>
-					<div className="flex flex-wrap -mx-3 mb-6">
-						<div className="w-full px-3">
-							<label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password">
-								Password
-							</label>
-							<input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="password" placeholder="******************" />
-						</div>
-					</div>
+						<button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+							Save
+						</button>
 
-				</div>
-				{/*footer*/}
-				<div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-					<button
-						className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-						type="button"
-					>
-						Back
-					</button>
-					<button
-						className="bg-green-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-						type="submit"
-					>
-						Add
-					</button>
-				</div>
-
-			</form></div>
+					</div>
+				</form>
+			</div>
+		</div>
 	)
 }
 
