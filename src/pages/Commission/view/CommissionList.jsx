@@ -25,7 +25,7 @@ function AgentList() {
 		() => [
 			{
 				date: new Date().toDateString(),
-				agent: 'Yeoh Soon Keat',
+				real_estate: 'Yeoh Soon Keat',
 				project_location: 'Phnom Penh',
 				land_no: 1,
 				commision: '12%',
@@ -80,14 +80,14 @@ function AgentList() {
 			{/* {JSON.stringify(commission)} */}
 			<div className="flex w-full">
 				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">{t('COMMISSION')}</h1>
-				<Link to={`${url}/new_agent`} className="border-2 p-2 text-white opacity-80 hover:opacity-100 rounded items-center">
+				<Link to={`${url}/new_commision`} className="border-2 p-2 text-white opacity-80 hover:opacity-100 rounded items-center">
 					<div>
-                        New Agent
+                        New Commission
 					</div>
 				</Link>
 			</div>
 			<div className="mt-4"/>
-			<Table data={commission} columns={columns}/>
+			<Table data={data} columns={columns}/>
 		</div>
 	)
 }
