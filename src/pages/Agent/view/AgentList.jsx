@@ -1,131 +1,30 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useRouteMatch } from 'react-router-dom'
 import Table from '../components/Table'
-
+import { get_agency } from '../../../service/client/agency'
 
 function AgentList() {
 	const { t } = useTranslation()
 	const { url } = useRouteMatch()
-	const data = React.useMemo(
-		() => [
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'C',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'C',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'C',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'B',
-				phone: '0968663002',
-				status: 'Inactive',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'A',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'A',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'A',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'A',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'A',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'A',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'A',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'A',
-				phone: '0968663002',
-				status: 'Active',
-				joined_at: new Date().toDateString()
-			}
-		],
-		[]
-	)
+	const [data, setData] = useState([])
+	useEffect(()=>{
+		const token = localStorage.getItem('token')
+		get_agency(token).then(res=>{
+			res.data.filter((x)=>{
+				x.is_verified? x['status'] = 'Active': x['status'] = 'Inactive'
+			})
+			console.log(res.data)
+			setData(res.data)
+		})
+	},[])
+	
 
 	const columns = React.useMemo(
 		() => [
 			{
-				Header: t('FULL_NAME'),
-				accessor: 'fullname', // accessor is the "key" in the data
+				Header: t('FULL NAME'),
+				accessor: 'full_name', // accessor is the "key" in the data
 			},
 			{
 				Header: t('ID'),
@@ -133,23 +32,27 @@ function AgentList() {
 			},
 			{
 				Header: t('SEX'),
-				accessor: 'sex',
-			},
-			{
-				Header: t('GROUP'),
-				accessor: 'group',
+				accessor: 'gender',
 			},
 			{
 				Header: t('PHONE'),
-				accessor: 'phone',
+				accessor: 'phone1',
 			},
 			{
 				Header: t('STATUS'),
 				accessor: 'status',
 			},
 			{
-				Header: t('JOINED_AT'),
-				accessor: 'joined_at',
+				Header: t('REMAINING MONEY'),
+				accessor: 'remaining_money',
+			},
+			{
+				Header: t('TOTAL MONEY'),
+				accessor: 'total_money',
+			},
+			{
+				Header: t('JOINED DATE'),
+				accessor: 'date',
 			},
 		],
 		[]

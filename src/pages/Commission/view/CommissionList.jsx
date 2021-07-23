@@ -14,6 +14,7 @@ function AgentList() {
 	useEffect(() => {
 		const token = localStorage.getItem('token')
 		get_commision(token).then(x => {
+			console.log(x.data)
 			setCommission(x.data)
 		}).catch(err => {
 			console.log(err)

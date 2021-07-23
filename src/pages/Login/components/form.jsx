@@ -21,7 +21,7 @@ export default function Form () {
 						</div>
 					</div>
 				 	{/* Input Name and Email */}
-					 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
 						<div className="grid grid-cols-1">
 							<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('Full Name')}</label>
 							<input  {...register('full_name')} id="full_name" required className="py-2 px-3 rounded-lg border-2 border-blueGray-500 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="text" placeholder="Mongkul Makra Realty"/>
@@ -31,6 +31,7 @@ export default function Form () {
 							<input {...register('email')} id="email" required className="py-2 px-3 rounded-lg border-2 border-blueGray-500 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="email" placeholder="example@gmail.com"/>
 						</div>
 					</div>
+					{/* Password and Gender */}
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
 						<div className="grid grid-cols-1">
 							<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('Password')}</label>
