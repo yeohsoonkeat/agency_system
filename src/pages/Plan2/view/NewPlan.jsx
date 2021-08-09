@@ -2,33 +2,37 @@ import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
 import { AuthContext } from '../../../hooks/useAuth'
+import { create_plan } from '../../../service/client/Plan'
 
 
-function NewAgent() {
+function NewAgent(context) {
+	// const Plan = lazy(() => import('./pages/Plan2'))
 	const { t } = useTranslation()
 	const {register,handleSubmit} = useForm()
 	const { registerAuth } = useContext(AuthContext)
-	const onSubmit = (data)=>{
-		registerAuth(data)
+	const onSubmit = async (data)=>{
+		const token = localStorage.getItem('token')
+		const result = await create_plan(token,data)
+		console.log(result)
 	}
 
 	return (
 		<div >
 			<h1 className="mb-5 font-bold text-3xl text-yellow-lite">New Agent</h1>		
-			<form >
+			<form onSubmit={handleSubmit(onSubmit)} >
 				<div className="relative p-6 flex-auto">
 					<div className="flex flex-wrap -mx-3 mb-6">
 						<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
 							<label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
 								{t('Plan Name')}
 							</label>
-							<input required className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Plan name" />
+							<input {...register('plan_name')} required className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Plan name" />
 						</div>
 						<div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
 							<label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-price">
-								{t('Plan Name')}
+								{t('Price')}
 							</label>
-							<input required className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-price" type="number" placeholder="Plan price" />
+							<input {...register('commission_price')} required className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-price" type="number" placeholder="Plan price" />
 						</div>
 						<div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
 							<label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-state">
@@ -49,15 +53,15 @@ function NewAgent() {
 					<div className="flex flex-wrap -mx-3 mb-2">
 						<div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
 							<label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-city">
-								Address
+								Location
 							</label>
-							<input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Steung Mean Chei" />
+							<input {...register('location')} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Steung Mean Chei" />
 						</div>
 						<div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
 							<label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-zip">
 							 Descriptions
 							</label>
-							<textarea placeholder="More detail here" className="resize border rounded-md appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></textarea>
+							<textarea {...register('descriptions')} placeholder="More detail here" className="resize border rounded-md appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></textarea>
 							{/* <input className="" id="grid-zip" type="phone" placeholder="More detail here" /> */}
 						</div>
 					</div>
