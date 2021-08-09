@@ -10,6 +10,7 @@ export default function Form () {
 	const onSubmit = (data)=>{
 		registerAuth(data)
 	}
+
 	return(
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className="flex min-h-screen bg-gray-200 items-center justify-center">

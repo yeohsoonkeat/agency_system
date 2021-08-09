@@ -14,7 +14,6 @@ function AgentList() {
 	useEffect(() => {
 		const token = localStorage.getItem('token')
 		get_commision(token).then(x => {
-			console.log(x.data)
 			setCommission(x.data)
 		}).catch(err => {
 			console.log(err)
@@ -87,7 +86,7 @@ function AgentList() {
 				</Link>
 			</div>
 			<div className="mt-4"/>
-			<Table data={data} columns={columns}/>
+			<Table data={commission} columns={columns}/>
 		</div>
 	)
 }
