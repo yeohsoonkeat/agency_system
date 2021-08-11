@@ -3,17 +3,17 @@ import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
 import { AuthContext } from '../../../hooks/useAuth'
 import { create_plan } from '../../../service/client/Plan'
+import { Redirect } from 'react-router-dom'
 
 
 function NewAgent(context) {
 	// const Plan = lazy(() => import('./pages/Plan2'))
 	const { t } = useTranslation()
 	const {register,handleSubmit} = useForm()
-	const { registerAuth } = useContext(AuthContext)
 	const onSubmit = async (data)=>{
 		const token = localStorage.getItem('token')
 		const result = await create_plan(token,data)
-		console.log(result)
+		Redirect('/plan')
 	}
 
 	return (
