@@ -15,6 +15,7 @@ const NotFoundPage = lazy(() => import('./pages/404-page'))
 const Agent = lazy(() => import('./pages/Agent'))
 const Plan = lazy(() => import('./pages/Plan2'))
 const AgentReport = lazy(() => import('./pages/AgentReport'))
+const InterestReport = lazy(() => import('./pages/InterestReport'))
 const Commission = lazy(() => import('./pages/Commission'))
 const SignupForm = lazy(() => import('./pages/Login/components/form'))
 const Pending = lazy(() => import('./pages/Login/components/Pending'))
@@ -38,6 +39,7 @@ const App = () => {
 								<ProtectedRoute  path="/agent" Page={Agent} />
 								<ProtectedRoute  path="/plan" Page={Plan} />
 								<ProtectedRoute  path="/agent_report" Page={AgentReport} />
+								<ProtectedRoute  path="/interest_report" Page={InterestReport} />
 								<ProtectedRoute  path="/commission" Page={Commission} />
 								<ProtectedRoute  path="/setting" Page={Setting} />
 								<Redirect from='*' to='/404' />
