@@ -1,3 +1,4 @@
+import data from '@iconify-icons/mdi/chevron-right'
 import axios from 'axios'
 
 
@@ -9,6 +10,22 @@ export const get_agency = (token) => {
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`
 		}
+	}
+	return axios(config)
+}
+
+
+export const create_agency = (token,agency) => {
+	const data = JSON.stringify(agency)
+	console.log(data)
+	const config =  {
+		method: 'post',
+		url: 'http://localhost:8080/api/agency/create_agency',
+		headers: { 
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${token}`
+		},
+		data: data
 	}
 	return axios(config)
 }
