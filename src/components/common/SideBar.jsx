@@ -76,7 +76,7 @@ export default function Sidebar() {
                     
 						{/* nav */}
 						<ul className="md:flex-col md:min-w-full flex flex-col text-lg list-none  text-gray-800">
-							<li className="items-center">
+							<li className="items-center hover:text-yellow-500">
 								<Link
 									className=" py-3 block"
 									to="/"
@@ -84,7 +84,7 @@ export default function Sidebar() {
 									<InlineIcon icon={viewDashboardOutline} className="inline w-5 h-5 text-gray-400 mr-2" />{t('DASHBOARD')}
 								</Link>
 							</li>
-							<li className="items-center">
+							<li className="items-center hover:text-yellow-500">
 								<Link
 									className="  py-3 block"
 									to="/plan"
@@ -92,7 +92,7 @@ export default function Sidebar() {
 									<InlineIcon icon={packageVariant} className="inline w-5 h-5 text-gray-400 mr-2" />{t('PLAN')}
 								</Link>
 							</li>
-							<li className="items-center">
+							<li className="items-center hover:text-yellow-500">
 								<Link
 									className="  py-3 block"
 									to="/agent"
@@ -103,7 +103,7 @@ export default function Sidebar() {
                             
 							<li className="items-center">
 								<Link
-									className="  py-3 block"
+									className="  py-3 block hover:text-yellow-500"
 									to="/commission"
 								>
 									<InlineIcon icon={percentOutline} className="inline w-5 h-5 text-gray-400 mr-2" />{t('COMMISION')}
@@ -111,15 +111,15 @@ export default function Sidebar() {
 							</li>
 							<li className="items-center">
 								<Link
-									className=" py-3 block"
-									to="/interest"
+									className=" py-3 block hover:text-yellow-500"
+									to="/interest_report"
 								>
 									<InlineIcon icon={filePercentOutline} className="inline w-5 h-5 text-gray-400 mr-2" />{t('INTEREST')}
 								</Link>
 							</li>
 							<li className="items-center">
 								<Link
-									className=" py-3 block"
+									className=" py-3 block hover:text-yellow-500"
 									to="/agent_report"
 								>
 									<InlineIcon icon={noteEdit } className="inline w-5 h-5 text-gray-400 mr-2" />{t('AGENT_REPORT')}
@@ -129,19 +129,43 @@ export default function Sidebar() {
 
 							<li className="items-center">
 								<Link
-									className=" py-3 block"
+									className=" py-3 block hover:text-yellow-500 "
 									to="/setting"
 								>
 									{t('SETTING')}
 								</Link>
 							</li>
-							<li className="items-center">
+							<li className="items-center ">
 								<Link
-									className=" py-3 block"
-									to="/user_management"
+									className=" py-2 block text-gray-600	"
 								>
 									{t('USER_MANAGEMENT')}
 								</Link>
+								<li className="ml-8 text-base">
+									<Link
+										className="py-2 block"
+										to="/activity_log"
+									>
+									Activity Log
+									</Link>
+								</li>
+								<li className="ml-8 text-base">
+									<Link
+										className="py-2 block"
+										to="/activity_log"
+									>
+									User
+									</Link>
+								</li>
+								<li className="ml-8 text-base">
+									<Link
+										className="py-2 block"
+										to="/activity_log"
+									>
+									Pending Register
+									</Link>
+								</li>
+								
 							</li>
 						</ul>
 					</div>
