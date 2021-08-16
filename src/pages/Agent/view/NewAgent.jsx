@@ -2,17 +2,22 @@ import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
 import { AuthContext } from '../../../hooks/useAuth'
-
+import { create_agency } from '../../../service/client/agency'
+import { useHistory } from 'react-router-dom'
 function NewAgent() {
 	const { t } = useTranslation()
 	const {register,handleSubmit} = useForm()
-	const { registerAuth } = useContext(AuthContext)
-	const onSubmit = (data)=>{
-		registerAuth(data)
+	const history = useHistory()
+
+	const onSubmit = async (data)=>{
+		const token = localStorage.getItem('token')
+		const createAgency = await create_agency(token,data)
+		history.push('/agent')
 	}
 	return (
 		<div >	
 			<div className="flex w-full">
+				
 				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">{t('NEW_AGENT')}</h1>
 			</div>
 			<div className="mt-10"/>
@@ -27,7 +32,7 @@ function NewAgent() {
 						</div>
 					</div>
 					<div className="mt-5 md:mt-0 md:col-span-2">
-						<form >
+						<form onSubmit={handleSubmit(onSubmit)} >
 							<div className="shadow sm:rounded-md sm:overflow-hidden">
 								<div className="px-4 py-5 bg-white space-y-6 sm:p-6">
 									

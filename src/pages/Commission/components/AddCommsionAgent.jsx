@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Select from 'react-select'
+import PropTypes from 'prop-types'
+import { get_agency } from '../../../service/client/agency'
 
 
-export default function AddCommisionAgent() {
+export default function AddCommisionAgent({onAgentAdd}) {
 	const { t } = useTranslation()
 	const [showModal, setShowModal] = useState(false)
 	const [Agent, setAgent] = useState([])
@@ -11,16 +13,19 @@ export default function AddCommisionAgent() {
 	const [SelectedAgent, setSelectedAgent] = useState()
 
 	useEffect(() => {
-		setAgent([
-			{
-				'label': 'ysk',
-				'value': 'agent_1'
-			},
-			{
-				'label': 'daro',
-				'value': 'agent_2'
+		const token = localStorage.getItem('token')
+		get_agency(token).then(res => {
+			console.log(res.data)
+			if (!res?.data.error){
+				let k = res.data.map(x => {
+					return {
+						'label': x.full_name,
+						'value': `${x.id}/${x.full_name}`
+					}
+				})
+				setAgent(k)
 			}
-		])
+		}).catch(err =>  console.log(err))
 	}, [])
 
 	const handleChange = (e) => {
@@ -35,10 +40,10 @@ export default function AddCommisionAgent() {
 	const onSubmit = (e) => {
 		e.preventDefault()
 		let tmp = {
-			'agent_id': SelectedAgent,
+			'agent': SelectedAgent,
 			'ammount': Ammount
 		}
-		console.log(tmp)
+		onAgentAdd(tmp)
 		setShowModal(false)
 	}
 
@@ -114,4 +119,8 @@ export default function AddCommisionAgent() {
 			) : null}
 		</>
 	)
+}
+
+AddCommisionAgent.propTypes = {
+	onAgentAdd: PropTypes.func
 }

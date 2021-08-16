@@ -3,17 +3,18 @@ import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
 import { AuthContext } from '../../../hooks/useAuth'
 import { create_plan } from '../../../service/client/Plan'
-import { Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 
 function NewAgent(context) {
 	// const Plan = lazy(() => import('./pages/Plan2'))
 	const { t } = useTranslation()
+	const history = useHistory()
 	const {register,handleSubmit} = useForm()
 	const onSubmit = async (data)=>{
 		const token = localStorage.getItem('token')
 		const result = await create_plan(token,data)
-		Redirect('/plan')
+		history.push('/plan')
 	}
 
 	return (
@@ -58,11 +59,11 @@ function NewAgent(context) {
 							<input {...register('location')} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Steung Mean Chei" />
 						</div>
 						<div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-							<label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-zip">
-							 Descriptions
+							<label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-city">
+								Location
 							</label>
 							<textarea {...register('descriptions')} placeholder="More detail here" className="resize border rounded-md appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></textarea>
-							{/* <input className="" id="grid-zip" type="phone" placeholder="More detail here" /> */}
+							
 						</div>
 					</div>
 					

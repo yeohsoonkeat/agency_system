@@ -3,40 +3,66 @@ import { useTranslation } from 'react-i18next'
 import { useForm, Controller } from 'react-hook-form'
 import Select from 'react-select'
 import AddCommisionAgent from '../components/AddCommsionAgent'
+import { getPlanById, get_plan } from '../../../service/client/Plan'
 
 function NewCommison() {
 	const { t } = useTranslation()
 	const [Agency, setAgency] = useState([])
 	const [Plans, setPlans] = useState([])
 	const [CommissionTo, setCommissionTo] = useState([])
+	const [CommissionPrice, setCommissionPrice] = useState([])
 	const { register, handleSubmit, control } = useForm()
+	// let commissionPrice ='1212'
 
 	useEffect(() => {
+		const token = localStorage.getItem('token')
+		get_plan(token).then(res => {
+			if (!res?.data.error){
+				let k = res.data.map(x => {
+					return {
+						'label': x.plan_name,
+						'value': x.id
+					}
+				})
+				setPlans(k)
+			}
+		}).catch(err =>  console.log(err))
 		setAgency([{
 			'label': 'Agency',
 			'value': 'agency_id'
 		}])
-		setPlans(
-			[
-				{
-					'label': 'Plan ABC',
-					'value': 'plan_id'
-				}
-			]
-		)
-		setCommissionTo(
-			[
-				{
-					'name': 'ysk',
-					'ammount': '100'
-				}
-			]
-		)
 
 	}, [])
 
 	const onSubmit = (data) => {
-		alert(JSON.stringify(data), CommissionTo)
+		console.log(data)
+		const k = {
+			'real_estate': data.real_estate,
+			'plan_id': data.plan.value,
+			'num_lots': data.number_lots,
+			'total_commission_price': 1000,
+			'agency': CommissionTo.map(x => {
+				return { 'id': x.id, 'price': x.ammount }
+			})
+
+		}
+		// alert(JSON.stringify(k))
+		console.log(k)
+	}
+
+	const onAgentAdd = (data) => {
+		let agent = data.agent.split('/')
+		setCommissionTo([...CommissionTo, {
+			'id': agent[0],
+			'name': agent[1],
+			'ammount': data.ammount
+		}])
+	}
+	const onPlanChange = async (data) => {
+		// alert(data.value)
+		const token = localStorage.getItem('token')
+		const plan = await getPlanById(data.value,token)
+		setCommissionPrice(plan.data.commission_price)		
 	}
 
 	return (
@@ -110,10 +136,22 @@ function NewCommison() {
 												render={({ field }) => (
 													<Select
 														{...field}
+														onChange={onPlanChange}
 														options={Plans}
 													/>
 												)}
 											/>
+										</div>
+									</div>
+									<div className="grid grid-cols-3 gap-6">
+										<div className="col-span-3 sm:col-span-2">
+											<label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+												{t('Total Commission Price')}
+											</label>
+											<div className="mt-1 flex rounded-md shadow-sm">
+												
+												<input {...register('total_commission_price')} type="text" className="focus:ring-indigo-500 focus:border-indigo-500 p-1 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" value={CommissionPrice} />
+											</div>
 										</div>
 									</div>
 								</div>
@@ -133,7 +171,7 @@ function NewCommison() {
 								<div className="px-4 py-5 bg-white space-y-6 sm:p-6">
 									<div className="grid grid-cols-3">
 										<p className=" col-span-2 font-bold text-lg">Agent commisions</p>
-										<AddCommisionAgent />
+										<AddCommisionAgent onAgentAdd={onAgentAdd} />
 										<div className=" col-span-3">
 											<table className="rounded-t-lg m-5 w-11/12 mx-auto bg-gray-200 text-gray-800">
 												<tbody className=" text-center">
