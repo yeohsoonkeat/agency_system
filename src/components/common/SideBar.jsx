@@ -136,31 +136,31 @@ export default function Sidebar() {
 								</Link>
 							</li>
 							<li className="items-center ">
-								<Link
-									className=" py-2 block text-gray-600	"
+								<h1
+									className=" py-2 block text-gray-60"
 								>
 									{t('USER_MANAGEMENT')}
-								</Link>
+								</h1>
 								<li className="ml-8 text-base">
 									<Link
-										className="py-2 block"
+										className="py-2 block hover:text-yellow-500"
 										to="/activity_log"
 									>
 									Activity Log
 									</Link>
 								</li>
-								<li className="ml-8 text-base">
+								<li className="ml-8 text-base hover:text-yellow-500">
 									<Link
 										className="py-2 block"
-										to="/activity_log"
+										to="/users"
 									>
 									User
 									</Link>
 								</li>
-								<li className="ml-8 text-base">
+								<li className="ml-8 text-base hover:text-yellow-500">
 									<Link
 										className="py-2 block"
-										to="/activity_log"
+										to="/pending_register"
 									>
 									Pending Register
 									</Link>

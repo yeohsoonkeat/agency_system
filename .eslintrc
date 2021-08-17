@@ -25,10 +25,11 @@
 			"error",
 			"never"
 		],
-		"indent": [
-			2,
-			"tab"
-		]
+		// "indent": [
+		// 	2,
+		// 	"tab"
+		// ]
+		"indent": ["off"]
 	},
 	"settings": {
 		"react": {

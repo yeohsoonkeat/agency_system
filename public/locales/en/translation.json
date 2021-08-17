@@ -14,5 +14,8 @@
     "BALANCE": "Balance",
     "LOGOUT": "Logout",
     "LOGOUT_WARN": "You are about to logout.",
-    "CONFIRMATION_TEXT":"Are you sure?"
+    "CONFIRMATION_TEXT":"Are you sure?",
+    "ACTIVITY_LOG": "Acitivity Log",
+    "PENDING_REGISTER": "Pending Register",
+    "USER": "User"
 }
