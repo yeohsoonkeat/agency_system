@@ -4,15 +4,18 @@ import { useForm, Controller } from 'react-hook-form'
 import Select from 'react-select'
 import AddCommisionAgent from '../components/AddCommsionAgent'
 import { getPlanById, get_plan } from '../../../service/client/Plan'
+import { createCommission } from '../../../service/client/Commision'
+import { useHistory } from 'react-router-dom'
 
 function NewCommison() {
 	const { t } = useTranslation()
 	const [Agency, setAgency] = useState([])
 	const [Plans, setPlans] = useState([])
+	const [selectedPlan, setSelectedPlan] = useState()
 	const [CommissionTo, setCommissionTo] = useState([])
 	const [CommissionPrice, setCommissionPrice] = useState([])
+	const history = useHistory()
 	const { register, handleSubmit, control } = useForm()
-	// let commissionPrice ='1212'
 
 	useEffect(() => {
 		const token = localStorage.getItem('token')
@@ -34,20 +37,20 @@ function NewCommison() {
 
 	}, [])
 
-	const onSubmit = (data) => {
-		console.log(data)
-		const k = {
+	const onSubmit = async(data) => {
+		const commission = {
 			'real_estate': data.real_estate,
-			'plan_id': data.plan.value,
+			'plan_id': selectedPlan,
 			'num_lots': data.number_lots,
-			'total_commission_price': 1000,
+			// 'total_commission_price': CommissionPrice,
 			'agency': CommissionTo.map(x => {
-				return { 'id': x.id, 'price': x.ammount }
+				return { 'agency_id': x.id, 'price': x.ammount }
 			})
 
 		}
-		// alert(JSON.stringify(k))
-		console.log(k)
+		const token = localStorage.getItem('token')
+		const result = await createCommission(commission,token)
+		history.push('/commission')
 	}
 
 	const onAgentAdd = (data) => {
@@ -61,6 +64,7 @@ function NewCommison() {
 	const onPlanChange = async (data) => {
 		// alert(data.value)
 		const token = localStorage.getItem('token')
+		setSelectedPlan(data.value)
 		const plan = await getPlanById(data.value,token)
 		setCommissionPrice(plan.data.commission_price)		
 	}
@@ -107,7 +111,7 @@ function NewCommison() {
 										</div>
 									</div>
 									<div className="grid grid-cols-3 gap-6">
-										<div className="col-span-3 sm:col-span-2">
+										{/* <div className="col-span-3 sm:col-span-2">
 											<label htmlFor="agency" className="block text-sm font-medium text-gray-700">
 												{t('AGENCY')}
 
@@ -123,24 +127,25 @@ function NewCommison() {
 													/>
 												)}
 											/>
-										</div>
+										</div> */}
 										<div className="col-span-3 sm:col-span-2">
 											<label htmlFor="plan" className="block text-sm font-medium text-gray-700">
 												{t('PLAN')}
 
 											</label>
-											<Controller
+											<Select
+												
+												onChange={onPlanChange}
+												options={Plans}
+											/>
+											{/* <Controller
 												name="plan"
 												control={control}
-												rules={{ required: true }}
+										
 												render={({ field }) => (
-													<Select
-														{...field}
-														onChange={onPlanChange}
-														options={Plans}
-													/>
+													
 												)}
-											/>
+											/> */}
 										</div>
 									</div>
 									<div className="grid grid-cols-3 gap-6">
