@@ -10,6 +10,7 @@ function NewAgent() {
 	const history = useHistory()
 
 	const onSubmit = async (data)=>{
+		console.log(data)
 		const token = localStorage.getItem('token')
 		const createAgency = await create_agency(token,data)
 		history.push('/agent')
@@ -56,7 +57,7 @@ function NewAgent() {
 										</div>
 										
 										<div className="grid grid-cols-1 ">
-											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('SEX')}</label>
+											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('Gender')}</label>
 											<select {...register('gender')} id="sex" className="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent">
 												<option>{t('Male')}</option>
 												<option>{t('Female')}</option>
@@ -72,7 +73,7 @@ function NewAgent() {
 									<div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
 										<div className="grid grid-cols-1">
 											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('LEADER')}</label>
-											<select {...register('gender')} id="sex" className="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent">
+											<select {...register('leader')} id="sex" className="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent">
 												<option>{t('Sopheak')}</option>
 												<option>{t('Mari')}</option>
 												<option>{t('Testing')}</option>
@@ -80,7 +81,7 @@ function NewAgent() {
 										</div>
 										<div className="grid grid-cols-1 ">
 											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('ROLE')}</label>
-											<select {...register('gender')} id="sex" className="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent">
+											<select {...register('role')} id="sex" className="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent">
 												<option>{t('Admin')}</option>
 												<option>{t('Agency')}</option>
 												<option>{t('Sale')}</option>
