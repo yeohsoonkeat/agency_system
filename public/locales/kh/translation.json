@@ -14,5 +14,10 @@
     "BALANCE": "ទឹកប្រាក់នៅសល់",
     "LOGOUT": "ចាកចេញ",
     "LOGOUT_WARN": "អ្នករៀបនឹងចេញហើយ។",
-    "CONFIRMATION_TEXT": "តើ​អ្នក​ប្រាកដ​ឬ​អត់ ?"
+    "CONFIRMATION_TEXT": "តើ​អ្នក​ប្រាកដ​ឬ​អត់ ?",
+    "ACTIVITY_LOG": "",
+    "PENDING_REGISTER": "រងចាំ",    
+    "USER": "អ្នកប្រើប្រាស់"
+
+
 }

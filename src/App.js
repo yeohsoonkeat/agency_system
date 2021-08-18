@@ -20,6 +20,9 @@ const Commission = lazy(() => import('./pages/Commission'))
 const SignupForm = lazy(() => import('./pages/Login/components/form'))
 const Pending = lazy(() => import('./pages/Login/components/Pending'))
 const Setting = lazy(() => import('./pages/Setting'))
+const ActivityLog = lazy(() => import('./pages/ActivityLog'))
+const PendingRegister = lazy(()=> import('./pages/PendingRegister'))
+const User = lazy(()=> import('./pages/User'))
 
 
 
@@ -40,6 +43,9 @@ const App = () => {
 								<ProtectedRoute  path="/plan" Page={Plan} />
 								<ProtectedRoute  path="/agent_report" Page={AgentReport} />
 								<ProtectedRoute  path="/interest_report" Page={InterestReport} />
+								<ProtectedRoute  path="/activity_log" Page={ActivityLog} />
+								<ProtectedRoute  path="/pending_register" Page={PendingRegister} />
+								<ProtectedRoute  path="/users" Page={User} />
 								<ProtectedRoute  path="/commission" Page={Commission} />
 								<ProtectedRoute  path="/setting" Page={Setting} />
 								<Redirect from='*' to='/404' />
