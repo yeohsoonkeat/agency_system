@@ -5,6 +5,7 @@ import Table from '../components/Table'
 
 function PendingRegister() {
 	const { t } = useTranslation()
+	
 	const data = React.useMemo(
 		() => [
 			{
@@ -38,7 +39,7 @@ function PendingRegister() {
 	const columns = React.useMemo(
 		() => [
 			{
-				Header: t('FULL_NAME'),
+				Header: t('FULL NAME'),
 				accessor: 'fullname', // accessor is the "key" in the data
 			},
 			{
