@@ -86,7 +86,7 @@ function AgentList() {
 				</Link>
 			</div>
 			<div className="mt-4"/>
-			<Table data={data} columns={columns}/>
+			<Table data={commission} columns={columns}/>
 		</div>
 	)
 }
