@@ -14,6 +14,18 @@ export const get_agency = (token) => {
 	return axios(config)
 }
 
+export const getAgencyAvailalble = (token) => {
+	const config =  {
+		method: 'get',
+		url: 'http://localhost:8080/api/agency/get_agency_available',
+		headers: { 
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${token}`
+		}
+	}
+	return axios(config)
+}
+
 
 export const create_agency = (token,agency) => {
 	const data = JSON.stringify(agency)

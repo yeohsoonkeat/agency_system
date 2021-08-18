@@ -11,11 +11,11 @@ function AgentList() {
 	useEffect(()=>{
 		const token = localStorage.getItem('token')
 		get_agency(token).then(res=>{
-			res.data.filter((x)=>{
+			const show = res.data.filter((x)=>{
 				x.is_verified? x['status'] = 'Active': x['status'] = 'Inactive'
+				return x.is_verified == true
 			})
-			console.log(res.data)
-			setData(res.data)
+			setData(show)
 		})
 	},[])
 	

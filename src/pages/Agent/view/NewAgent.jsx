@@ -1,16 +1,55 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
-import { AuthContext } from '../../../hooks/useAuth'
-import { create_agency } from '../../../service/client/agency'
+import Select from 'react-select'
+import { create_agency, getAgencyAvailalble } from '../../../service/client/agency'
 import { useHistory } from 'react-router-dom'
+import { get_role } from '../../../service/client/Role'
 function NewAgent() {
 	const { t } = useTranslation()
 	const {register,handleSubmit} = useForm()
+	const [Role,setRole] = useState([])
+	const [RoleID,setRoleID] = useState([])
+	const [Leader,setLeader] = useState([])
+	const [LeaderName,setLeaderName] = useState([])
 	const history = useHistory()
-
+	
+	useEffect(()=>{
+		const token = localStorage.getItem('token')
+		getAgencyAvailalble(token).then(res => {
+			if (!res?.data.error){
+				let agency = res.data.map(x => {
+					return {
+						'label': x.full_name,
+						'value': x.full_name
+					}
+				})
+				setLeader(agency)
+			}
+		}).catch(err =>  console.log(err))
+		get_role(token).then(res => {
+			if (!res?.data.error){
+				let role = res.data.map(x => {
+					return {
+						'label': x.name,
+						'value': x.id
+					}
+				})
+				setRole(role)
+			}
+		}).catch(err =>  console.log(err))
+	},[])
+	const onRoleChange = async (data) => {
+		setRoleID(data.value)	
+	}
+	const onLeaderChange = async (data) => {
+		console.log(data.value)
+		setLeaderName(data.value)
+	}
 	const onSubmit = async (data)=>{
-		console.log(data)
+		data['role_id'] = RoleID
+		data['leader'] = LeaderName
+		
 		const token = localStorage.getItem('token')
 		const createAgency = await create_agency(token,data)
 		history.push('/agent')
@@ -73,19 +112,27 @@ function NewAgent() {
 									<div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
 										<div className="grid grid-cols-1">
 											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('LEADER')}</label>
-											<select {...register('leader')} id="sex" className="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent">
+											{/* <select {...register('leader')} id="sex" className="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent">
 												<option>{t('Sopheak')}</option>
 												<option>{t('Mari')}</option>
 												<option>{t('Testing')}</option>
-											</select>
+											</select> */}
+											<Select
+												onChange={onLeaderChange}											
+												options={Leader}		
+											/>
 										</div>
 										<div className="grid grid-cols-1 ">
 											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('ROLE')}</label>
-											<select {...register('role')} id="sex" className="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent">
+											{/* <select {...register('role')} id="sex" className="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent">
 												<option>{t('Admin')}</option>
 												<option>{t('Agency')}</option>
 												<option>{t('Sale')}</option>
-											</select>
+											</select> */}
+											<Select
+												onChange={onRoleChange}											
+												options={Role}		
+											/>
 										</div>
 									</div>		
 									<div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">

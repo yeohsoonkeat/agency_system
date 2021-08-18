@@ -3,7 +3,7 @@ import axios from 'axios'
 export const get_plan = (token) => {
 	const config =  {
 		method: 'get',
-		url: 'http://localhost:8080/api/plan/get-plan',
+		url: 'http://localhost:8080/api/plan/get_plan',
 		headers: { 
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`
@@ -22,11 +22,24 @@ export const getPlanById = (id,token) => {
 	}
 	return axios(config)
 }
+export const getAvailablePlan = (token) => {
+	const config =  {
+		method: 'get',
+		url: 'http://localhost:8080/api/plan/get_available_plan',
+		headers: { 
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${token}`
+		}
+	}
+	return axios(config)
+}
+
+
 export const create_plan = (token, plan) => { 
 	const data = JSON.stringify(plan)
 	const config =  {
 		method: 'post',
-		url: 'http://localhost:8080/api/plan/create-plan',
+		url: 'http://localhost:8080/api/plan/create_plan',
 		headers: { 
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`
