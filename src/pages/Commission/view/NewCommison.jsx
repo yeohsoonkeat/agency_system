@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { useForm, Controller } from 'react-hook-form'
 import Select from 'react-select'
 import AddCommisionAgent from '../components/AddCommsionAgent'
-import { getPlanById, get_plan } from '../../../service/client/Plan'
+import { getAvailablePlan, getPlanById, get_plan } from '../../../service/client/Plan'
+getAvailablePlan
 import { createCommission } from '../../../service/client/Commision'
 import { useHistory } from 'react-router-dom'
 
@@ -19,7 +20,7 @@ function NewCommison() {
 
 	useEffect(() => {
 		const token = localStorage.getItem('token')
-		get_plan(token).then(res => {
+		getAvailablePlan(token).then(res => {
 			if (!res?.data.error){
 				let k = res.data.map(x => {
 					return {
@@ -42,15 +43,27 @@ function NewCommison() {
 			'real_estate': data.real_estate,
 			'plan_id': selectedPlan,
 			'num_lots': data.number_lots,
-			// 'total_commission_price': CommissionPrice,
+			'total_commission_price': CommissionPrice,
 			'agency': CommissionTo.map(x => {
 				return { 'agency_id': x.id, 'price': x.ammount }
 			})
 
 		}
-		const token = localStorage.getItem('token')
-		const result = await createCommission(commission,token)
-		history.push('/commission')
+	
+		let totalMoneyCommission = 0
+		CommissionTo.filter(x=>{
+			totalMoneyCommission += Number(x.ammount)
+		})
+
+		if(CommissionPrice == totalMoneyCommission){
+			const token = localStorage.getItem('token')
+			console.log(commission)
+			await createCommission(commission,token)
+			history.push('/commission')
+		}else{
+			alert('Total Money Commission must be equal total money agency')
+		}
+		
 	}
 
 	const onAgentAdd = (data) => {
@@ -106,7 +119,7 @@ function NewCommison() {
 												{t('NUMBER_LOTS')}
 											</label>
 											<div className="mt-1 flex rounded-md shadow-sm">
-												<input {...register('number_lots')} type="text" className="focus:ring-indigo-500 focus:border-indigo-500 p-1 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" />
+												<input {...register('number_lots')} type="number" className="focus:ring-indigo-500 focus:border-indigo-500 p-1 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" />
 											</div>
 										</div>
 									</div>
@@ -138,14 +151,7 @@ function NewCommison() {
 												onChange={onPlanChange}
 												options={Plans}
 											/>
-											{/* <Controller
-												name="plan"
-												control={control}
-										
-												render={({ field }) => (
-													
-												)}
-											/> */}
+											
 										</div>
 									</div>
 									<div className="grid grid-cols-3 gap-6">

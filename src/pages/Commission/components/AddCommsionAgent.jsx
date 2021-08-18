@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Select from 'react-select'
 import PropTypes from 'prop-types'
-import { get_agency } from '../../../service/client/agency'
+import { getAgencyAvailalble, get_agency } from '../../../service/client/agency'
 
 
 export default function AddCommisionAgent({onAgentAdd}) {
@@ -14,13 +14,13 @@ export default function AddCommisionAgent({onAgentAdd}) {
 
 	useEffect(() => {
 		const token = localStorage.getItem('token')
-		get_agency(token).then(res => {
+		getAgencyAvailalble(token).then(res => {
 			console.log(res.data)
 			if (!res?.data.error){
 				let k = res.data.map(x => {
 					return {
 						'label': x.full_name,
-						'value': `${x.id}/${x.full_name}`
+						'value': `${x.id}/${x.full_name}`,
 					}
 				})
 				setAgent(k)
@@ -93,7 +93,7 @@ export default function AddCommisionAgent({onAgentAdd}) {
 										<label className="block tracking-wide text-gray-700 text-sm font-bold mb-2" htmlFor="address">
 											{t('AMMOUNT')}
 										</label>
-										<input onChange={handleChange} className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500" type="text" />
+										<input onChange={handleChange} className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500" type="number" />
 									</div>
 									<div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
 										<button

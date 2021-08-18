@@ -13,7 +13,11 @@ function PlanList() {
 		const token = localStorage.getItem('token')
 		get_plan(token).then(res => {
 			if (!res?.data.error){
-				console.log(res.data)
+				res.data.filter((x)=>{
+					x.is_commission? x['status'] = 'True': x['status'] = 'False'
+					// return x.is_verified == true
+				})
+				
 				setData(res.data)
 			}
 		}).catch(err =>  console.log(err))
@@ -40,7 +44,7 @@ function PlanList() {
 			},
 			{
 				Header: t('IS COMMISSION'),
-				accessor: 'is_commission',
+				accessor: 'status',
 			},
 			{
 				Header: t('CREATOR PLAN'),
