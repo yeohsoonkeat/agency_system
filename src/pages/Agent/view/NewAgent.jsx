@@ -49,9 +49,8 @@ function NewAgent() {
 	const onSubmit = async (data)=>{
 		data['role_id'] = RoleID
 		data['leader'] = LeaderName
-		
-		const token = localStorage.getItem('token')
-		const createAgency = await create_agency(token,data)
+		let token = localStorage.getItem('token')
+		await create_agency(token,data)
 		history.push('/agent')
 	}
 	return (
