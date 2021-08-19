@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
 import Select from 'react-select'
 import { createAgentByAdmin, create_agency, getAgencyAvailalble } from '../../../service/client/agency'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { get_role } from '../../../service/client/Role'
 function NewAgent() {
 	const { t } = useTranslation()
@@ -107,6 +107,10 @@ function NewAgent() {
 										<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('Address')}</label>
 										<input {...register('address')} id="address" required className="py-2 px-3 rounded-lg border-2 border-blueGray mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="address" placeholder="Kompong Speu"/>
 									</div>
+									<div className="grid grid-cols-1 mt-5 mx-7">
+										<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">Leader?</label>
+										<input {...register('isLeader')} id="isLeader"  className="py-2 px-3 rounded-lg border-2 border-blueGray mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="checkbox" />
+									</div>
 									{/* New */}
 									<div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
 										<div className="grid grid-cols-1">
@@ -147,6 +151,13 @@ function NewAgent() {
 									
 								</div>
 								<div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+									<button type="cancel" className="mr-4">
+										<Link to={{
+											pathname: '/agent'
+										}}>
+											Cancel
+										</Link>										
+									</button>
 									<button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 										Save
 									</button>

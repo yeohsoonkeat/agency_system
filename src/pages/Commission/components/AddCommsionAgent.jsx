@@ -67,7 +67,7 @@ export default function AddCommisionAgent({onAgentAdd}) {
 								{/*header*/}
 								<div className="flex items-starT justify-between p-5 rounded-t">
 									<h3 className="text-3xl font-semibold">
-										{t('COMMISION_AGENT')}
+										{t('CASH OUT')}
 									</h3>
 									<button
 										className="p-1 ml-auto bg-transparent border-0 loat-right text-3xl leading-none font-semibold outline-none focus:outline-none"
