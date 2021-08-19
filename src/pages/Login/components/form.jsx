@@ -2,13 +2,19 @@ import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
 import { AuthContext } from '../../../hooks/useAuth'
+import { Redirect, useHistory } from 'react-router-dom'
 
 export default function Form () {
 	const { t } = useTranslation()
 	const {register,handleSubmit} = useForm()
 	const { registerAuth } = useContext(AuthContext)
+	const history = useHistory()
 	const onSubmit = (data)=>{
 		registerAuth(data)
+	}
+	
+	const onCancel = () => {
+		history.push('/')
 	}
 
 	return(
@@ -66,7 +72,7 @@ export default function Form () {
 					
 
 					<div className='flex items-center justify-center  md:gap-8 gap-4 pt-5 pb-5'>
-						<button className='w-auto bg-gray-500 hover:bg-gray-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>{t('Cancel')}</button>
+						<button className='w-auto bg-gray-500 hover:bg-gray-700 rounded-lg shadow-xl font-medium text-white px-4 py-2' onClick={onCancel} >{t('Cancel')}</button>
 						<button className='w-auto bg-green-500 hover:bg-green-700 rounded-lg shadow-xl font-medium text-white px-4 py-2' type="submit">{t('Create')}</button>
 					</div>
 

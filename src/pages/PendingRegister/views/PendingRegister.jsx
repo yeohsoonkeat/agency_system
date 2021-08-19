@@ -5,12 +5,14 @@ import Table from '../components/Table'
 
 function PendingRegister() {
 	const { t } = useTranslation()
+	
 	const data = React.useMemo(
 		() => [
 			{
 				id: '1234567gfxdg',
 				fullname: 'Yeoh Soon Keat',
 				sex: 'Male',
+				address: 'Phnom Penh',
 				email: 'kongpanhabot2000@gmail.com',
 				phone: '0968663002',
 				id_card: '10020'
@@ -19,6 +21,7 @@ function PendingRegister() {
 				id: '1234567gfxdg',
 				fullname: 'Yeoh Soon Keat',
 				sex: 'Male',
+				address: 'Phnom Penh',
 				email: 'kongpanhabot2000@gmail.com',
 				phone: '0968663002',
 				id_card: '10020'
@@ -27,6 +30,7 @@ function PendingRegister() {
 				id: '1234567gfxdg',
 				fullname: 'Yeoh Soon Keat',
 				sex: 'Male',
+				address: 'Phnom Penh',
 				email: 'kongpanhabot2000@gmail.com',
 				phone: '0968663002',
 				id_card: '10020'
@@ -38,12 +42,16 @@ function PendingRegister() {
 	const columns = React.useMemo(
 		() => [
 			{
-				Header: t('FULL_NAME'),
+				Header: t('FULL NAME'),
 				accessor: 'fullname', // accessor is the "key" in the data
 			},
 			{
 				Header: t('SEX'),
 				accessor: 'sex',
+			},
+			{
+				Header: t('ADDRESS'),
+				accessor: 'address',
 			},
 			{
 				Header: t('EMAIL'),

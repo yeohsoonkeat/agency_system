@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { useHistory } from 'react-router-dom'
 import { AuthContext } from '../../../hooks/useAuth'
 
 
@@ -8,9 +9,10 @@ export default function Pending() {
 	console.log(user.role)
 	let roleUser = user.role.name
 	const [showModal, setShowModal] = React.useState(false)
+	const history = useHistory()
 
 	const handleCancel = async() =>{
-		
+		history.push('/')
 	}
 
 	return (

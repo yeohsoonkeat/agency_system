@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Link, useRouteMatch } from 'react-router-dom'
 import { useSortBy, useAsyncDebounce, usePagination, useTable, useFilters, useGlobalFilter } from 'react-table'
 import PropTypes from 'prop-types'
@@ -12,7 +12,8 @@ import arrowDownDropCircleOutline from '@iconify-icons/mdi/arrow-down-drop-circl
 import arrowUpDropCircleOutline from '@iconify-icons/mdi/arrow-up-drop-circle-outline'
 import printerOutline from '@iconify-icons/mdi/printer-outline'
 import ReactToPrint from 'react-to-print'
-
+import tickoutline from '@iconify-icons/mdi/tick-outline'
+import EditUser from './EditUser'
 
 
 
@@ -47,12 +48,25 @@ export default function Table({ data, columns }) {
 		useSortBy,
 		usePagination,
 	)
+	const [CommissionTo, setCommissionTo] = useState([])
+
+	const onAgentAdd = (data) => {
+		let agent = data.agent.split('/')
+		setCommissionTo([...CommissionTo, {
+			'id': agent[0],
+			'name': agent[1],
+			'ammount': data.ammount
+		}])
+	}
 
 	const count = preGlobalFilteredRows.length
 	const [value, setValue] = React.useState(globalFilter)
 	const onChange = useAsyncDebounce(value => {
 		setGlobalFilter(value || undefined)
 	}, 200)
+	const handleAgree = (id) => {
+		console.log(id)
+	}
 
 	return (
 		<>
@@ -98,6 +112,7 @@ export default function Table({ data, columns }) {
 								</thead>
 								<tbody {...getTableBodyProps()}>
 									{page.map((row,index) => {
+										console.log('row', index)
 										prepareRow(row)
 										return (
 											<tr key={'row-' + index} {...row.getRowProps()}>
@@ -115,6 +130,9 @@ export default function Table({ data, columns }) {
 														
 													)
 												})}
+												<td className="px-6 py-4 whitespace-nowrap space-x-3 text-right text-xl font-medium">
+													<EditUser onAgentAdd={onAgentAdd} />
+												</td>
 											</tr>
 										)
 									})}

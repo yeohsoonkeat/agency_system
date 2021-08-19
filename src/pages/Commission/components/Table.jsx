@@ -108,7 +108,7 @@ export default function Table({ data, columns,action }) {
 										return (
 											<tr key={'row-' + index} {...row.getRowProps()}>
 												{row.cells.map((cell,index) => {
-													console.log(cell.value)
+													console.log(cell)
 													return (
 														<td
 															{...cell.getCellProps()}
@@ -133,9 +133,6 @@ export default function Table({ data, columns,action }) {
 														}}>
 															<InlineIcon icon={cash} />
 														</Link>
-													</button>
-													<button  className="hover:text-blue-default">
-														<InlineIcon icon={pencilOutline} />
 													</button>
 													<button className="hover:text-red-default">
 														<InlineIcon icon={trashCanOutline} />
