@@ -4,6 +4,7 @@ import { useForm, Controller } from 'react-hook-form'
 import Select from 'react-select'
 import AddCommisionAgent from '../components/AddCommsionAgent'
 import { getPlanById, get_plan } from '../../../service/client/Plan'
+import { get_commision } from '../../../service/client/Commision'
 import { useLocation } from 'react-router'
 
 function CashOut(props) {
@@ -15,7 +16,6 @@ function CashOut(props) {
 	const [CommissionTo, setCommissionTo] = useState([])
 	const [CommissionPrice, setCommissionPrice] = useState([])
 	const { register, handleSubmit, control } = useForm()
-	// let commissionPrice ='1212'
 
 	useEffect(() => {
 		const token = localStorage.getItem('token')
@@ -34,6 +34,11 @@ function CashOut(props) {
 			'label': 'Agency',
 			'value': 'agency_id'
 		}])
+		get_commision(token).then(x => {
+			setCommissionTo(x.data)
+		}).catch(err => {
+			console.log(err)
+		})
 
 	}, [])
 
@@ -96,8 +101,8 @@ function CashOut(props) {
 														CommissionTo.map((x, index) => (
 															<tr key={'agent_commision' + index} className="py-2">
 																<td className=" p-1">{index + 1}</td>
-																<td className="p-1">{x.name}</td>
-																<td className="p-1">{x.ammount}</td>
+																<td className="p-1">{x.agency.full_name}</td>
+																<td className="p-1">{x.agency.total_money}</td>
 															</tr>
 														))
 													}
@@ -128,8 +133,8 @@ function CashOut(props) {
 														CommissionTo.map((x, index) => (
 															<tr key={'agent_commision' + index} className="py-2">
 																<td className=" p-1">{index + 1}</td>
-																<td className="p-1">{x.name}</td>
-																<td className="p-1">{x.ammount}</td>
+																<td className="p-1">{x.agency.full_name}</td>
+																<td className="p-1">{x.agency.total_money}</td>
 															</tr>
 														))
 													}
