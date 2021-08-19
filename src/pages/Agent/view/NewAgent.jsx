@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
 import Select from 'react-select'
-import { create_agency, getAgencyAvailalble } from '../../../service/client/agency'
+import { createAgentByAdmin, create_agency, getAgencyAvailalble } from '../../../service/client/agency'
 import { useHistory } from 'react-router-dom'
 import { get_role } from '../../../service/client/Role'
 function NewAgent() {
@@ -50,7 +50,7 @@ function NewAgent() {
 		data['role_id'] = RoleID
 		data['leader'] = LeaderName
 		let token = localStorage.getItem('token')
-		await create_agency(token,data)
+		await createAgentByAdmin(token,data)
 		history.push('/agent')
 	}
 	return (

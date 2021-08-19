@@ -1,53 +1,31 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { getAgentPending } from '../../../service/client/agency'
 import Table from '../components/Table'
 
 
 function PendingRegister() {
 	const { t } = useTranslation()
-	
-	const data = React.useMemo(
-		() => [
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				address: 'Phnom Penh',
-				email: 'kongpanhabot2000@gmail.com',
-				phone: '0968663002',
-				id_card: '10020'
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				address: 'Phnom Penh',
-				email: 'kongpanhabot2000@gmail.com',
-				phone: '0968663002',
-				id_card: '10020'
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				address: 'Phnom Penh',
-				email: 'kongpanhabot2000@gmail.com',
-				phone: '0968663002',
-				id_card: '10020'
-			},
-		],
-		[]
-	)
+	const [userPending,setUserPending] = useState([])
+	useEffect(()=>{
+		const token = localStorage.getItem('token')
+		getAgentPending(token).then(res=>{
+			console.log(res.data)
+			setUserPending(res.data)
+		})
+
+	},[])
+
 
 	const columns = React.useMemo(
 		() => [
 			{
 				Header: t('FULL NAME'),
-				accessor: 'fullname', // accessor is the "key" in the data
+				accessor: 'full_name', // accessor is the "key" in the data
 			},
 			{
 				Header: t('SEX'),
-				accessor: 'sex',
+				accessor: 'gender',
 			},
 			{
 				Header: t('ADDRESS'),
@@ -59,11 +37,11 @@ function PendingRegister() {
 			},
 			{
 				Header: t('PHONE'),
-				accessor: 'phone',
+				accessor: 'phone1',
 			},
 			{
 				Header: t('ID CARD'),
-				accessor: 'id_card',
+				accessor: 'identify_card_number',
 			},
 		],
 		[]
@@ -75,7 +53,7 @@ function PendingRegister() {
 				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">{t('PENDING_REGISTER')}</h1>
 			</div>
 			<div className="mt-4"/>
-			<Table data={data} columns={columns} />
+			<Table data={userPending} columns={columns} />
 			
 		</div>
 	)

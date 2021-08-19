@@ -112,7 +112,6 @@ export default function Table({ data, columns }) {
 								</thead>
 								<tbody {...getTableBodyProps()}>
 									{page.map((row,index) => {
-										console.log('row', index)
 										prepareRow(row)
 										return (
 											<tr key={'row-' + index} {...row.getRowProps()}>
