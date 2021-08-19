@@ -199,7 +199,7 @@ function NewCommison() {
 																<td className=" p-1">{index + 1}</td>
 																<td className="p-1">{x.name}</td>
 																<td className="p-1">{x.ammount}</td>
-																<td className='p-1'>Delete</td>
+																<td className='p-1' onClick={() => console.log(x.id)}><button>Delete</button></td>
 															</tr>
 														))
 													}

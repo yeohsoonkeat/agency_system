@@ -109,6 +109,12 @@ export default function EditUser({onAgentAdd}) {
 											options={Leader}
 										/>
 									</div>
+									<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+										<label className="block tracking-wide text-gray-700 text-sm font-bold mb-2" htmlFor="address">
+											{t('LEADER')}
+										</label>
+										<input type="checkbox" value="true" />
+									</div>
                                     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
 											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('ROLE')}</label>
 											<Select
