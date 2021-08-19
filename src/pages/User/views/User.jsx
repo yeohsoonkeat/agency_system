@@ -11,6 +11,7 @@ function User() {
 				id: '1234567gfxdg',
 				fullname: 'Yeoh Soon Keat',
 				sex: 'Male',
+				address: 'Phnom Penh',
 				email: 'kongpanhabot2000@gmail.com',
 				phone: '0968663002',
 				id_card: '10020'
@@ -19,6 +20,7 @@ function User() {
 				id: '1234567gfxdg',
 				fullname: 'Yeoh Soon Keat',
 				sex: 'Male',
+				address: 'Phnom Penh',
 				email: 'kongpanhabot2000@gmail.com',
 				phone: '0968663002',
 				id_card: '10020'
@@ -27,6 +29,7 @@ function User() {
 				id: '1234567gfxdg',
 				fullname: 'Yeoh Soon Keat',
 				sex: 'Male',
+				address: 'Phnom Penh',
 				email: 'kongpanhabot2000@gmail.com',
 				phone: '0968663002',
 				id_card: '10020'
@@ -44,6 +47,10 @@ function User() {
 			{
 				Header: t('SEX'),
 				accessor: 'sex',
+			},
+			{
+				Header: t('ADDRESS'),
+				accessor: 'address',
 			},
 			{
 				Header: t('EMAIL'),
