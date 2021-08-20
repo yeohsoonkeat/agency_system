@@ -27,7 +27,7 @@ export default function Form () {
 							<h1 className="text-yellow-lite font-bold md:text-2xl text-xl">{t('Fill your information')}</h1>
 						</div>
 					</div>
-				 	{/* Input Name and Email */}
+				{/* Input Name and Email */}
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
 						<div className="grid grid-cols-1">
 							<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('Full Name')}</label>

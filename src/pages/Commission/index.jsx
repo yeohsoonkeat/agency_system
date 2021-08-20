@@ -14,7 +14,7 @@ export default function index() {
 			<Switch>
 				<Route exact path={`${path}/`} component={CommissionList} />
 				<Route exact path={`${path}/new_commision`} component={NewCommison} />
-				<Route exact path={`${path}/cashout`} component={CashOut} />
+				<Route exact path={`${path}/:id/cashout`} component={CashOut} />
 				<Route path={`${path}/:id`} component={CommissionList}/>
 				<Route path={`${path}/edit/:id`} component={CommissionList} />
 				<Redirect from="*" to="/404" />

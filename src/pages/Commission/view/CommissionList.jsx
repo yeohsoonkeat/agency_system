@@ -20,19 +20,6 @@ function AgentList() {
 		})
 	}, [])
 
-	const data = React.useMemo(
-		() => [
-			{
-				date: new Date().toDateString(),
-				real_estate: 'Yeoh Soon Keat',
-				project_location: 'Phnom Penh',
-				land_no: 1,
-				commision: '12%',
-				commission_available: 'Yes'
-			}
-		],
-		[]
-	)
 
 	const columns = React.useMemo(
 		() => [
@@ -67,8 +54,10 @@ function AgentList() {
 			{
 				Header: t('Remaining Commission Money'),
 				accessor: 'remaining_agency_commission_money',
+			},
+			{
+				accessor: 'commission_id',
 			}
-			
 			
 		],
 		[]

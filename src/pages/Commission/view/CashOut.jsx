@@ -4,8 +4,9 @@ import { useForm, Controller } from 'react-hook-form'
 import Select from 'react-select'
 import AddCommisionAgent from '../components/AddCommsionAgent'
 import { getPlanById, get_plan } from '../../../service/client/Plan'
+import { get_commission_by_id } from '../../../service/client/Commision'
 import { get_commision } from '../../../service/client/Commision'
-import { useLocation } from 'react-router'
+import { useLocation, useParams } from 'react-router'
 
 function CashOut(props) {
     const location = useLocation()
@@ -16,6 +17,7 @@ function CashOut(props) {
 	const [CommissionTo, setCommissionTo] = useState([])
 	const [CommissionPrice, setCommissionPrice] = useState([])
 	const { register, handleSubmit, control } = useForm()
+	const {id} = useParams()
 
 	useEffect(() => {
 		const token = localStorage.getItem('token')
@@ -34,8 +36,10 @@ function CashOut(props) {
 			'label': 'Agency',
 			'value': 'agency_id'
 		}])
-		get_commision(token).then(x => {
+		alert(id)
+		get_commission_by_id(token, id).then(x => {
 			setCommissionTo(x.data)
+			console.log(x.data)
 		}).catch(err => {
 			console.log(err)
 		})
@@ -102,7 +106,7 @@ function CashOut(props) {
 															<tr key={'agent_commision' + index} className="py-2">
 																<td className=" p-1">{index + 1}</td>
 																<td className="p-1">{x.agency.full_name}</td>
-																<td className="p-1">{x.agency.total_money}</td>
+																<td className="p-1">{x.remaining_agency_commission_money}</td>
 															</tr>
 														))
 													}
@@ -127,17 +131,18 @@ function CashOut(props) {
 														<th className=" px-1">Name</th>
 														<th className=" px-1">Ammount</th>
 													</tr>
+													<tr className="py-2"><td colSpan={3} className="text-center">Nothing to show</td></tr>
 
-													{CommissionTo.length === 0 && <tr className="py-2"><td colSpan={3} className="text-center">Nothing to show</td></tr>}
+													{/* {CommissionTo.length === 0 && <tr className="py-2"><td colSpan={3} className="text-center">Nothing to show</td></tr>}
 													{CommissionTo.length > 0 &&
 														CommissionTo.map((x, index) => (
 															<tr key={'agent_commision' + index} className="py-2">
 																<td className=" p-1">{index + 1}</td>
 																<td className="p-1">{x.agency.full_name}</td>
-																<td className="p-1">{x.agency.total_money}</td>
+																<td className="p-1">{x.remaining_agency_commission_money}</td>
 															</tr>
 														))
-													}
+													} */}
 
 												</tbody>
 											</table>
