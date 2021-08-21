@@ -1,11 +1,11 @@
 import axios from 'axios'
 
 
-export const getCommissionById = (token, commission_id) => {
+export const getCommissionById = (token, commission_id, agencyId) => {
 	const config = {
 		method: 'get',
 		// url : `http://localhost:8080/api/get_commission/${commission_id}`,
-		url: `http://localhost:8080/api/commission/get_commission/${commission_id}`,
+		url: `http://localhost:8080/api/commission/get_commission/${commission_id}/${agencyId}`,
 		headers: {
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`

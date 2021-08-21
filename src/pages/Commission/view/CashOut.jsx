@@ -17,7 +17,7 @@ function CashOut(props) {
 	const [CommissionTo, setCommissionTo] = useState([])
 	const [CommissionPrice, setCommissionPrice] = useState([])
 	const { register, handleSubmit, control } = useForm()
-	const {id} = useParams()
+	const {id, agencyId} = useParams()
 
 	useEffect(() => {
 		const token = localStorage.getItem('token')
@@ -36,7 +36,7 @@ function CashOut(props) {
 			'label': 'Agency',
 			'value': 'agency_id'
 		}])
-		getCommissionById(token, id).then(x => {
+		getCommissionById(token, id, agencyId).then(x => {
 			console.log(x.data)
 			// console
 			setCommissionTo(x.data)

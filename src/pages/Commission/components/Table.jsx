@@ -108,7 +108,7 @@ export default function Table({ data, columns,action }) {
 										return (
 											<tr key={'row-' + index} {...row.getRowProps()}>
 												{row.cells.map((cell,index) => {
-													if (cell.column.id != 'commission_id')
+													if (cell.column.id != 'commission_id' && cell.column.id != 'agencyId')
 													return (
 														<td
 															{...cell.getCellProps()}
@@ -126,7 +126,7 @@ export default function Table({ data, columns,action }) {
 												<td className="px-6 py-4 whitespace-nowrap space-x-3 text-right text-xl font-medium">
 													<button  className="hover:text-green-default">
 														<Link to={{
-															pathname:`${url}/${row.values.commission_id}/cashout`,
+															pathname:`${url}/${row.values.commission_id}/cashout/${row.values.agencyId}`,
 															state: {
 																hello: 'ow.cells[0]'
 															}

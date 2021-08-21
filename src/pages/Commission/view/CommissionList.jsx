@@ -57,6 +57,9 @@ function AgentList() {
 			},
 			{
 				accessor: 'commission_id',
+			},
+			{
+				accessor: 'agencyId'
 			}
 			
 		],
