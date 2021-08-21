@@ -6,8 +6,6 @@ import { AuthContext } from '../../../hooks/useAuth'
 export default function Pending() {
 	const { currentUser,logout } = useContext(AuthContext)
 	const user = currentUser
-	console.log(user.role)
-	let roleUser = user.role.name
 	const [showModal, setShowModal] = React.useState(false)
 	const history = useHistory()
 
@@ -78,14 +76,7 @@ export default function Pending() {
 								{user.address}
 							</p>
 						</div>
-						<div className="md:grid md:grid-cols-2 hover:bg-gray-50 md:space-y-0 space-y-1 p-4 border-b">
-							<p className="text-gray-600">
-                    Role
-							</p>
-							<p>
-								{roleUser}
-							</p>
-						</div>
+						
 					</div> 
 					<div className="hover:bg-gray-50 p-4 border-b float-right ">
 						<button className='w-auto bg-green-500 hover:bg-green-700 rounded-lg shadow-xl font-medium text-white px-4 py-2' onClick={() => setShowModal(true)}>Cancel Registration</button>

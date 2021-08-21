@@ -15,15 +15,21 @@ export default function AddCommisionAgent({onAgentAdd}) {
 	useEffect(() => {
 		const token = localStorage.getItem('token')
 		getAgencyAvailalble(token).then(res => {
-			console.log(res.data)
+			// console.log(res.data)
 			if (!res?.data.error){
-				let k = res.data.map(x => {
-					return {
-						'label': x.full_name,
-						'value': `${x.id}/${x.full_name}`,
-					}
+				const availableAgency = res.data.filter((x)=>{
+					return x.roleId != 1
 				})
-				setAgent(k)
+				let agencies = availableAgency.map(x => {
+					return {
+							'label': x.full_name,
+							'value': `${x.id}/${x.full_name}`,
+	
+					}
+				
+				})
+				console.log(agencies)
+				setAgent(agencies)
 			}
 		}).catch(err =>  console.log(err))
 	}, [])

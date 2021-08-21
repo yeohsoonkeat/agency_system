@@ -4,7 +4,7 @@ import { useForm, Controller } from 'react-hook-form'
 import Select from 'react-select'
 import AddCommisionAgent from '../components/AddCommsionAgent'
 import { getPlanById, get_plan } from '../../../service/client/Plan'
-import { get_commission_by_id } from '../../../service/client/Commision'
+import { getCommissionById, get_commission_by_id } from '../../../service/client/Commision'
 import { get_commision } from '../../../service/client/Commision'
 import { useLocation, useParams } from 'react-router'
 
@@ -36,10 +36,11 @@ function CashOut(props) {
 			'label': 'Agency',
 			'value': 'agency_id'
 		}])
-		alert(id)
-		get_commission_by_id(token, id).then(x => {
-			setCommissionTo(x.data)
+		getCommissionById(token, id).then(x => {
 			console.log(x.data)
+			// console
+			setCommissionTo(x.data)
+			
 		}).catch(err => {
 			console.log(err)
 		})

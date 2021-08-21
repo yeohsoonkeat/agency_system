@@ -20,7 +20,7 @@ function NewCommison() {
 
 	useEffect(() => {
 		const token = localStorage.getItem('token')
-		getAvailablePlan(token).then(res => {
+		get_plan(token).then(res => {
 			if (!res?.data.error){
 				let k = res.data.map(x => {
 					return {
