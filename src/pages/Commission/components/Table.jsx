@@ -124,7 +124,7 @@ export default function Table({ data, columns,action }) {
 													)
 												})}
 												<td className="px-6 py-4 whitespace-nowrap space-x-3 text-right text-xl font-medium">
-													<button  className="hover:text-blue-default">
+													<button  className="hover:text-green-default">
 														<Link to={{
 															pathname:`${url}/${row.values.commission_id}/cashout`,
 															state: {
