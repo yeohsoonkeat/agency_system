@@ -42,6 +42,10 @@ function AgentReport() {
 	const columns = React.useMemo(
 		() => [
 			{
+				HEADER: t('ID'),
+				accessor: 'id'
+			},
+			{
 				Header: t('FULL NAME'),
 				accessor: 'fullname', // accessor is the "key" in the data
 			},
@@ -58,12 +62,16 @@ function AgentReport() {
 				accessor: 'phone',
 			},
 			{
-				Header: t('WITHDRAWN'),
+				Header: t('Total Commission Withdrawn'),
 				accessor: 'commision_withdrawn',
 			},
 			{
-				Header: t('IN ACCOUNT'),
+				Header: t('Total Commission(Each Agent)'),
 				accessor: 'commision_in_account',
+			},
+			{
+				Header: t('Total Remaining Commission'),
+				accessor: 'com',
 			},
 		],
 		[]

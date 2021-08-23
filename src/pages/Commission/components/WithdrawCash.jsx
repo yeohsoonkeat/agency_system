@@ -11,6 +11,9 @@ export default function WithdrawCash({onAgentAdd}) {
 	const [Agent, setAgent] = useState([])
 	const [Ammount, setAmmount] = useState(0)
 	const [SelectedAgent, setSelectedAgent] = useState()
+	const today = Date.now()
+	const now = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(today)
+
 
 	useEffect(() => {
 		const token = localStorage.getItem('token')
@@ -89,7 +92,7 @@ export default function WithdrawCash({onAgentAdd}) {
 										<label className="block tracking-wide text-gray-700 text-sm font-bold mb-2" htmlFor="address">
 											{t('Date')}
 										</label>
-										<input disabled value="2020 07 07" className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500" />
+										<input disabled value={now} className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500" />
 									</div>
 									<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
 										<label className="block tracking-wide text-gray-700 text-sm font-bold mb-2" htmlFor="address">
