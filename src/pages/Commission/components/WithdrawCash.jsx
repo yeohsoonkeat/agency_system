@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { getAgencyAvailalble, get_agency } from '../../../service/client/agency'
 
 
-export default function AddCommisionAgent({onAgentAdd}) {
+export default function WithdrawCash({onAgentAdd}) {
 	const { t } = useTranslation()
 	const [showModal, setShowModal] = useState(false)
 	const [Agent, setAgent] = useState([])
@@ -60,7 +60,7 @@ export default function AddCommisionAgent({onAgentAdd}) {
 				type="button"
 				onClick={() => setShowModal(true)}
 			>
-				Add
+				Withdraw
 			</button>
 			{showModal ? (
 				<>
@@ -73,7 +73,7 @@ export default function AddCommisionAgent({onAgentAdd}) {
 								{/*header*/}
 								<div className="flex items-starT justify-between p-5 rounded-t">
 									<h3 className="text-3xl font-semibold">
-										{t('COMMISSION')}
+										{t('CASH OUT')}
 									</h3>
 									<button
 										className="p-1 ml-auto bg-transparent border-0 loat-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -87,17 +87,19 @@ export default function AddCommisionAgent({onAgentAdd}) {
 								<div>
 									<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
 										<label className="block tracking-wide text-gray-700 text-sm font-bold mb-2" htmlFor="address">
-											{t('AGENT')}
+											{t('Date')}
 										</label>
-										<Select 
-											onChange={onSelect}
-											name="agent"
-											options={Agent}
-										/>
+										<input disabled value="2020 07 07" className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500" />
 									</div>
 									<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
 										<label className="block tracking-wide text-gray-700 text-sm font-bold mb-2" htmlFor="address">
 											{t('AMMOUNT')}
+										</label>
+										<input value="200" disabled className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500" type="number" />
+									</div>
+									<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+										<label className="block tracking-wide text-gray-700 text-sm font-bold mb-2" htmlFor="address">
+											{t('Withdraw Amount')}
 										</label>
 										<input onChange={handleChange} className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500" type="number" />
 									</div>
@@ -127,6 +129,6 @@ export default function AddCommisionAgent({onAgentAdd}) {
 	)
 }
 
-AddCommisionAgent.propTypes = {
+WithdrawCash.propTypes = {
 	onAgentAdd: PropTypes.func
 }

@@ -7,6 +7,7 @@ import { getPlanById, get_plan } from '../../../service/client/Plan'
 import { getCommissionById, get_commission_by_id } from '../../../service/client/Commision'
 import { get_commision } from '../../../service/client/Commision'
 import { useLocation, useParams } from 'react-router'
+import WithdrawCash from '../components/WithdrawCash'
 
 function CashOut(props) {
     const location = useLocation()
@@ -83,6 +84,16 @@ function CashOut(props) {
 			<div className="flex w-full">
 				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">Cash Out</h1>
 			</div>
+			<div className="md:grid md:grid-cols-3 md:gap-6">
+						<div className="md:col-span-1">
+							<div className="px-4 sm:px-0">
+								<h3 className="text-lg font-medium leading-6 text-gray-900">Cash Out</h3>
+								<p className="mt-1 text-sm text-gray-600">
+									Cashout details
+								</p>
+							</div>
+						</div>
+			</div>
 			<div className="mt-10" />
 			<div>
 					<div className="md:grid md:grid-cols-3 md:gap-6">
@@ -91,7 +102,7 @@ function CashOut(props) {
 								<div className="px-4 py-5 bg-white space-y-6 sm:p-6">
 									<div className="grid grid-cols-3">
 										<p className=" col-span-2 font-bold text-lg">Agent commisions</p>
-										<AddCommisionAgent onAgentAdd={onAgentAdd} />
+										<WithdrawCash onAgentAdd={onAgentAdd} />
 										<div className=" col-span-3">
 											<table className="rounded-t-lg m-5 w-11/12 mx-auto bg-gray-200 text-gray-800">
 												<tbody className=" text-center">
@@ -119,6 +130,16 @@ function CashOut(props) {
 								</div>
 							</div>
 						</div>
+						<div className="md:grid md:grid-cols-3 md:gap-6">
+						<div className="md:col-span-1">
+							<div className="px-4 sm:px-0">
+								<h3 className="text-lg font-medium leading-6 text-gray-900">History </h3>
+								<p className="mt-1 text-sm text-gray-600">
+									History Detail
+								</p>
+							</div>
+						</div>
+			</div>
                         <div className="mt-5 md:mt-0 md:col-span-2">
 							<div className="shadow sm:rounded-md ">
 								<div className="px-4 py-5 bg-white space-y-6 sm:p-6">
