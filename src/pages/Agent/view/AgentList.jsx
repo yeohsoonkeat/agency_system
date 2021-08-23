@@ -12,9 +12,10 @@ function AgentList() {
 		const token = localStorage.getItem('token')
 		get_agency(token).then(res=>{
 			const show = res.data.filter((x)=>{
-				console.log(x.role.name)
+				console.log(x.roleId)
 				x.is_verified? x['status'] = 'Active': x['status'] = 'Inactive'
-				return x.is_verified == true && x.role.name != 'admin'
+				return x.is_verified == true && x.roleId != 1
+				// x.role.name != 'admin'
 			})
 			setData(show)
 		})

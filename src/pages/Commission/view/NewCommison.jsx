@@ -10,11 +10,13 @@ import { useHistory } from 'react-router-dom'
 
 function NewCommison() {
 	const { t } = useTranslation()
+	const [numberLots, setNumberLots] = useState(1)
+	const [CommissionPrice, setCommissionPrice] = useState(0)
+	const [CommissionTotalPrice, setCommissionTotalPrice] = useState(0)
 	const [Agency, setAgency] = useState([])
 	const [Plans, setPlans] = useState([])
 	const [selectedPlan, setSelectedPlan] = useState()
 	const [CommissionTo, setCommissionTo] = useState([])
-	const [CommissionPrice, setCommissionPrice] = useState([])
 	const history = useHistory()
 	const { register, handleSubmit, control } = useForm()
 
@@ -43,7 +45,7 @@ function NewCommison() {
 			'real_estate': data.real_estate,
 			'plan_id': selectedPlan,
 			'num_lots': data.number_lots,
-			'total_commission_price': CommissionPrice,
+			'total_commission_price': CommissionTotalPrice,
 			'agency': CommissionTo.map(x => {
 				return { 'agency_id': x.id, 'price': x.ammount }
 			})
@@ -54,16 +56,20 @@ function NewCommison() {
 		CommissionTo.filter(x=>{
 			totalMoneyCommission += Number(x.ammount)
 		})
+		console.log(commission)
 
-		if(CommissionPrice == totalMoneyCommission){
+		if(CommissionTotalPrice == totalMoneyCommission){
 			const token = localStorage.getItem('token')
-			console.log(commission)
 			await createCommission(commission,token)
 			history.push('/commission')
 		}else{
 			alert('Total Money Commission must be equal total money agency')
 		}
 		
+	}
+	const numberLotsChange=(event)=>{
+		setNumberLots(event.target.value)
+		setCommissionTotalPrice(CommissionPrice * event.target.value )
 	}
 
 	const onAgentAdd = (data) => {
@@ -75,11 +81,13 @@ function NewCommison() {
 		}])
 	}
 	const onPlanChange = async (data) => {
-		// alert(data.value)
 		const token = localStorage.getItem('token')
 		setSelectedPlan(data.value)
 		const plan = await getPlanById(data.value,token)
-		setCommissionPrice(plan.data.commission_price)		
+		setCommissionPrice(plan.data.commission_price )
+		// alert(CommissionPrice)
+		setCommissionTotalPrice(plan.data.commission_price * numberLots)
+
 	}
 
 	return (
@@ -100,6 +108,8 @@ function NewCommison() {
 								</p>
 							</div>
 						</div>
+						{/* <input onChange={event => setTitle(event.target.value)} /> */}
+						{/* {numberLots} */}
 						<div className="mt-5 md:mt-0 md:col-span-2">
 							<div className="shadow sm:rounded-md ">
 								<div className="px-4 py-5 bg-white space-y-6 sm:p-6">
@@ -115,32 +125,16 @@ function NewCommison() {
 									</div>
 									<div className="grid grid-cols-3 gap-6">
 										<div className="col-span-3 sm:col-span-2">
-											<label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+											<label htmlFor="number_lots"  className="block text-sm font-medium text-gray-700">
 												{t('NUMBER_LOTS')}
 											</label>
 											<div className="mt-1 flex rounded-md shadow-sm">
-												<input {...register('number_lots')} type="number" className="focus:ring-indigo-500 focus:border-indigo-500 p-1 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" />
+												<input {...register('number_lots')} onChange={numberLotsChange} type="number" className="focus:ring-indigo-500 focus:border-indigo-500 p-1 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" />
 											</div>
 										</div>
 									</div>
 									<div className="grid grid-cols-3 gap-6">
-										{/* <div className="col-span-3 sm:col-span-2">
-											<label htmlFor="agency" className="block text-sm font-medium text-gray-700">
-												{t('AGENCY')}
-
-											</label>
-											<Controller
-												name="agency"
-												control={control}
-												rules={{ required: true }}
-												render={({ field }) => (
-													<Select
-														{...field}
-														options={Agency}
-													/>
-												)}
-											/>
-										</div> */}
+										
 										<div className="col-span-3 sm:col-span-2">
 											<label htmlFor="plan" className="block text-sm font-medium text-gray-700">
 												{t('PLAN')}
@@ -161,7 +155,7 @@ function NewCommison() {
 											</label>
 											<div className="mt-1 flex rounded-md shadow-sm">
 												
-												<input {...register('total_commission_price')} type="text" className="focus:ring-indigo-500 focus:border-indigo-500 p-1 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" value={CommissionPrice} />
+												<input {...register('total_commission_price')} type="text" className="focus:ring-indigo-500 focus:border-indigo-500 p-1 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" value={CommissionTotalPrice} />
 											</div>
 										</div>
 									</div>
