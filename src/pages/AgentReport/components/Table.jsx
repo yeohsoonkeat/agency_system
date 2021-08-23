@@ -102,6 +102,7 @@ export default function Table({ data, columns }) {
 										return (
 											<tr key={'row-' + index} {...row.getRowProps()}>
 												{row.cells.map((cell,index) => {
+													// <td>{index}</td>
 													return (
 														<td
 															{...cell.getCellProps()}
