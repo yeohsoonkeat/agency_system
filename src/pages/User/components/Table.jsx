@@ -7,7 +7,7 @@ import chevronRight from '@iconify-icons/mdi/chevron-right'
 import chevronLeft from '@iconify-icons/mdi/chevron-left'
 import pageLast from '@iconify-icons/mdi/page-last'
 import pageFirst from '@iconify-icons/mdi/page-first'
-
+import pencilAddOutline from '@iconify-icons/mdi/pencil-outline'
 import arrowDownDropCircleOutline from '@iconify-icons/mdi/arrow-down-drop-circle-outline'
 import arrowUpDropCircleOutline from '@iconify-icons/mdi/arrow-up-drop-circle-outline'
 import printerOutline from '@iconify-icons/mdi/printer-outline'
@@ -18,7 +18,8 @@ import ReactToPrint from 'react-to-print'
 
 export default function Table({ data, columns }) {
 	let componentRef = React.createRef()
-	
+	const { url } = useRouteMatch()
+
 	const {
 		getTableProps,
 		getTableBodyProps,
@@ -115,6 +116,14 @@ export default function Table({ data, columns }) {
 														
 													)
 												})}
+												<td>
+													<button className="hover:text-red-default">
+														<Link to={`${url}/edit`}>
+														<InlineIcon icon={pencilAddOutline} />
+														</Link>
+													</button>
+												</td>
+
 											</tr>
 										)
 									})}
