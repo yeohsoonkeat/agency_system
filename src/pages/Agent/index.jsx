@@ -5,6 +5,7 @@ import AgentList from './view/AgentList'
 import NewAgent from './view/NewAgent'
 import Agent from './view/Agent'
 import Org from './view/Org'
+import EditAgent from './view/EditAgent'
 
 export default function index() {
 	const { path } = useRouteMatch()
@@ -13,8 +14,9 @@ export default function index() {
 			<Switch>
 				<Route exact path={`${path}/`} component={AgentList} />
 				<Route exact path={`${path}/new_agent`} component={NewAgent} />
+				<Route path={`${path}/edit/:id`} component={EditAgent} />
+
 				<Route path={`${path}/:id`} component={Org} />
-				<Route path={`${path}/edit/:id`} component={Agent} />
 				<Redirect from="*" to="/404"/>
 			</Switch>
 		</>
