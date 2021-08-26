@@ -1,77 +1,60 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Table from '../components/Table'
+import { get_agency } from '../../../service/client/agency'
 
 
 
 function AgentReport() {
 	const { t } = useTranslation()
-	const data = React.useMemo(
-		() => [
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'A',
-				phone: '0968663002',
-				commision_withdrawn: '100$',
-				commision_in_account: '1000$'
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'A',
-				phone: '0968663002',
-				commision_withdrawn: '100$',
-				commision_in_account: '1000$'
-			},
-			{
-				id: '1234567gfxdg',
-				fullname: 'Yeoh Soon Keat',
-				sex: 'Male',
-				group: 'A',
-				phone: '0968663002',
-				commision_withdrawn: '100$',
-				commision_in_account: '1000$'
-			}
-		],
-		[]
-	)
+	const [agentReport, setAgentReport] = useState([])
+	useEffect(()=>{
+		const token = localStorage.getItem('token')
+		get_agency(token).then(res=>{
+			const show = res.data.filter((x)=>{
+				x['commision_withdrawn'] = x.total_money - x.remaining_money
+				x.is_verified? x['status'] = 'Active': x['status'] = 'Inactive'
+				console.log(x)
+				return x.is_verified == true && x.roleId != 1
+				// x.role.name != 'admin'
+			})
+			setAgentReport(show)
+		})
+	},[])
 
 	const columns = React.useMemo(
 		() => [
-			{
-				HEADER: t('ID'),
-				accessor: 'id'
-			},
+			// {
+			// 	HEADER: t('ID'),
+			// 	accessor: 'id'
+			// },
 			{
 				Header: t('FULL NAME'),
-				accessor: 'fullname', // accessor is the "key" in the data
+				accessor: 'full_name', // accessor is the "key" in the data
 			},
 			{
 				Header: t('SEX'),
-				accessor: 'sex',
+				accessor: 'gender',
 			},
-			{
-				Header: t('GROUP'),
-				accessor: 'group',
-			},
+			// {
+			// 	Header: t('Leader'),
+			// 	accessor: 'leader',
+			// },
 			{
 				Header: t('PHONE'),
-				accessor: 'phone',
+				accessor: 'phone1',
 			},
 			{
 				Header: t('Total Commission Withdrawn'),
 				accessor: 'commision_withdrawn',
 			},
 			{
-				Header: t('Total Commission(Each Agent)'),
-				accessor: 'commision_in_account',
+				Header: t('Total Commission'),
+				accessor: 'total_money',
 			},
 			{
 				Header: t('Total Remaining Commission'),
-				accessor: 'com',
+				accessor: 'remaining_money',
 			},
 		],
 		[]
@@ -83,7 +66,7 @@ function AgentReport() {
 				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">{t('AGENT_REPORT')}</h1>
 			</div>
 			<div className="mt-4"/>
-			<Table data={data} columns={columns} />
+			<Table data={agentReport} columns={columns} />
 			
 		</div>
 	)

@@ -1,36 +1,36 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useForm, Controller } from 'react-hook-form'
-import Select from 'react-select'
-import AddCommisionAgent from '../components/AddCommsionAgent'
-import { getPlanById, get_plan } from '../../../service/client/Plan'
-import { getCommissionById, get_commission_by_id } from '../../../service/client/Commision'
-import { get_commision } from '../../../service/client/Commision'
+import { getCommissionById } from '../../../service/client/Commision'
 import { useLocation, useParams } from 'react-router'
 import WithdrawCash from '../components/WithdrawCash'
+import { agentWithdrawHistory } from '../../../service/client/WithdrawCash'
+import { Link, useHistory } from 'react-router-dom'
+
 
 function CashOut(props) {
     const location = useLocation()
-    console.log(location.state.hello)
+    // console.log(location.state.hello)
 	const { t } = useTranslation()
 	const [Agency, setAgency] = useState([])
+	const [agentWithDrawHistory, setAgentWithDrawHistory] = useState([])
 	const [Plans, setPlans] = useState([])
 	const [CommissionTo, setCommissionTo] = useState([])
-	const [CommissionPrice, setCommissionPrice] = useState([])
 	const { register, handleSubmit, control } = useForm()
 	const {id, agencyId} = useParams()
 
 	useEffect(() => {
+		let data = {}
+		data['commission_id'] = id
+		data['agency_id'] = agencyId
 		const token = localStorage.getItem('token')
-		get_plan(token).then(res => {
+		agentWithdrawHistory(token,data).then(res => {
 			if (!res?.data.error){
-				let k = res.data.map(x => {
-					return {
-						'label': x.plan_name,
-						'value': x.id
-					}
+				console.log(res.data)
+				res.data.filter((x) =>{
+					x.date = x.date.slice(0,10)
 				})
-				setPlans(k)
+				setAgentWithDrawHistory(res.data)
 			}
 		}).catch(err =>  console.log(err))
 		setAgency([{
@@ -38,8 +38,6 @@ function CashOut(props) {
 			'value': 'agency_id'
 		}])
 		getCommissionById(token, id, agencyId).then(x => {
-			console.log(x.data)
-			// console
 			setCommissionTo(x.data)
 			
 		}).catch(err => {
@@ -48,21 +46,6 @@ function CashOut(props) {
 
 	}, [])
 
-	const onSubmit = (data) => {
-		console.log(data)
-		const k = {
-			'real_estate': data.real_estate,
-			'plan_id': data.plan.value,
-			'num_lots': data.number_lots,
-			'total_commission_price': 1000,
-			'agency': CommissionTo.map(x => {
-				return { 'id': x.id, 'price': x.ammount }
-			})
-
-		}
-		// alert(JSON.stringify(k))
-		console.log(k)
-	}
 
 	const onAgentAdd = (data) => {
 		let agent = data.agent.split('/')
@@ -71,12 +54,6 @@ function CashOut(props) {
 			'name': agent[1],
 			'ammount': data.ammount
 		}])
-	}
-	const onPlanChange = async (data) => {
-		// alert(data.value)
-		const token = localStorage.getItem('token')
-		const plan = await getPlanById(data.value,token)
-		setCommissionPrice(plan.data.commission_price)		
 	}
 
 	return (
@@ -87,7 +64,7 @@ function CashOut(props) {
 			<div className="md:grid md:grid-cols-3 md:gap-6">
 						<div className="md:col-span-1">
 							<div className="px-4 sm:px-0">
-								<h3 className="text-lg font-medium leading-6 text-gray-900">Cash Out</h3>
+								{/* <h3 className="text-lg font-medium leading-6 text-gray-900">Cash Out</h3> */}
 								<p className="mt-1 text-sm text-gray-600">
 									Cashout details
 								</p>
@@ -102,7 +79,7 @@ function CashOut(props) {
 								<div className="px-4 py-5 bg-white space-y-6 sm:p-6">
 									<div className="grid grid-cols-3">
 										<p className=" col-span-2 font-bold text-lg">Agent commisions</p>
-										<WithdrawCash onAgentAdd={onAgentAdd} />
+										<WithdrawCash onAgentAdd={onAgentAdd} Commission ={CommissionTo[0]}/>
 										<div className=" col-span-3">
 											<table className="rounded-t-lg m-5 w-11/12 mx-auto bg-gray-200 text-gray-800">
 												<tbody className=" text-center">
@@ -115,6 +92,7 @@ function CashOut(props) {
 													{CommissionTo.length === 0 && <tr className="py-2"><td colSpan={3} className="text-center">Nothing to show</td></tr>}
 													{CommissionTo.length > 0 &&
 														CommissionTo.map((x, index) => (
+															
 															<tr key={'agent_commision' + index} className="py-2">
 																<td className=" p-1">{index + 1}</td>
 																<td className="p-1">{x.agency.full_name}</td>
@@ -152,19 +130,21 @@ function CashOut(props) {
 														<th className=" px-1">No. </th>
 														<th className=" px-1">Name</th>
 														<th className=" px-1">Ammount</th>
+														<th className=" px-1">Date</th>
 													</tr>
-													<tr className="py-2"><td colSpan={3} className="text-center">Nothing to show</td></tr>
+													{/* <tr className="py-2"><td colSpan={3} className="text-center">Nothing to show</td></tr> */}
 
-													{/* {CommissionTo.length === 0 && <tr className="py-2"><td colSpan={3} className="text-center">Nothing to show</td></tr>}
-													{CommissionTo.length > 0 &&
-														CommissionTo.map((x, index) => (
-															<tr key={'agent_commision' + index} className="py-2">
+													{agentWithDrawHistory.length === 0 && <tr className="py-2"><td colSpan={3} className="text-center">Nothing to show</td></tr>}
+													{agentWithDrawHistory.length > 0 &&
+														agentWithDrawHistory.map((x, index) => (
+															<tr key={'history_cashout' + index} className="py-2">
 																<td className=" p-1">{index + 1}</td>
 																<td className="p-1">{x.agency.full_name}</td>
-																<td className="p-1">{x.remaining_agency_commission_money}</td>
+																<td className="p-1">{x.cash_out_amount}</td>
+																<td className="p-1">{x.date}</td>
 															</tr>
 														))
-													} */}
+													}
 
 												</tbody>
 											</table>

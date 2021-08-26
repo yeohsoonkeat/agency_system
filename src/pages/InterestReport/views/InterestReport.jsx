@@ -1,11 +1,25 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Table from '../components/Table'
+import { get_agency } from '../../../service/client/agency'
 
 
 
 function InterestReport() {
 	const { t } = useTranslation()
+	const [agentCommissionReport, setAgentCommissionReport] = useState([])
+	useEffect(()=>{
+		const token = localStorage.getItem('token')
+		get_agency(token).then(res=>{
+			const show = res.data.filter((x)=>{
+				x['commision_withdrawn'] = x.total_money - x.remaining_money
+				x.is_verified? x['status'] = 'Active': x['status'] = 'Inactive'
+				return x.is_verified == true && x.roleId != 1
+				// x.role.name != 'admin'
+			})
+			setAgentCommissionReport(show)
+		})
+	},[])
 	const data = React.useMemo(
 		() => [
 			{
@@ -41,33 +55,33 @@ function InterestReport() {
 
 	const columns = React.useMemo(
 		() => [
-			{
-				Header: t('ID'),
-				accessor:'id'
-			},
-			{
-				Header: t('Group'),
-				accessor:'group'
-			},
+			// {
+			// 	Header: t('ID'),
+			// 	accessor:'id'
+			// },
+			// {
+			// 	Header: t('Group'),
+			// 	accessor:'group'
+			// },
 			{
 				Header: t('FULL NAME'),
-				accessor:'fullname'
+				accessor:'full_name'
 			},
 			{
 				Header: t('SEX'),
-				accessor:'sex'
+				accessor:'gender'
 			},
 			{
 				Header: t('PHONE NUMBER'),
-				accessor:'phone'
+				accessor:'phone1'
 			},
 			{
 				Header: t('WITHDRAW MONEY'),
-				accessor:'withdraw'
+				accessor:'commision_withdrawn'
 			},
 			{
 				Header: t('REMAINING MONEY'),
-				accessor:'remain'
+				accessor:'remaining_money'
 			},
 		],
 		[]
@@ -79,7 +93,7 @@ function InterestReport() {
 				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">Interest Reports</h1>
 			</div>
 			<div className="mt-4"/>
-			<Table data={data} columns={columns} />
+			<Table data={agentCommissionReport} columns={columns} />
 			
 		</div>
 	)
