@@ -11,7 +11,8 @@ import pageFirst from '@iconify-icons/mdi/page-first'
 import arrowDownDropCircleOutline from '@iconify-icons/mdi/arrow-down-drop-circle-outline'
 import arrowUpDropCircleOutline from '@iconify-icons/mdi/arrow-up-drop-circle-outline'
 import archiveEyeOutline from '@iconify-icons/mdi/archive-eye-outline'
-
+import trashOutline from '@iconify-icons/mdi/trash-can-outline'
+import pencilOutline from '@iconify-icons/mdi/pencil-outline'
 
 
 export default function Table({ data, columns }) {
@@ -123,6 +124,20 @@ export default function Table({ data, columns }) {
 														className=" inline-block"
 													>
 														<InlineIcon icon={archiveEyeOutline}/>
+													</Link>
+													<Link
+														to={{pathname: `${url}/edit/${row.original.id}`,
+														state: {data: row.original}
+														}}
+														
+														className=" inline-block"
+													>
+														<InlineIcon icon={pencilOutline}/>
+													</Link>
+													<Link
+														className=" inline-block"
+													>
+														<InlineIcon icon={trashOutline}/>
 													</Link>
 												</td>
 											</tr>
