@@ -90,7 +90,7 @@ function InterestReport() {
 	return (
 		<div >
 			<div className="flex w-full">
-				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">Interest Reports</h1>
+				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">Commission Reports</h1>
 			</div>
 			<div className="mt-4"/>
 			<Table data={agentCommissionReport} columns={columns} />

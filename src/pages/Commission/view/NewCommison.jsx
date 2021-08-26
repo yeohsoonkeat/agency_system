@@ -188,14 +188,18 @@ function NewCommison() {
 
 													{CommissionTo.length === 0 && <tr className="py-2"><td colSpan={3} className="text-center">Nothing to show</td></tr>}
 													{CommissionTo.length > 0 &&
-														CommissionTo.map((x, index) => (
+														CommissionTo.map((x, index) =>{ 
+															console.log(CommissionTo)
+															return(
 															<tr key={'agent_commision' + index} className="py-2">
 																<td className=" p-1">{index + 1}</td>
 																<td className="p-1">{x.name}</td>
 																<td className="p-1">{x.ammount}</td>
-																<td className='p-1' onClick={() => console.log(x.id)}><button>Delete</button></td>
+																<td className='p-1' ><button onClick={(e) => {
+																	e.preventDefault()
+																	}}>delete</button></td>
 															</tr>
-														))
+														)})
 													}
 
 												</tbody>
