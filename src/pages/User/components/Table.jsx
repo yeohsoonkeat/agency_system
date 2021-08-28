@@ -12,6 +12,8 @@ import arrowDownDropCircleOutline from '@iconify-icons/mdi/arrow-down-drop-circl
 import arrowUpDropCircleOutline from '@iconify-icons/mdi/arrow-up-drop-circle-outline'
 import printerOutline from '@iconify-icons/mdi/printer-outline'
 import ReactToPrint from 'react-to-print'
+import trashOutline from '@iconify-icons/mdi/trash-can-outline'
+import Modal from '../../../components/common/Modal'
 
 
 
@@ -117,11 +119,12 @@ export default function Table({ data, columns }) {
 													)
 												})}
 												<td>
-													<button className="hover:text-red-default">
+													<button className="hover:text-grey-default">
 														<Link to={`${url}/edit`}>
 														<InlineIcon icon={pencilAddOutline} />
 														</Link>
 													</button>
+													<Modal id={row.values.commission_id} page='user' />
 												</td>
 
 											</tr>
