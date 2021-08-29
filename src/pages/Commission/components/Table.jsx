@@ -13,6 +13,7 @@ import cash from '@iconify-icons/mdi/cash'
 import arrowDownDropCircleOutline from '@iconify-icons/mdi/arrow-down-drop-circle-outline'
 import arrowUpDropCircleOutline from '@iconify-icons/mdi/arrow-up-drop-circle-outline'
 import { Link, useRouteMatch } from 'react-router-dom'
+import Modal from '../../../components/common/Modal'
 
 
 export default function Table({ data, columns,action }) {
@@ -134,9 +135,7 @@ export default function Table({ data, columns,action }) {
 															<InlineIcon icon={cash} />
 														</Link>
 													</button>
-													<button className="hover:text-red-default">
-														<InlineIcon icon={trashCanOutline} />
-													</button>
+													<Modal id={row.values.commission_id} page='commission' />
 												</td>
 											</tr>
 										)
