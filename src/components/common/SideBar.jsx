@@ -84,7 +84,7 @@ export default function Sidebar() {
 								</Link>
 							</li>
 							{
-								user.roleId != null ? 
+								user != null ? 
 									user.roleId == 2 ? null : 
 									(
 										<li className="items-center hover:text-yellow-500">
@@ -98,7 +98,7 @@ export default function Sidebar() {
 									) : null
 							}
 							{
-								user.roleId != null ? 
+								user != null ? 
 									user.roleId == 2 ? null : 
 									(
 										<li className="items-center hover:text-yellow-500">
@@ -129,7 +129,7 @@ export default function Sidebar() {
 								</Link>
 							</li>
 							{
-								user.roleId != null ? 
+								user != null ? 
 									user.roleId == 2 ? null : 
 									(
 										<li className="items-center">
@@ -154,7 +154,7 @@ export default function Sidebar() {
 								</Link>
 							</li> */}
 							{
-								user.roleId != null ? 
+								user != null ? 
 									user.roleId == 1 ? (
 <li className="items-center ">
 								<h1
