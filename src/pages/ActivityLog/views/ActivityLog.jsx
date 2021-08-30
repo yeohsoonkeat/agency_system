@@ -27,24 +27,24 @@ function ActivityLog() {
 	const columns = React.useMemo(
 		() => [
 			{
-				Header: t('ID'),
+				Header: t('ACTIVITY_ID'),
 				accessor: 'id', // accessor is the "key" in the data
 			},
 			
 			{
-				Header: t('Action'),
+				Header: t('ACTIVITY_ACTION'),
 				accessor: 'action',
 			},
 			{
-				Header: t('Created By'),
+				Header: t('ACTIVITY_CREATE'),
 				accessor: 'action_by',
 			},
 			{
-				Header: t('Description'),
+				Header: t('ACTIVITY_DESCRIPTION'),
 				accessor: 'description',
 			},
 			{
-				Header: t('Date'),
+				Header: t('ACTIVITY_DATE'),
 				accessor: 'date',
 			},
 		],
