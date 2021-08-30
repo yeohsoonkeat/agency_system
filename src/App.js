@@ -27,6 +27,7 @@ const User = lazy(()=> import('./pages/User'))
 
 
 const App = () => {
+	localStorage.setItem('user', JSON.stringify({roleId : ''}))
 	return (
 		<BrowserRouter>
 			<AuthProvider>

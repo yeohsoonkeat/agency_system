@@ -121,12 +121,12 @@ export default function Table({ data, columns }) {
 												})}
 
 												<td className="block px-6 py-4 whitespace-nowrap space-x-3 text-right text-xl font-medium">
-													<Link
+													{/* <Link
 														to={`${url}/${row.original.id}`}
 														className=" inline-block"
 													>
 														<InlineIcon icon={archiveEyeOutline}/>
-													</Link>
+													</Link> */}
 													<Modal id={row.values.commission_id} page='agent' />
 
 												</td>

@@ -52,6 +52,7 @@ const AuthProvider = ({ children }) => {
 		register_user(param).then(x => {
 			setCurrentUser(x.data.user)
 			localStorage.setItem('token', x.data.token)
+			localStorage.setItem('user', JSON.stringify(x.data.user))
 			setPending(false)
 		}).catch(err => {
 			setCurrentUser(false)
