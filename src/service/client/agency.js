@@ -1,4 +1,3 @@
-import data from '@iconify-icons/mdi/chevron-right'
 import axios from 'axios'
 
 
@@ -82,3 +81,15 @@ export const createAgentByAdmin = (token,agency) => {
 }
 
 
+export const getApprovedAgent = (data,token,id) => {
+	const config =  {
+		method: 'post',
+		url: `http://localhost:8080/api/agency/update_role_leader/${id}`,
+		headers: { 
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${token}`
+		},
+		data: data
+	}
+	return axios(config)
+}

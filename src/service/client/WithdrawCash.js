@@ -29,3 +29,14 @@ export const agentWithdrawHistory = (token, history) => {
 }
 
 
+export const allAgentWithdrawHistory = (token) => { 
+	const config =  {
+		method: 'get',
+		url: 'http://localhost:8080/api/cashoutHistory/all',
+		headers: { 
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${token}`
+		},
+	}
+	return axios(config)
+}

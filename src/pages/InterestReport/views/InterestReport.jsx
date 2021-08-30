@@ -2,6 +2,7 @@ import React, { useEffect,useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Table from '../components/Table'
 import { get_agency } from '../../../service/client/agency'
+import { allAgentWithdrawHistory } from '../../../service/client/WithdrawCash'
 
 
 
@@ -10,48 +11,18 @@ function InterestReport() {
 	const [agentCommissionReport, setAgentCommissionReport] = useState([])
 	useEffect(()=>{
 		const token = localStorage.getItem('token')
-		get_agency(token).then(res=>{
-			const show = res.data.filter((x)=>{
-				x['commision_withdrawn'] = x.total_money - x.remaining_money
-				x.is_verified? x['status'] = 'Active': x['status'] = 'Inactive'
-				return x.is_verified == true && x.roleId != 1
+		allAgentWithdrawHistory(token).then(res=>{
+			const show = res.data.map((x)=>{
+				// x['commision_withdrawn'] = x.total_money - x.remaining_money
+				// x.is_verified? x['status'] = 'Active': x['status'] = 'Inactive'
+				// return x.is_verified == true && x.roleId != 1
+				x.date = x.date.slice(0,10)
 				// x.role.name != 'admin'
 			})
-			setAgentCommissionReport(show)
+			console.log(show)
+			setAgentCommissionReport(res.data)
 		})
 	},[])
-	const data = React.useMemo(
-		() => [
-			{
-				id: '14211',
-				group: 'A',
-				fullname: 'Kong Panhabot',
-				sex: 'male',
-				phone: '015642673',
-				withdraw:'$2000',
-				remain:'$3000'
-			},
-			{
-				id: '14211',
-				group: 'A',
-				fullname: 'Kong Panhabot',
-				sex: 'male',
-				phone: '015642673',
-				withdraw:'$2000',
-				remain:'$3000'
-			},
-			{
-				id: '14211',
-				group: 'A',
-				fullname: 'Kong Panhabot',
-				sex: 'male',
-				phone: '015642673',
-				withdraw:'$2000',
-				remain:'$3000'
-			},
-		],
-		[]
-	)
 
 	const columns = React.useMemo(
 		() => [
@@ -65,23 +36,23 @@ function InterestReport() {
 			// },
 			{
 				Header: t('FULL NAME'),
-				accessor:'full_name'
+				accessor:'agency.full_name'
 			},
 			{
-				Header: t('SEX'),
-				accessor:'gender'
+				Header: t('Real Estate'),
+				accessor:'commission.real_estate'
+			},
+			// {
+			// 	Header: t('PHONE NUMBER'),
+			// 	accessor:'phone1'
+			// },
+			{
+				Header: t('TOTAL WITHDRAW MONEY'),
+				accessor:'cash_out_amount'
 			},
 			{
-				Header: t('PHONE NUMBER'),
-				accessor:'phone1'
-			},
-			{
-				Header: t('WITHDRAW MONEY'),
-				accessor:'commision_withdrawn'
-			},
-			{
-				Header: t('REMAINING MONEY'),
-				accessor:'remaining_money'
+				Header: t('Date'),
+				accessor:'date'
 			},
 		],
 		[]
@@ -90,7 +61,7 @@ function InterestReport() {
 	return (
 		<div >
 			<div className="flex w-full">
-				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">Commission Reports</h1>
+				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">Withdraw Agents Reports</h1>
 			</div>
 			<div className="mt-4"/>
 			<Table data={agentCommissionReport} columns={columns} />

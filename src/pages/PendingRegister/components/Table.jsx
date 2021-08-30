@@ -48,25 +48,14 @@ export default function Table({ data, columns }) {
 		useSortBy,
 		usePagination,
 	)
-	const [CommissionTo, setCommissionTo] = useState([])
 
-	const onAgentAdd = (data) => {
-		let agent = data.agent.split('/')
-		setCommissionTo([...CommissionTo, {
-			'id': agent[0],
-			'name': agent[1],
-			'ammount': data.ammount
-		}])
-	}
+
 
 	const count = preGlobalFilteredRows.length
 	const [value, setValue] = React.useState(globalFilter)
 	const onChange = useAsyncDebounce(value => {
 		setGlobalFilter(value || undefined)
 	}, 200)
-	const handleAgree = (id) => {
-		console.log(id)
-	}
 
 	return (
 		<>
@@ -129,8 +118,9 @@ export default function Table({ data, columns }) {
 														
 													)
 												})}
-												<td className="px-6 py-4 whitespace-nowrap space-x-3 text-right text-xl font-medium">
-													<EditUser onAgentAdd={onAgentAdd} />
+												{/* {console.log(row.values.id)} */}
+												<td className="px-6 py-4 whitespace-nowrap space-x-3 text-left text-xl font-medium">
+													<EditUser  agencyId={row.values.id} />
 												</td>
 											</tr>
 										)

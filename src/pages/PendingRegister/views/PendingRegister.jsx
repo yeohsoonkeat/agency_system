@@ -20,6 +20,10 @@ function PendingRegister() {
 	const columns = React.useMemo(
 		() => [
 			{
+				Header: t('Id'),
+				accessor: 'id',
+			},
+			{
 				Header: t('FULL NAME'),
 				accessor: 'full_name', // accessor is the "key" in the data
 			},

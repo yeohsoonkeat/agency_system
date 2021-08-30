@@ -1,6 +1,5 @@
 
-import React from 'react'
-
+import React, { useEffect, useState } from 'react'
 import { InlineIcon } from '@iconify/react'
 import accountGroupOutline from '@iconify-icons/mdi/account-group-outline'
 import pointOfSale from '@iconify-icons/mdi/point-of-sale'
@@ -8,11 +7,28 @@ import calendarTextOutline from '@iconify-icons/mdi/calendar-text-outline'
 
 
 import { useTranslation } from 'react-i18next'
+import { getDashboardInfo } from '../../service/client/DashboardInfo'
 
 
 export default function Dashboard() {
 	const { t } = useTranslation()
+	const [totalPlans, setTotalPlans] = useState(0)
+	const [totalAgents, setTotalAgents] = useState(0)
+	const [totalMoneys, setTotalMoneys] = useState(0)
+	const [totalRemainingMoneys, setTotalRemainingMoneys] = useState(0)
+	useEffect(() => {
+		const token = localStorage.getItem('token')
+		getDashboardInfo(token).then(res => {
+			if (!res?.data.error){
+				// console.log(res.data.totalPLans)
+				setTotalAgents(res.data.totalAgents)
+				setTotalPlans(res.data.totalPlans)
+				setTotalMoneys(res.data.totalMoney)
+				setTotalRemainingMoneys(res.data.totalRemainingMoney)
 
+			}
+		}).catch(err =>  console.log(err))
+	}, [])
 	return (
 		<>
 			<div>
@@ -27,7 +43,7 @@ export default function Dashboard() {
 											{t('AGENT')}
 										</h5>
 										<span className="font-semibold text-xl text-blueGray-700">
-											10
+											{totalAgents}
 										</span>
 									</div>
 									<div className="relative w-auto pl-4 flex-initial">
@@ -48,7 +64,7 @@ export default function Dashboard() {
 											{t('PLAN')}
 										</h5>
 										<span className="font-semibold text-xl text-blueGray-700">
-											4
+											{totalPlans}
 										</span>
 									</div>
 									<div className="relative w-auto pl-4 flex-initial">
@@ -70,7 +86,7 @@ export default function Dashboard() {
 											{t('MONEY_WITHDRAWN')}
 										</h5>
 										<span className="font-semibold text-xl text-blueGray-700">
-											$3,200
+											$ {totalRemainingMoneys}
 										</span>
 									</div>
 									<div className="relative w-auto pl-4 flex-initial">
@@ -92,7 +108,7 @@ export default function Dashboard() {
 											{t('BALANCE')}
 										</h5>
 										<span className="font-semibold text-xl text-blueGray-700">
-											$5,600
+											$ {totalMoneys}
 										</span>
 									</div>
 									<div className="relative w-auto pl-4 text-2xl flex-initial">

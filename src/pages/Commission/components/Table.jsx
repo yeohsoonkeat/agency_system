@@ -135,6 +135,7 @@ export default function Table({ data, columns,action }) {
 															<InlineIcon icon={cash} />
 														</Link>
 													</button>
+													
 													<Modal id={row.values.commission_id} page='commission' />
 												</td>
 											</tr>
