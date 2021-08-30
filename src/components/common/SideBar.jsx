@@ -19,8 +19,7 @@ export default function Sidebar() {
 	const { t } = useTranslation()
 
 	const user = JSON.parse(localStorage.getItem('user'))
-	console.log(user.roleId)
-
+	
 	return (
 		<>
 			<nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white-default flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
@@ -85,8 +84,10 @@ export default function Sidebar() {
 								</Link>
 							</li>
 							{
-								user.roleId == 2 ? null : (
-									<li className="items-center hover:text-yellow-500">
+								user.roleId != null ? 
+									user.roleId == 2 ? null : 
+									(
+										<li className="items-center hover:text-yellow-500">
 										<Link
 											className="  py-3 block"
 											to="/plan"
@@ -94,12 +95,13 @@ export default function Sidebar() {
 											<InlineIcon icon={packageVariant} className="inline w-5 h-5 text-gray-400 mr-2" />{t('PLAN')}
 										</Link>
 									</li>
-								)
+									) : null
 							}
-							
 							{
-								user.roleId == 2 ? null : (
-								<li className="items-center hover:text-yellow-500">
+								user.roleId != null ? 
+									user.roleId == 2 ? null : 
+									(
+										<li className="items-center hover:text-yellow-500">
 									<Link
 										className="  py-3 block"
 										to="/agent"
@@ -107,9 +109,8 @@ export default function Sidebar() {
 										<InlineIcon icon={accountIcon} className="inline w-5 h-5 text-gray-400 mr-2" />{t('AGENT')}
 									</Link>
 								</li>
-								)
+									) : null
 							}
-							
                             
 							<li className="items-center">
 								<Link
@@ -128,8 +129,10 @@ export default function Sidebar() {
 								</Link>
 							</li>
 							{
-								user.roleId == 2 ? null : (
-									<li className="items-center">
+								user.roleId != null ? 
+									user.roleId == 2 ? null : 
+									(
+										<li className="items-center">
 										<Link
 											className=" py-3 block hover:text-yellow-500"
 											to="/agent_report"
@@ -137,7 +140,7 @@ export default function Sidebar() {
 											<InlineIcon icon={noteEdit } className="inline w-5 h-5 text-gray-400 mr-2" />{t('AGENT_REPORT')}
 										</Link>
 									</li>
-								)
+									) : null
 							}
 							
 							<hr className="my-4 md:min-w-full" />
@@ -151,8 +154,9 @@ export default function Sidebar() {
 								</Link>
 							</li> */}
 							{
-								user.roleId == 1 ? (
-									<li className="items-center ">
+								user.roleId != null ? 
+									user.roleId == 1 ? (
+<li className="items-center ">
 								<h1
 									className=" py-2 block text-gray-60"
 								>
@@ -184,8 +188,9 @@ export default function Sidebar() {
 								</li>
 								
 							</li>
-								) : null
+									) : null : null
 							}
+							
 							
 						</ul>
 					</div>

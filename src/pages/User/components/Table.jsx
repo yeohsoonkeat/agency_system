@@ -121,8 +121,8 @@ export default function Table({ data, columns }) {
 												})}
 												<td>
 													<button className="hover:text-grey-default">
-														<Link to={`${url}/edit`}>
-														<InlineIcon icon={pencilAddOutline} />
+														<Link to={{pathname: `${url}/edit`, state: {data: row.original}}}>
+															<InlineIcon icon={pencilAddOutline} />
 														</Link>
 													</button>
 													<Modal id={row.values.commission_id} page='user' />
