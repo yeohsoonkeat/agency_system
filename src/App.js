@@ -1,4 +1,4 @@
-import React, { lazy, Suspense} from 'react'
+import React, { lazy, Suspense, useEffect} from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 
 import ProtectedRoute from './routes/ProtectedRoute'
@@ -27,7 +27,6 @@ const User = lazy(()=> import('./pages/User'))
 
 
 const App = () => {
-	localStorage.setItem('user', JSON.stringify({roleId : ''}))
 	return (
 		<BrowserRouter>
 			<AuthProvider>
