@@ -14,9 +14,11 @@ import arrowDownDropCircleOutline from '@iconify-icons/mdi/arrow-down-drop-circl
 import arrowUpDropCircleOutline from '@iconify-icons/mdi/arrow-up-drop-circle-outline'
 import { Link, useRouteMatch } from 'react-router-dom'
 import Modal from '../../../components/common/Modal'
+import { useTranslation } from 'react-i18next'
 
 
 export default function Table({ data, columns,action }) {
+	const{t} =useTranslation()
 	const {
 		getTableProps,
 		getTableBodyProps,
@@ -52,11 +54,24 @@ export default function Table({ data, columns,action }) {
 	const onChange = useAsyncDebounce(value => {
 		setGlobalFilter(value || undefined)
 	}, 200)
+	
+	const user = JSON.parse(localStorage.getItem('user'))
 
 	return (
 		<>
-			
-			<div className="flex flex-col mt-10 bg-white">
+			<div className="mt-10">
+                                {t('SEARCH')}:{' '}
+				<input
+					value={value || ''}
+					onChange={e => {
+						setValue(e.target.value)
+						onChange(e.target.value)
+					}}
+					placeholder={`${count} ${t('RECORD')}...`}
+					className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b pl-8 pr-6 py-2 bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
+				/>
+			</div>
+			<div className="flex flex-col mt-5 bg-white">
 				<div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 					<div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
 						<div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -90,20 +105,6 @@ export default function Table({ data, columns,action }) {
 								</thead>
 								
 								<tbody {...getTableBodyProps()}>
-									<tr className="border-b">
-										<td className="px-6 py-2 whitespace-nowrap ">
-										Search:{' '}
-											<input
-												value={value || ''}
-												onChange={e => {
-													setValue(e.target.value)
-													onChange(e.target.value)
-												}}
-												placeholder={`${count} records...`}
-												className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b pl-8 pr-6 py-2 bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
-											/>
-										</td>
-									</tr>
 									{page.map((row,index) => {
 										prepareRow(row)
 										return (
@@ -124,20 +125,25 @@ export default function Table({ data, columns,action }) {
 														
 													)
 												})}
-												<td className="px-6 py-4 whitespace-nowrap space-x-3 text-right text-xl font-medium">
-													<button  className="hover:text-green-default">
-														<Link to={{
-															pathname:`${url}/${row.values.commission_id}/cashout/${row.values.agencyId}`,
-															state: {
-																hello: 'ow.cells[0]'
-															}
-														}}>
-															<InlineIcon icon={cash} />
-														</Link>
-													</button>
-													
-													<Modal id={row.values.commission_id} page='commission' />
-												</td>
+												{
+													user.roleId == 2 ? null : (
+														<td className="px-6 py-4 whitespace-nowrap space-x-3 text-right text-xl font-medium">
+															<button  className="hover:text-green-default">
+																<Link to={{
+																	pathname:`${url}/${row.values.commission_id}/cashout/${row.values.agencyId}`,
+																	state: {
+																		hello: 'ow.cells[0]'
+																	}
+																}}>
+																	<InlineIcon icon={cash} />
+																</Link>
+															</button>
+															
+															<Modal id={row.values.commission_id} page='commission' />
+														</td>
+													)
+												}
+												
 											</tr>
 										)
 									})}
@@ -170,7 +176,7 @@ export default function Table({ data, columns,action }) {
 				</div>
 				
 				<div className="flex-1">
-                    Page {' '}
+				{t('PAGE')} {' '}
 					<strong>
 						<input
 							className=" w-1/5 text-center border"
@@ -193,7 +199,7 @@ export default function Table({ data, columns,action }) {
 				>
 					{[10, 20, 30, 40, 50].map(pageSize => (
 						<option key={pageSize} value={pageSize}>
-							Show {pageSize}
+							{t('SHOW')} {pageSize}
 						</option>
 					))}
 				</select>

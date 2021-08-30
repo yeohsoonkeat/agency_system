@@ -14,11 +14,13 @@ import printerOutline from '@iconify-icons/mdi/printer-outline'
 import ReactToPrint from 'react-to-print'
 import tickoutline from '@iconify-icons/mdi/tick-outline'
 import EditUser from './EditUser'
+import { useTranslation } from 'react-i18next'
 
 
 
 export default function Table({ data, columns }) {
 	let componentRef = React.createRef()
+	const {t} = useTranslation()
 	
 	const {
 		getTableProps,
@@ -154,7 +156,7 @@ export default function Table({ data, columns }) {
 				</div>
 				
 				<div className="flex-1">
-                    Page {' '}
+                    {t('PAGE')} {' '}
 					<strong>
 						<input
 							className=" w-1/5 text-center border"
@@ -177,7 +179,7 @@ export default function Table({ data, columns }) {
 				>
 					{[10, 20, 30, 40, 50].map(pageSize => (
 						<option key={pageSize} value={pageSize}>
-							Show {pageSize}
+							{t('SHOW')} {pageSize}
 						</option>
 					))}
 				</select>

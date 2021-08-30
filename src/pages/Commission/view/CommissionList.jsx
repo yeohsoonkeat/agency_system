@@ -10,7 +10,7 @@ function AgentList() {
 	const { t } = useTranslation()
 	const { url } = useRouteMatch()
 	const [commission, setCommission] = useState([])
-
+	const user = JSON.parse(localStorage.getItem('user'))
 	useEffect(() => {
 		const token = localStorage.getItem('token')
 		get_commision(token).then(x => {
@@ -24,35 +24,35 @@ function AgentList() {
 	const columns = React.useMemo(
 		() => [
 			{
-				Header: t('Date'),
+				Header: t('COMMISSION_DATE'),
 				accessor: 'date',
 			},
 			{
-				Header: t('Real Estate'),
+				Header: t('COMMISSION_REAL_ESTATE'),
 				accessor: 'real_estate',
 			},
 			{
-				Header: t('Plan'),
+				Header: t('COMMISSION_PLAN'),
 				accessor: 'plan.plan_name',
 			},
 			{
-				Header: t('Plan Location'),
+				Header: t('COMMISSION_PLAN_LOCATION'),
 				accessor: 'plan.location',
 			},
 			{
-				Header: t('Number Lots'),
+				Header: t('COMMISSION_NUMBER_LOTS'),
 				accessor: 'num_lots',
 			},
 			{
-				Header: t('Agency'),
+				Header: t('COMMISSION_AGENCY'),
 				accessor: 'agency.full_name',
 			},
 			{
-				Header: t('Total Commission Money'),
+				Header: t('COMMISSION_TOTAL_MONEY'),
 				accessor: 'total_agency_commission_money',
 			},
 			{
-				Header: t('Remaining Commission Money'),
+				Header: t('COMMISSION_REMAIN_MONEY'),
 				accessor: 'remaining_agency_commission_money',
 			},
 			{
@@ -70,12 +70,17 @@ function AgentList() {
 		<div >
 			{/* {JSON.stringify(commission)} */}
 			<div className="flex w-full">
-				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">{t('COMMISSION')}</h1>
-				<Link to={`${url}/new_commision`} className="border-2 p-2 text-white opacity-80 hover:opacity-100 rounded items-center">
-					<div>
-                        New Commission
-					</div>
-				</Link>
+				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">{t('COMMISION')}</h1>
+				{
+					user.roleId == 2 ? null :(
+						<Link to={`${url}/new_commision`} className="border-2 p-2 text-white opacity-80 hover:opacity-100 rounded items-center">
+							<div>
+								{t('NEW_COMMISSION')}
+							</div>
+						</Link>
+					)
+				}
+				
 			</div>
 			<div className="mt-4"/>
 			<Table data={commission} columns={columns}/>

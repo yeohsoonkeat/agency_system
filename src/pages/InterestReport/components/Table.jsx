@@ -12,13 +12,14 @@ import arrowDownDropCircleOutline from '@iconify-icons/mdi/arrow-down-drop-circl
 import arrowUpDropCircleOutline from '@iconify-icons/mdi/arrow-up-drop-circle-outline'
 import printerOutline from '@iconify-icons/mdi/printer-outline'
 import ReactToPrint from 'react-to-print'
+import { useTranslation } from 'react-i18next'
 
 
 
 
 export default function Table({ data, columns }) {
 	let componentRef = React.createRef()
-	
+	const {t} = useTranslation()
 	const {
 		getTableProps,
 		getTableBodyProps,
@@ -59,7 +60,7 @@ export default function Table({ data, columns }) {
 			<div className="mb-5 mt-10 ">
 				<ReactToPrint
 					trigger={() => <button className="flex space-x-2 font-bold text-primary-default p-1 px-3 rounded">
-						<InlineIcon icon={printerOutline} className="text-xl"/><span>PRINT</span>
+						<InlineIcon icon={printerOutline} className="text-xl"/><span>{t('PRINT')}</span>
 					</button>}
 					content={() => componentRef}
 				/>
@@ -147,7 +148,7 @@ export default function Table({ data, columns }) {
 				</div>
 				
 				<div className="flex-1">
-                    Page {' '}
+				{t('PAGE')} {' '}
 					<strong>
 						<input
 							className=" w-1/5 text-center border"
@@ -170,7 +171,7 @@ export default function Table({ data, columns }) {
 				>
 					{[10, 20, 30, 40, 50].map(pageSize => (
 						<option key={pageSize} value={pageSize}>
-							Show {pageSize}
+							{t('SHOW')} {pageSize}
 						</option>
 					))}
 				</select>

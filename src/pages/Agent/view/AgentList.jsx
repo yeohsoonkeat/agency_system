@@ -25,35 +25,35 @@ function AgentList() {
 	const columns = React.useMemo(
 		() => [
 			{
-				Header: t('FULL NAME'),
+				Header: t('AGENT_FULL_NAME'),
 				accessor: 'full_name', // accessor is the "key" in the data
 			},
 			{
-				Header: t('ID'),
+				Header: t('AGENT_ID'),
 				accessor: 'id',
 			},
 			{
-				Header: t('SEX'),
+				Header: t('AGENT_SEX'),
 				accessor: 'gender',
 			},
 			{
-				Header: t('PHONE'),
+				Header: t('AGENT_PHONE'),
 				accessor: 'phone1',
 			},
 			{
-				Header: t('STATUS'),
+				Header: t('AGENT_STATUS'),
 				accessor: 'status',
 			},
 			{
-				Header: t('REMAINING MONEY'),
+				Header: t('AGENT_REMAIN'),
 				accessor: 'remaining_money',
 			},
 			{
-				Header: t('TOTAL MONEY'),
+				Header: t('AGENT_TOTAL'),
 				accessor: 'total_money',
 			},
 			{
-				Header: t('JOINED DATE'),
+				Header: t('AGENT_JOINED_DATE'),
 				accessor: 'date',
 			},
 		],
