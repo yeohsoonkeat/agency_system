@@ -15,16 +15,15 @@ export default function Dashboard() {
 	const [totalPlans, setTotalPlans] = useState(0)
 	const [totalAgents, setTotalAgents] = useState(0)
 	const [totalMoneys, setTotalMoneys] = useState(0)
-	const [totalRemainingMoneys, setTotalRemainingMoneys] = useState(0)
+	const [totalWithdrawnMoneys, setTotalWithdrawnMoneys] = useState(0)
 	useEffect(() => {
 		const token = localStorage.getItem('token')
 		getDashboardInfo(token).then(res => {
 			if (!res?.data.error){
-				// console.log(res.data.totalPLans)
 				setTotalAgents(res.data.totalAgents)
 				setTotalPlans(res.data.totalPlans)
 				setTotalMoneys(res.data.totalMoney)
-				setTotalRemainingMoneys(res.data.totalRemainingMoney)
+				setTotalWithdrawnMoneys(res.data.totalWithdrawnMoney)
 
 			}
 		}).catch(err =>  console.log(err))
@@ -86,7 +85,7 @@ export default function Dashboard() {
 											{t('MONEY_WITHDRAWN')}
 										</h5>
 										<span className="font-semibold text-xl text-blueGray-700">
-											$ {totalRemainingMoneys}
+											$ {totalWithdrawnMoneys}
 										</span>
 									</div>
 									<div className="relative w-auto pl-4 flex-initial">

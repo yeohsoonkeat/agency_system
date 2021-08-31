@@ -110,6 +110,7 @@ export default function Table({ data, columns }) {
 															className="px-6 py-4 whitespace-nowrap max-w-sm "
 															key={'cell-' + index}
 														>
+															{/* {index} */}
 															<div className="text-sm text-gray-900 overflow-x-hidden">
 																{cell.render('Cell')}
 															</div>
@@ -125,7 +126,8 @@ export default function Table({ data, columns }) {
 													>
 														<InlineIcon icon={archiveEyeOutline}/>
 													</Link>
-													<Modal id={row.values.commission_id} page='agent' />
+													
+													<Modal id={row.values.id} page='agent' />
 
 												</td>
 											</tr>

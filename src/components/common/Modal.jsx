@@ -1,9 +1,43 @@
 import React from 'react'
 import { InlineIcon } from '@iconify/react'
 import trashCanOutline from '@iconify-icons/mdi/trash-can-outline'
-
+import { deletePlan } from '../../service/client/Plan'
+import { deleteCommission } from '../../service/client/Commision'
 export default function Modal(obj) {
   const [showModal, setShowModal] = React.useState(false)
+  const deleteFunc = ()=>{
+    
+    switch(obj.page){
+      case 'plan':
+        
+        deletePlan(obj.id).then(res => {
+          if (!res?.data.error){
+             alert(res.data.message)
+             setShowModal(false)
+          }
+        }).catch(err =>  console.log(err))
+        break
+      case 'agent':
+        // deleteCommission(obj.id).then(res => {
+        //   if (!res?.data.error){
+        //      alert(res.data.message)
+        //      setShowModal(false)
+        //   }
+        // }).catch(err =>  console.log(err))
+        break
+      case 'commission':
+         deleteCommission(obj.id).then(res => {
+          if (!res?.data.error){
+             alert(res.data.message)
+             setShowModal(false)
+          }
+        }).catch(err =>  console.log(err))
+        break
+        
+        
+    }
+  
+  }
   
   return (
     <>
@@ -50,7 +84,7 @@ export default function Modal(obj) {
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => console.log(obj.page)}
+                    onClick={deleteFunc}
                   >
                     Delete
                   </button>

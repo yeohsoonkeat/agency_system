@@ -10,7 +10,6 @@ export default function WithdrawCash({onAgentAdd,Commission}) {
 	const { t } = useTranslation()
 	const [showModal, setShowModal] = useState(false)
 	const [Ammount, setAmmount] = useState(0)
-	const [SelectedAgent, setSelectedAgent] = useState()
 	const today = Date.now()
 	const now = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(today)
 	const {id, agencyId} = useParams() 
@@ -25,13 +24,21 @@ export default function WithdrawCash({onAgentAdd,Commission}) {
 	const handleChange = (e) => {
 		const { value } = e.target
 		setAmmount(value)
+		
 	}
 
 	const onSubmit = (data) => {
 		data['date']= now
 		data['agency_id'] = agencyId
 		data['commission_id'] = id
-		// console.log(data)
+		if(Commission.remaining_agency_commission_money <= 0) {
+			alert('You can not withdrawn money!')
+			return
+		}
+		if(Ammount <= 0){
+			alert('Amount Money must be greater than 0 !')
+			return
+		}
 		const token = localStorage.getItem('token')
 		withDrawCash(token,data).then(res => {
 			console.log(res.data.message)
