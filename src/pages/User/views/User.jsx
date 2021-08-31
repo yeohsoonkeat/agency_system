@@ -25,36 +25,36 @@ function User() {
 	const columns = React.useMemo(
 		() => [
 			{
-				Header: t('FULL_NAME'),
+				Header: t('USER_FULLNAME'),
 				accessor: 'full_name', // accessor is the "key" in the data
 			},
 			{
-				Header: t('SEX'),
+				Header: t('USER_SEX'),
 				accessor: 'gender',
 			},
 			{
-				Header: t('Role'),
+				Header: t('USER_ROLE'),
 				accessor: 'role.name',
 			},
 			{
-				Header: t('Leader'),
+				Header: t('USER_LEADER'),
 				accessor: 'leader',
 			},
 			
 			{
-				Header: t('EMAIL'),
+				Header: t('USER_EMAIL'),
 				accessor: 'email',
 			},
 			{
-				Header: t('PHONE'),
+				Header: t('USER_PHONE'),
 				accessor: 'phone1',
 			},
 			{
-				Header: t('ADDRESS'),
+				Header: t('USER_ADDRESS'),
 				accessor: 'address',
 			},
 			{
-				Header: t('ID CARD'),
+				Header: t('USER_IDCARD'),
 				accessor: 'identify_card_number',
 			},
 		],

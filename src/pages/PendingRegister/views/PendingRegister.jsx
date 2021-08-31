@@ -20,31 +20,31 @@ function PendingRegister() {
 	const columns = React.useMemo(
 		() => [
 			{
-				Header: t('Id'),
+				Header: t('PLAN_ID'),
 				accessor: 'id',
 			},
 			{
-				Header: t('FULL NAME'),
+				Header: t('USER_FULLNAME'),
 				accessor: 'full_name', // accessor is the "key" in the data
 			},
 			{
-				Header: t('SEX'),
+				Header: t('USER_SEX'),
 				accessor: 'gender',
 			},
 			{
-				Header: t('ADDRESS'),
+				Header: t('USER_ADDRESS'),
 				accessor: 'address',
 			},
 			{
-				Header: t('EMAIL'),
+				Header: t('USER_EMAIL'),
 				accessor: 'email',
 			},
 			{
-				Header: t('PHONE'),
+				Header: t('USER_PHONE'),
 				accessor: 'phone1',
 			},
 			{
-				Header: t('ID CARD'),
+				Header: t('USER_IDCARD'),
 				accessor: 'identify_card_number',
 			},
 		],

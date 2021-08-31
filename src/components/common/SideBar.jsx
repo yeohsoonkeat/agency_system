@@ -11,9 +11,6 @@ import percentOutline from '@iconify-icons/mdi/percent-outline'
 import noteEdit from '@iconify-icons/mdi/note-edit'
 import UserDropdown from './UserDropdown'
 import filePercentOutline from '@iconify-icons/mdi/file-percent-outline'
-
-
-
 import { useTranslation } from 'react-i18next'
 import Logo from '@images/logo-text.png'
 
@@ -21,6 +18,8 @@ export default function Sidebar() {
 	const [collapseShow, setCollapseShow] = React.useState('hidden')
 	const { t } = useTranslation()
 
+	const user = JSON.parse(localStorage.getItem('user'))
+	
 	return (
 		<>
 			<nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white-default flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
@@ -84,22 +83,34 @@ export default function Sidebar() {
 									<InlineIcon icon={viewDashboardOutline} className="inline w-5 h-5 text-gray-400 mr-2" />{t('DASHBOARD')}
 								</Link>
 							</li>
-							<li className="items-center hover:text-yellow-500">
-								<Link
-									className="  py-3 block"
-									to="/plan"
-								>
-									<InlineIcon icon={packageVariant} className="inline w-5 h-5 text-gray-400 mr-2" />{t('PLAN')}
-								</Link>
-							</li>
-							<li className="items-center hover:text-yellow-500">
-								<Link
-									className="  py-3 block"
-									to="/agent"
-								>
-									<InlineIcon icon={accountIcon} className="inline w-5 h-5 text-gray-400 mr-2" />{t('AGENT')}
-								</Link>
-							</li>
+							{
+								user != null ? 
+									user.roleId == 2 ? null : 
+									(
+										<li className="items-center hover:text-yellow-500">
+										<Link
+											className="  py-3 block"
+											to="/plan"
+										>
+											<InlineIcon icon={packageVariant} className="inline w-5 h-5 text-gray-400 mr-2" />{t('PLAN')}
+										</Link>
+									</li>
+									) : null
+							}
+							{
+								user != null ? 
+									user.roleId == 2 ? null : 
+									(
+										<li className="items-center hover:text-yellow-500">
+									<Link
+										className="  py-3 block"
+										to="/agent"
+									>
+										<InlineIcon icon={accountIcon} className="inline w-5 h-5 text-gray-400 mr-2" />{t('AGENT')}
+									</Link>
+								</li>
+									) : null
+							}
                             
 							<li className="items-center">
 								<Link
@@ -117,25 +128,35 @@ export default function Sidebar() {
 									<InlineIcon icon={filePercentOutline} className="inline w-5 h-5 text-gray-400 mr-2" />{t('INTEREST')}
 								</Link>
 							</li>
-							<li className="items-center">
-								<Link
-									className=" py-3 block hover:text-yellow-500"
-									to="/agent_report"
-								>
-									<InlineIcon icon={noteEdit } className="inline w-5 h-5 text-gray-400 mr-2" />{t('AGENT_REPORT')}
-								</Link>
-							</li>
+							{
+								user != null ? 
+									user.roleId == 2 ? null : 
+									(
+										<li className="items-center">
+										<Link
+											className=" py-3 block hover:text-yellow-500"
+											to="/agent_report"
+										>
+											<InlineIcon icon={noteEdit } className="inline w-5 h-5 text-gray-400 mr-2" />{t('AGENT_REPORT')}
+										</Link>
+									</li>
+									) : null
+							}
+							
 							<hr className="my-4 md:min-w-full" />
 
-							<li className="items-center">
+							{/* <li className="items-center">
 								<Link
 									className=" py-3 block hover:text-yellow-500 "
 									to="/setting"
 								>
 									{t('SETTING')}
 								</Link>
-							</li>
-							<li className="items-center ">
+							</li> */}
+							{
+								user != null ? 
+									user.roleId == 1 ? (
+<li className="items-center ">
 								<h1
 									className=" py-2 block text-gray-60"
 								>
@@ -146,7 +167,7 @@ export default function Sidebar() {
 										className="py-2 block hover:text-yellow-500"
 										to="/activity_log"
 									>
-									Activity Log
+									{t('ACTIVITY_LOG')}
 									</Link>
 								</li>
 								<li className="ml-8 text-base hover:text-yellow-500">
@@ -154,7 +175,7 @@ export default function Sidebar() {
 										className="py-2 block"
 										to="/users"
 									>
-									User
+									{t('USER')}
 									</Link>
 								</li>
 								<li className="ml-8 text-base hover:text-yellow-500">
@@ -162,11 +183,15 @@ export default function Sidebar() {
 										className="py-2 block"
 										to="/pending_register"
 									>
-									Pending Register
+									 {t('PENDING_REGISTER')}
 									</Link>
 								</li>
 								
 							</li>
+									) : null : null
+							}
+							
+							
 						</ul>
 					</div>
 				</div>

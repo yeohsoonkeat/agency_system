@@ -26,20 +26,20 @@ function InterestReport() {
 
 	const columns = React.useMemo(
 		() => [
-			// {
-			// 	Header: t('ID'),
-			// 	accessor:'id'
-			// },
+			{
+				Header: t('INTEREST_ID'),
+				accessor:'id'
+			},
 			// {
 			// 	Header: t('Group'),
 			// 	accessor:'group'
 			// },
 			{
-				Header: t('FULL NAME'),
+				Header: t('INTEREST_FULL_NAME'),
 				accessor:'agency.full_name'
 			},
 			{
-				Header: t('Real Estate'),
+				Header: t('INTEREST_REAL_ESTATE'),
 				accessor:'commission.real_estate'
 			},
 			// {
@@ -47,11 +47,11 @@ function InterestReport() {
 			// 	accessor:'phone1'
 			// },
 			{
-				Header: t('TOTAL WITHDRAW MONEY'),
+				Header: t('INTEREST_TOTAL_MONEY'),
 				accessor:'cash_out_amount'
 			},
 			{
-				Header: t('Date'),
+				Header: t('INTEREST_DATE'),
 				accessor:'date'
 			},
 		],
@@ -61,7 +61,7 @@ function InterestReport() {
 	return (
 		<div >
 			<div className="flex w-full">
-				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">Withdraw Agents Reports</h1>
+				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">{t('INTEREST')}</h1>
 			</div>
 			<div className="mt-4"/>
 			<Table data={agentCommissionReport} columns={columns} />

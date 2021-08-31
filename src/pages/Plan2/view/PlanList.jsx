@@ -27,32 +27,32 @@ function PlanList() {
 	const columns = React.useMemo(
 		() => [
 			{
-				Header: t('ID'),
+				Header: t('PLAN_ID'),
 				accessor: 'id',
 			},
 			{
-				Header: t('PLAN NAME'),
+				Header: t('PLAN_NAME'),
 				accessor: 'plan_name', // accessor is the "key" in the data
 			},
 			
 			{
-				Header: t('Commission Price'),
+				Header: t('PLAN_COMMISSION_PRICE'),
 				accessor: 'commission_price',
 			},
 			{
-				Header: t('LOCATION'),
+				Header: t('PLAN_LOCATION'),
 				accessor: 'location',
 			},
 			{
-				Header: t('IS COMMISSION'),
+				Header: t('IS_COMMISSION'),
 				accessor: 'status',
 			},
 			{
-				Header: t('CREATOR PLAN'),
+				Header: t('PLAN_CREATOR'),
 				accessor: 'creator_plan',
 			},
 			{
-				Header: t('DATE'),
+				Header: t('PLAN_DATE'),
 				accessor: 'date',
 			},
 		],
