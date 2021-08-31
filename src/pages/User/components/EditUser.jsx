@@ -15,33 +15,33 @@ function EditUser() {
 	const history = useHistory()
 	const location = useLocation()
 	const data  = location.state.data
-	console.log(data.isLeader)
+	console.log(data)
 
-	// useEffect(()=>{
-	// 	const token = localStorage.getItem('token')
-	// 	getAgencyLeader(token).then(res => {
-	// 		if (!res?.data.error){
-	// 			let agency = res.data.map(x => {
-	// 				return {
-	// 					'label': x.full_name,
-	// 					'value': x.full_name
-	// 				}
-	// 			})
-	// 			setLeader(agency)
-	// 		}
-	// 	}).catch(err =>  console.log(err))
-	// 	get_role(token).then(res => {
-	// 		if (!res?.data.error){
-	// 			let role = res.data.map(x => {
-	// 				return {
-	// 					'label': x.name,
-	// 					'value': x.id
-	// 				}
-	// 			})
-	// 			setRole(role)
-	// 		}
-	// 	}).catch(err =>  console.log(err))
-	// },[])
+	useEffect(()=>{
+		const token = localStorage.getItem('token')
+		getAgencyLeader(token).then(res => {
+			if (!res?.data.error){
+				let agency = res.data.map(x => {
+					return {
+						'label': x.full_name,
+						'value': x.full_name
+					}
+				})
+				setLeader(agency)
+			}
+		}).catch(err =>  console.log(err))
+		get_role(token).then(res => {
+			if (!res?.data.error){
+				let role = res.data.map(x => {
+					return {
+						'label': x.name,
+						'value': x.id
+					}
+				})
+				setRole(role)
+			}
+		}).catch(err =>  console.log(err))
+	},[])
 	const onRoleChange = async (data) => {
 		setRoleID(data.value)	
 	}
@@ -56,6 +56,7 @@ function EditUser() {
 		await createAgentByAdmin(token,data)
 		history.push('/agent')
 	}
+	console.log(Leader)
 	return (
 		<div >	
 			<div className="flex w-full">
@@ -108,29 +109,54 @@ function EditUser() {
 									</div>
 									<div className="grid grid-cols-1 mt-5 mx-7">
 										<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">Leader?</label>
-										<input {...register('isLeader')} id="isLeader" onChange={(e) => console.log(e)} className="py-2 px-3 rounded-lg border-2 border-blueGray mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="checkbox" />
+										{
+											data.is_leader ? (
+												<input {...register('isLeader')}  id="isLeader" defaultChecked  onChange={(e) => console.log(e.target.checked)} className="py-2 px-3 rounded-lg border-2 border-blueGray mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="checkbox" />
+											) : 
+											(
+												<input {...register('isLeader')}  id="isLeader"  onChange={(e) => console.log(e.target.checked)} className="py-2 px-3 rounded-lg border-2 border-blueGray mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="checkbox" />
+											)
+										}
+										
 									</div>
 									{/* New */}
 									<div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
-										<div className="grid grid-cols-1">
+										{/* <div className="grid grid-cols-1">
 											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('LEADER')}</label>
 										
 											<Select
 												onChange={onLeaderChange}											
 												options={Leader}		
 											/>
-										</div>
-										<div className="grid grid-cols-1 ">
-											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('ROLE')}</label>
-											{/* <select {...register('role')} id="sex" className="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent">
-												<option>{t('Admin')}</option>
-												<option>{t('Agency')}</option>
-												<option>{t('Sale')}</option>
-											</select> */}
-											<Select
+										</div> */}
+										<div className="grid grid-cols-1">
+											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('LEADER')} ({data.leader})</label>
+											<select {...register('role')} id="sex" className="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent">
+												<option></option>
+												{
+													Leader.map(data=> {
+														
+														return(
+															<option value={data.value} key={data.label}>{data.label}</option>
+														)
+													})
+												}
+											</select>
+											{/* <Select
 												onChange={onRoleChange}											
 												options={Role}		
+											/> */}
+										</div>
+										<div className="grid grid-cols-1 ">
+											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('ROLE')} ({data.role.name})</label>
+											<Select
+		
+												onChange={onRoleChange}											
+												options={Role}	
+	
+												
 											/>
+											
 										</div>
 									</div>		
 									<div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">

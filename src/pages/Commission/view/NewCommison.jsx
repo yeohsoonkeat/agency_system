@@ -40,6 +40,19 @@ function NewCommison() {
 
 	}, [])
 
+	const AlertMessage = () => {
+		return(
+			<div role="alert" className="mb-5">
+				<div className="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+					Alert!
+				</div>
+				<div className="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+					<p>Agent Commission must equal total commission</p>
+				</div>
+			</div>
+		)
+	}
+	const [error, setError] = useState(false)
 	const onSubmit = async(data) => {
 		const commission = {
 			'real_estate': data.real_estate,
@@ -62,8 +75,9 @@ function NewCommison() {
 			const token = localStorage.getItem('token')
 			await createCommission(commission,token)
 			history.push('/commission')
+			setError(false)
 		}else{
-			alert('Total Money Commission must be equal total money agency')
+			setError(true)
 		}
 		
 	}
@@ -96,6 +110,11 @@ function NewCommison() {
 		)
 	}
 
+	const handleDeleteAgent = (e) => {
+		e.preventDefault()
+		console.log(CommissionTo)
+		CommissionTo.pop()
+	}
 	return (
 		<div >
 			<div className="flex w-full">
@@ -117,6 +136,7 @@ function NewCommison() {
 						{/* <input onChange={event => setTitle(event.target.value)} /> */}
 						{/* {numberLots} */}
 						<div className="mt-5 md:mt-0 md:col-span-2">
+						{error ? <AlertMessage/> : null}
 							<div className="shadow sm:rounded-md ">
 								<div className="px-4 py-5 bg-white space-y-6 sm:p-6">
 									<div className="grid grid-cols-3 gap-6">
@@ -160,8 +180,9 @@ function NewCommison() {
 												{t('Total Commission Price')}
 											</label>
 											<div className="mt-1 flex rounded-md shadow-sm">
-												
-												<input {...register('total_commission_price')} disabled type="text" className="focus:ring-indigo-500 focus:border-indigo-500 p-1 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" value={CommissionTotalPrice} />
+
+												<input disabled {...register('total_commission_price')} type="text" className="focus:ring-indigo-500 focus:border-indigo-500 p-1 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" value={CommissionTotalPrice} />
+
 											</div>
 										</div>
 									</div>
