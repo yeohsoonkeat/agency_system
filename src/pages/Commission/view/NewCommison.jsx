@@ -155,7 +155,7 @@ function NewCommison() {
 											</label>
 											<div className="mt-1 flex rounded-md shadow-sm">
 												
-												<input {...register('total_commission_price')} disabled type="text" className="focus:ring-indigo-500 focus:border-indigo-500 p-1 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" value={CommissionTotalPrice} />
+												<input {...register('total_commission_price')}  type="text" className="focus:ring-indigo-500 focus:border-indigo-500 p-1 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" value={CommissionTotalPrice} />
 											</div>
 										</div>
 									</div>
