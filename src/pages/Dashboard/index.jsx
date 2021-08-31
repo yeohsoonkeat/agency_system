@@ -20,6 +20,7 @@ export default function Dashboard() {
 		const token = localStorage.getItem('token')
 		getDashboardInfo(token).then(res => {
 			if (!res?.data.error){
+				console.log(res.data)
 				setTotalAgents(res.data.totalAgents)
 				setTotalPlans(res.data.totalPlans)
 				setTotalMoneys(res.data.totalMoney)

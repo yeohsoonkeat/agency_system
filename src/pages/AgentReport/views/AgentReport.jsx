@@ -25,10 +25,6 @@ function AgentReport() {
 	const columns = React.useMemo(
 		() => [
 			{
-				HEADER: t('AGENT_ID'),
-				accessor: 'id'
-			},
-			{
 				Header: t('AGENT_FULL_NAME'),
 				accessor: 'full_name', // accessor is the "key" in the data
 			},
@@ -36,10 +32,6 @@ function AgentReport() {
 				Header: t('AGENT_SEX'),
 				accessor: 'gender',
 			},
-			// {
-			// 	Header: t('Leader'),
-			// 	accessor: 'leader',
-			// },
 			{
 				Header: t('AGENT_PHONE'),
 				accessor: 'phone1',

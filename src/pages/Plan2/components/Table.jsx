@@ -13,12 +13,9 @@ import arrowUpDropCircleOutline from '@iconify-icons/mdi/arrow-up-drop-circle-ou
 import archiveEyeOutline from '@iconify-icons/mdi/archive-eye-outline'
 import trashOutline from '@iconify-icons/mdi/trash-can-outline'
 import pencilOutline from '@iconify-icons/mdi/pencil-outline'
-<<<<<<< HEAD
 import Modal from '../../../components/common/Modal'
-=======
 import { useTranslation } from 'react-i18next'
 
->>>>>>> 4080b0a83bc186b088008994a60c1e1b4c3d0e36
 
 
 export default function Table({ data, columns }) {
