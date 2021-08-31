@@ -13,6 +13,7 @@ import arrowUpDropCircleOutline from '@iconify-icons/mdi/arrow-up-drop-circle-ou
 import archiveEyeOutline from '@iconify-icons/mdi/archive-eye-outline'
 import trashOutline from '@iconify-icons/mdi/trash-can-outline'
 import pencilOutline from '@iconify-icons/mdi/pencil-outline'
+import Modal from '../../../components/common/Modal'
 import { useTranslation } from 'react-i18next'
 
 
@@ -138,11 +139,13 @@ export default function Table({ data, columns }) {
 													>
 														<InlineIcon icon={pencilOutline}/>
 													</Link>
-													<Link
+													{/* <Link
 														className=" inline-block"
-													>
+													>	
+													
 														<InlineIcon icon={trashOutline}/>
-													</Link>
+													</Link> */}
+													<Modal id={row.values.id} page='plan' />
 												</td>
 											</tr>
 										)

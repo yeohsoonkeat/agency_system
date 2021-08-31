@@ -41,4 +41,18 @@ export const createCommission = (data,token) => {
 }
 
 
+export const deleteCommission = (commission_id) => {
+	const token = localStorage.getItem('token')
+	const config =  {
+		method: 'delete',
+		url: `http://localhost:8080/api/commission/delete_commission/${commission_id}`,
+		headers: { 
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${token}`
+		}
+	}
+	return axios(config)
+}
+
+
 

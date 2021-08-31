@@ -14,7 +14,7 @@ function AgentList() {
 			const show = res.data.filter((x)=>{
 				console.log(x.roleId)
 				x.is_verified? x['status'] = 'Active': x['status'] = 'Inactive'
-				return x.is_verified == true && x.roleId != 1
+				return x.is_verified == true && x.roleId == 2
 				// x.role.name != 'admin'
 			})
 			setData(show)

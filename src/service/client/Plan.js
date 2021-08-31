@@ -49,3 +49,15 @@ export const create_plan = (token, plan) => {
 	return axios(config)
 }
 
+export const deletePlan = (id) => {
+	const token = localStorage.getItem('token')
+	const config =  {
+		method: 'delete',
+		url: `http://localhost:8080/api/plan/delete_plan/${id}`,
+		headers: { 
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${token}`
+		}
+	}
+	return axios(config)
+}

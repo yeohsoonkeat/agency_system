@@ -112,6 +112,7 @@ export default function Table({ data, columns }) {
 															className="px-6 py-4 whitespace-nowrap max-w-sm "
 															key={'cell-' + index}
 														>
+															{/* {index} */}
 															<div className="text-sm text-gray-900 overflow-x-hidden">
 																{cell.render('Cell')}
 															</div>

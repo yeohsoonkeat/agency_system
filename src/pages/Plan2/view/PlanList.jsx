@@ -14,6 +14,7 @@ function PlanList() {
 		get_plan(token).then(res => {
 			if (!res?.data.error){
 				res.data.filter((x)=>{
+					console.log(x)
 					x.is_commission? x['status'] = 'True': x['status'] = 'False'
 					// return x.is_verified == true
 				})

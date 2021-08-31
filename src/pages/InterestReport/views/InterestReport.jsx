@@ -12,14 +12,14 @@ function InterestReport() {
 	useEffect(()=>{
 		const token = localStorage.getItem('token')
 		allAgentWithdrawHistory(token).then(res=>{
-			const show = res.data.map((x)=>{
+			// const show = res.data.map((x)=>{
 				// x['commision_withdrawn'] = x.total_money - x.remaining_money
 				// x.is_verified? x['status'] = 'Active': x['status'] = 'Inactive'
 				// return x.is_verified == true && x.roleId != 1
-				x.date = x.date.slice(0,10)
+				// x.date = x.date.slice(0,10)
 				// x.role.name != 'admin'
-			})
-			console.log(show)
+			// })
+			console.log(res.data)
 			setAgentCommissionReport(res.data)
 		})
 	},[])

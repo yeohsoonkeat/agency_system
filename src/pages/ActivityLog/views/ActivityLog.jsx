@@ -13,12 +13,13 @@ function ActivityLog() {
 		getAllActivityLogs(token).then(res => {
 			if (!res?.data.error){
 				console.log(res.data)
-				const show = res.data.filter((x)=>{
-					x.date = x.date.slice(0,10)
-					return x
+				res.data.filter((x)=>{
+		
+					x.date = `${x.date}`
+					// return x
 				})
-				
-				setActivityLogs(show)
+				console.log(res.data)
+				setActivityLogs(res.data)
 			}
 		}).catch(err =>  console.log(err))
 	}, [])

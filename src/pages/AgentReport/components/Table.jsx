@@ -74,11 +74,11 @@ export default function Table({ data, columns }) {
 								<thead className=" bg-primary-default text-sm lg:text-md text-white ">
 									{headerGroups.map((headerGroup,index) => (
 										<tr key={'row'+ index} {...headerGroup.getHeaderGroupProps()}>
-											<th
+											{/* <th
 												className="px-6 py-3 text-left tracking-wider"
 											>
-												ID
-											</th>
+												ID 
+											</th> */}
 											{headerGroup.headers.map((column,index) => (
 												
 												<th
