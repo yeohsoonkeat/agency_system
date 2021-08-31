@@ -9,7 +9,7 @@ import { get_role } from '../../../service/client/Role'
 import { set, useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 
-export default function EditUser({agencyId}) {
+export default function EditUser({agencyId, onApproved}) {
 	const { t } = useTranslation()
 	const history = useHistory()
 	const {register,handleSubmit} = useForm()
@@ -54,7 +54,8 @@ export default function EditUser({agencyId}) {
 		getApprovedAgent(data,token,agencyId).then(res => {
 			if(res.status == 200){
 			setShowModal(false)
-			history.push('/pending_register')	
+			onApproved(agencyId)
+			history.push('/pending_register')
 			}else setShowModal(true)
 			
 		}).catch(err =>  console.log(err))
@@ -150,5 +151,6 @@ export default function EditUser({agencyId}) {
 }
 
 EditUser.propTypes = {
-	agencyId: PropTypes.any
+	agencyId: PropTypes.any,
+	onApproved: PropTypes.func
 }

@@ -18,7 +18,7 @@ import { useTranslation } from 'react-i18next'
 
 
 
-export default function Table({ data, columns }) {
+export default function Table({ data, columns, setData }) {
 	let componentRef = React.createRef()
 	const {t} = useTranslation()
 	
@@ -58,6 +58,12 @@ export default function Table({ data, columns }) {
 	const onChange = useAsyncDebounce(value => {
 		setGlobalFilter(value || undefined)
 	}, 200)
+
+	const onApproved = (selectedID) => {
+		setData(
+			data.filter(x => x.id !== selectedID)
+		)
+	}	
 
 	return (
 		<>
@@ -122,7 +128,7 @@ export default function Table({ data, columns }) {
 												})}
 												{/* {console.log(row.values.id)} */}
 												<td className="px-6 py-4 whitespace-nowrap space-x-3 text-left text-xl font-medium">
-													<EditUser  agencyId={row.values.id} />
+													<EditUser  agencyId={row.values.id} onApproved={onApproved} />
 												</td>
 											</tr>
 										)
@@ -190,5 +196,6 @@ export default function Table({ data, columns }) {
 }
 Table.propTypes = {
 	data: PropTypes.array,
-	columns: PropTypes.array
+	columns: PropTypes.array,
+	setData: PropTypes.func
 }

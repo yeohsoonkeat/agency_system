@@ -75,7 +75,7 @@ export default function Sidebar() {
                     
 						{/* nav */}
 						<ul className="md:flex-col md:min-w-full flex flex-col text-lg list-none  text-gray-800">
-							<li className="items-center hover:text-yellow-500">
+							<li className="items-center hover:text-yellow-500 active:text-yellow-500">
 								<Link
 									className=" py-3 block"
 									to="/"

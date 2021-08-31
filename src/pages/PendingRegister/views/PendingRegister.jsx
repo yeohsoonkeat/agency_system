@@ -57,7 +57,7 @@ function PendingRegister() {
 				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">{t('PENDING_REGISTER')}</h1>
 			</div>
 			<div className="mt-4"/>
-			<Table data={userPending} columns={columns} />
+			<Table data={userPending} columns={columns} setData={setUserPending}/>
 			
 		</div>
 	)

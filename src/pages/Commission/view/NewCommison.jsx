@@ -90,6 +90,12 @@ function NewCommison() {
 
 	}
 
+	const onDelete = (selected) => {
+		setCommissionTo(
+			CommissionTo.filter(x => x.id !== selected.id)
+		)
+	}
+
 	return (
 		<div >
 			<div className="flex w-full">
@@ -195,9 +201,7 @@ function NewCommison() {
 																<td className=" p-1">{index + 1}</td>
 																<td className="p-1">{x.name}</td>
 																<td className="p-1">{x.ammount}</td>
-																<td className='p-1' ><button onClick={(e) => {
-																	e.preventDefault()
-																	}}>delete</button></td>
+																<td className='p-1' ><button onClick={() => onDelete(x)}>delete</button></td>
 															</tr>
 														)})
 													}
