@@ -109,7 +109,7 @@ function NewAgent() {
 									</div>
 									<div className="grid grid-cols-1 mt-5 mx-7">
 										<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">Leader?</label>
-										<input {...register('isLeader')} id="isLeader"  className="py-2 px-3 rounded-lg border-2 border-blueGray mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="checkbox" />
+										<input {...register('isLeader')} id="isLeader"  className="py-2 px-3 rounded-lg border-2 border-blueGray mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="checkbox"/>
 									</div>
 									{/* New */}
 									<div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
