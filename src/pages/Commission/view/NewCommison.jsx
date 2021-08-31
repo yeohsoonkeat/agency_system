@@ -145,7 +145,7 @@ function NewCommison() {
 												{t('REAL_ESTATE')}
 											</label>
 											<div className="mt-1 flex rounded-md shadow-sm">
-												<input {...register('real_estate')} type="text" className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 p-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" />
+												<input required {...register('real_estate')} type="text" className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 p-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" />
 											</div>
 										</div>
 									</div>
@@ -155,7 +155,7 @@ function NewCommison() {
 												{t('NUMBER_LOTS')}
 											</label>
 											<div className="mt-1 flex rounded-md shadow-sm">
-												<input {...register('number_lots')} onChange={numberLotsChange} type="number" className="focus:ring-indigo-500 focus:border-indigo-500 p-1 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" />
+												<input required {...register('number_lots')} onChange={numberLotsChange} type="number" className="focus:ring-indigo-500 focus:border-indigo-500 p-1 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" />
 											</div>
 										</div>
 									</div>
