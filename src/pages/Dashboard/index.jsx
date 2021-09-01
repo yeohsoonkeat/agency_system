@@ -21,6 +21,7 @@ export default function Dashboard() {
 		getDashboardInfo(token).then(res => {
 			if (!res?.data.error){
 				console.log(res.data)
+				Number(1234567890).toLocaleString()
 				setTotalAgents(res.data.totalAgents)
 				setTotalPlans(res.data.totalPlans)
 				setTotalMoneys(res.data.totalMoney)
@@ -86,7 +87,7 @@ export default function Dashboard() {
 											{t('MONEY_WITHDRAWN')}
 										</h5>
 										<span className="font-semibold text-xl text-blueGray-700">
-											$ {totalWithdrawnMoneys}
+											$ {Number(totalWithdrawnMoneys).toLocaleString()}
 										</span>
 									</div>
 									<div className="relative w-auto pl-4 flex-initial">
@@ -108,7 +109,7 @@ export default function Dashboard() {
 											{t('BALANCE')}
 										</h5>
 										<span className="font-semibold text-xl text-blueGray-700">
-											$ {totalMoneys}
+											$ {Number(totalMoneys).toLocaleString()}
 										</span>
 									</div>
 									<div className="relative w-auto pl-4 text-2xl flex-initial">

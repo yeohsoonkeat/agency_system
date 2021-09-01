@@ -12,13 +12,6 @@ function InterestReport() {
 	useEffect(()=>{
 		const token = localStorage.getItem('token')
 		allAgentWithdrawHistory(token).then(res=>{
-			// const show = res.data.map((x)=>{
-				// x['commision_withdrawn'] = x.total_money - x.remaining_money
-				// x.is_verified? x['status'] = 'Active': x['status'] = 'Inactive'
-				// return x.is_verified == true && x.roleId != 1
-				// x.date = x.date.slice(0,10)
-				// x.role.name != 'admin'
-			// })
 			console.log(res.data)
 			setAgentCommissionReport(res.data)
 		})
@@ -30,10 +23,6 @@ function InterestReport() {
 				Header: t('INTEREST_ID'),
 				accessor:'id'
 			},
-			// {
-			// 	Header: t('Group'),
-			// 	accessor:'group'
-			// },
 			{
 				Header: t('INTEREST_FULL_NAME'),
 				accessor:'agency.full_name'
@@ -49,6 +38,10 @@ function InterestReport() {
 			{
 				Header: t('INTEREST_TOTAL_MONEY'),
 				accessor:'cash_out_amount'
+			},
+			{
+				Header: t('INTEREST_CREATOR'),
+				accessor:'creator'
 			},
 			{
 				Header: t('INTEREST_DATE'),

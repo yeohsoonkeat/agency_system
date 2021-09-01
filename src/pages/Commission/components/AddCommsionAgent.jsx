@@ -18,7 +18,7 @@ export default function AddCommisionAgent({onAgentAdd}) {
 			// console.log(res.data)
 			if (!res?.data.error){
 				const availableAgency = res.data.filter((x)=>{
-					return x.roleId != 1
+					return x.roleId == 2
 				})
 				let agencies = availableAgency.map(x => {
 					return {

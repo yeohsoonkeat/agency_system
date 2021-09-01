@@ -61,3 +61,17 @@ export const deletePlan = (id) => {
 	}
 	return axios(config)
 }
+
+export const editPlan = (data,id) => {
+	const token = localStorage.getItem('token')
+	const config =  {
+		method: 'put',
+		url: `http://localhost:8080/api/plan/update_plan/${id}`,
+		headers: { 
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${token}`
+		},
+		data:data
+	}
+	return axios(config)
+}

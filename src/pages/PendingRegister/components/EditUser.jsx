@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Select from 'react-select'
 import PropTypes from 'prop-types'
-import { getAgencyAvailalble, getApprovedAgent, get_agency } from '../../../service/client/agency'
+import { getAgencyLeader, getApprovedAgent } from '../../../service/client/agency'
 import tickoutline from '@iconify-icons/mdi/tick-outline'
 import { InlineIcon } from '@iconify/react'
 import { get_role } from '../../../service/client/Role'
@@ -22,7 +22,7 @@ export default function EditUser({agencyId, onApproved}) {
 	useEffect(() => {
 		console.log(agencyId)
 		const token = localStorage.getItem('token')
-		getAgencyAvailalble(token).then(res => {
+		getAgencyLeader(token).then(res => {
 			if (!res?.data.error){
 				let agency = res.data.map(x => {
 					return {

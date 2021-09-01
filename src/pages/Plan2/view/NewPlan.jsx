@@ -14,7 +14,8 @@ function NewAgent(context) {
 	const onSubmit = async (data)=>{
 		const token = localStorage.getItem('token')
 		const result = await create_plan(token,data)
-		history.push('/plan')
+		if(result.data.message == 'Plan name is already existing !') alert(result.data.message)
+		else history.push('/plan')
 	}
 
 	return (

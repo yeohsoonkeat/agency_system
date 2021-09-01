@@ -1,23 +1,27 @@
 import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
-import { AuthContext } from '../../../hooks/useAuth'
-import { create_plan } from '../../../service/client/Plan'
 import { Link, useHistory } from 'react-router-dom'
 import { useLocation } from 'react-router'
-
+import { useParams } from 'react-router-dom'
+import { editPlan } from '../../../service/client/Plan'
 
 function EditPlan(context) {
-	// const Plan = lazy(() => import('./pages/Plan2'))
     const location = useLocation()
     const data = location.state.data
 	const { t } = useTranslation()
 	const history = useHistory()
+	const {id} = useParams() 
 	const {register,handleSubmit} = useForm()
 	const onSubmit = async (data)=>{
-		const token = localStorage.getItem('token')
-        console.log(data)
-		// history.push('/plan')
+		// const token = localStorage.getItem('token')
+		editPlan(data,id).then(res => {
+			if (!res?.data.error){
+				if(res.data.created == false) alert(res.data.message)
+				else history.push('plan')
+				
+			}
+		}).catch(err =>  console.log(err))
 	}
 
 	return (
