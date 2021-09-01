@@ -37,6 +37,7 @@ export default function AddCommisionAgent({onAgentAdd}) {
 	const handleChange = (e) => {
 		const { value } = e.target
 		setAmmount(value)
+		
 	}
 
 	const onSelect = (choice) => {
