@@ -128,10 +128,6 @@ function AgentList() {
 				accessor: 'fullname', // accessor is the "key" in the data
 			},
 			{
-				Header: 'ID',
-				accessor: 'id',
-			},
-			{
 				Header: 'SEX',
 				accessor: 'sex',
 			},

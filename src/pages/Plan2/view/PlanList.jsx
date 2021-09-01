@@ -24,6 +24,12 @@ function PlanList() {
 		}).catch(err =>  console.log(err))
 	}, [])
 
+	const handleDelete = (id) => {
+		setData(
+			data.filter(x => x.id == id)
+		)
+		console.log(id)
+	}
 	const columns = React.useMemo(
 		() => [
 			{
@@ -70,7 +76,7 @@ function PlanList() {
 				</Link>
 			</div>
 			<div className="mt-4"/>
-			<Table data={data} columns={columns}/>
+			<Table data={data} columns={columns} handleDelete={handleDelete}/>
 		</div>
 	)
 }
