@@ -74,13 +74,13 @@ export default function Table({ data, columns }) {
 								<thead className=" bg-primary-default text-sm lg:text-md text-white ">
 									{headerGroups.map((headerGroup,index) => (
 										<tr key={'row'+ index} {...headerGroup.getHeaderGroupProps()}>
-											{/* <th
+											<th
 												className="px-6 py-3 text-left tracking-wider"
 											>
-												ID  {index + 1}
-											</th> */}
-											{headerGroup.headers.map((column,index) => (
+												ID 
 												
+											</th>
+											{headerGroup.headers.map((column,index) => (
 												<th
 													{...column.getHeaderProps(column.getSortByToggleProps())}
 													className="px-6 py-3 text-left tracking-wider "
@@ -105,8 +105,8 @@ export default function Table({ data, columns }) {
 										prepareRow(row)
 										return (
 											<tr key={'row-' + index } {...row.getRowProps()}>
+												<td className="px-6 py-4 whitespace-nowrap max-w-sm ">{index + 1}</td>
 												{row.cells.map((cell,index) => {
-													// <td>{index}</td>
 													return (
 														<td
 															{...cell.getCellProps()}

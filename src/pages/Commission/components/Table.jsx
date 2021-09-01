@@ -107,23 +107,31 @@ export default function Table({ data, columns,action }) {
 								<tbody {...getTableBodyProps()}>
 									{page.map((row,index) => {
 										prepareRow(row)
+										console.log(row.original)
 										return (
-											<tr key={'row-' + index} {...row.getRowProps()}>
+											<tr key={'row-' + index} {...row.getRowProps()} className={row.original.remaining_agency_commission_money == 0 ? 'text-red-500' : ''}>
 												{row.cells.map((cell,index) => {
 													if (cell.column.id != 'commission_id' && cell.column.id != 'agencyId')
+													
 													return (
-														<td
-															{...cell.getCellProps()}
-															className="px-6 py-4 whitespace-nowrap"
-															key={'cell' + index}
-														>
-															<div className="text-sm text-gray-900 flex space-x-3">
-																{/* <span>{cell.render('Cell')}</span> */}
-																<h6>{cell.value}</h6>
-															</div>
-														</td>
+														<>
+														
+															<td
+																	{...cell.getCellProps()}
+																	className="px-6 py-4 whitespace-nowrap "
+																	key={'cell' + index}
+																>									
+																	<div className="text-sm flex space-x-3">
+																		<h6>{cell.value}</h6>
+																	</div>													
+																</td>
+															
+														
+														</>
+														
 														
 													)
+													
 												})}
 												{
 													user.roleId == 2 ? null : (
@@ -138,7 +146,6 @@ export default function Table({ data, columns,action }) {
 																	<InlineIcon icon={cash} />
 																</Link>
 															</button>
-															
 															<Modal id={row.values.commission_id} page='commission' />
 														</td>
 													)
