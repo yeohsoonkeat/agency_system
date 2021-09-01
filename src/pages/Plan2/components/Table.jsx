@@ -18,7 +18,7 @@ import { useTranslation } from 'react-i18next'
 
 
 
-export default function Table({ data, columns }) {
+export default function Table({ data, columns, handleDelete }) {
 	const { url } = useRouteMatch()
 	const{t} = useTranslation()
 	const {
@@ -49,13 +49,14 @@ export default function Table({ data, columns }) {
 		useSortBy,
 		usePagination,
 	)
-
+	const handleSelectedDelete = (id) => {
+		handleDelete(id)
+	}
 	const count = preGlobalFilteredRows.length
 	const [value, setValue] = React.useState(globalFilter)
 	const onChange = useAsyncDebounce(value => {
 		setGlobalFilter(value || undefined)
 	}, 200)
-
 	return (
 		<>
 			<div className="mb-5 mt-10">
@@ -145,7 +146,7 @@ export default function Table({ data, columns }) {
 													
 														<InlineIcon icon={trashOutline}/>
 													</Link> */}
-													<Modal id={row.values.id} page='plan' />
+													<Modal id={row.values.id} page='plan' handleSelectedDelete={handleSelectedDelete} />
 												</td>
 											</tr>
 										)
@@ -213,5 +214,6 @@ export default function Table({ data, columns }) {
 }
 Table.propTypes = {
 	data: PropTypes.array,
-	columns: PropTypes.array
+	columns: PropTypes.array,
+	handleDelete: PropTypes.func
 }

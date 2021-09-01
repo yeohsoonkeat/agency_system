@@ -11,6 +11,7 @@ export default function AddCommisionAgent({onAgentAdd}) {
 	const [Agent, setAgent] = useState([])
 	const [Ammount, setAmmount] = useState(0)
 	const [SelectedAgent, setSelectedAgent] = useState()
+	
 
 	useEffect(() => {
 		const token = localStorage.getItem('token')
@@ -43,7 +44,7 @@ export default function AddCommisionAgent({onAgentAdd}) {
 	const onSelect = (choice) => {
 		setSelectedAgent(choice.value)
 	}
-
+	
 	const onSubmit = (e) => {
 		e.preventDefault()
 		let tmp = {

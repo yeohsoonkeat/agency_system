@@ -29,10 +29,6 @@ function AgentList() {
 				accessor: 'full_name', // accessor is the "key" in the data
 			},
 			{
-				Header: t('AGENT_ID'),
-				accessor: 'id',
-			},
-			{
 				Header: t('AGENT_SEX'),
 				accessor: 'gender',
 			},
