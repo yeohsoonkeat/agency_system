@@ -99,7 +99,7 @@ export default function AddCommisionAgent({onAgentAdd}) {
 										<label className="block tracking-wide text-gray-700 text-sm font-bold mb-2" htmlFor="address">
 											{t('AMMOUNT')}
 										</label>
-										<input onChange={handleChange} className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500" type="number" />
+										<input onChange={handleChange} className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500" type="number"/>
 									</div>
 									<div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
 										<button
