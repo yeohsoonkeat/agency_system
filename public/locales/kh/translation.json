@@ -53,6 +53,7 @@
     "INTEREST_REAL_ESTATE" : "អចលនទ្រព្យ",
     "INTEREST_TOTAL_MONEY" : "លុយសរុប",
     "INTEREST_DATE" : "ថ្ងៃទី",
+    "INTEREST_CREATOR": "អ្នកបង្កើត",
     "WITHDRAWN_REPORT": "របាយការណ៍ដកប្រាក់",
 
     "AGENT_TOTAL_WITHDRAWN" : "លុយដកសរុប",

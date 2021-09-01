@@ -73,9 +73,11 @@ function NewCommison() {
 
 		if(CommissionTotalPrice == totalMoneyCommission){
 			const token = localStorage.getItem('token')
-			await createCommission(commission,token)
-			history.push('/commission')
-			setError(false)
+			createCommission(commission,token).then(res=>{
+				setError(false)
+				history.push('/commission')
+				
+			}).catch(err =>  console.log(err))		
 		}else{
 			setError(true)
 		}

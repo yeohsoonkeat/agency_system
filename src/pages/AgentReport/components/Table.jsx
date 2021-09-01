@@ -77,7 +77,7 @@ export default function Table({ data, columns }) {
 											{/* <th
 												className="px-6 py-3 text-left tracking-wider"
 											>
-												ID 
+												ID  {index + 1}
 											</th> */}
 											{headerGroup.headers.map((column,index) => (
 												

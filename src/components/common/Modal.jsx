@@ -17,14 +17,14 @@ export default function Modal(obj) {
           }
         }).catch(err =>  console.log(err))
         break
-      case 'agent':
-        // deleteCommission(obj.id).then(res => {
-        //   if (!res?.data.error){
-        //      alert(res.data.message)
-        //      setShowModal(false)
-        //   }
-        // }).catch(err =>  console.log(err))
-        break
+      // case 'agent':
+      //   deleteCommission(obj.id).then(res => {
+      //     if (!res?.data.error){
+      //        alert(res.data.message)
+      //        setShowModal(false)
+      //     }
+      //   }).catch(err =>  console.log(err))
+      //   break
       case 'commission':
          deleteCommission(obj.id).then(res => {
           if (!res?.data.error){
