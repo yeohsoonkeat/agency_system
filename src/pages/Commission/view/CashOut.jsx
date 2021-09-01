@@ -59,7 +59,7 @@ function CashOut(props) {
 	return (
 		<div >
 			<div className="flex w-full">
-				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">Cash Out</h1>
+				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">{t('CASH_OUT')}</h1>
 			</div>
 			<div className="mt-10" />
 			<div>
@@ -79,15 +79,15 @@ function CashOut(props) {
 							<div className="shadow sm:rounded-md ">
 								<div className="px-4 py-5 bg-white space-y-6 sm:p-6">
 									<div className="grid grid-cols-3">
-										<p className=" col-span-2 font-bold text-lg">Agent commisions</p>
+										<p className=" col-span-2 font-bold text-lg">{t('AGENT_COMMISSION')}</p>
 										<WithdrawCash onAgentAdd={onAgentAdd} Commission ={CommissionTo[0]}/>
 										<div className=" col-span-3">
 											<table className="rounded-t-lg m-5 w-11/12 mx-auto bg-gray-200 text-gray-800">
 												<tbody className=" text-center">
 													<tr className="border-b-2 py-2 border-gray-300">
 														<th className=" px-1">No. </th>
-														<th className=" px-1">Name</th>
-														<th className=" px-1">Ammount</th>
+														<th className=" px-1">{t('NAME')}</th>
+														<th className=" px-1">{t('AMMOUNT')}</th>
 													</tr>
 
 													{CommissionTo.length === 0 && <tr className="py-2"><td colSpan={3} className="text-center">Nothing to show</td></tr>}
@@ -124,15 +124,15 @@ function CashOut(props) {
 							<div className="shadow sm:rounded-md ">
 								<div className="px-4 py-5 bg-white space-y-6 sm:p-6">
 									<div className="grid grid-cols-3">
-										<p className=" col-span-2 font-bold text-lg">Cashout History</p>
+										<p className=" col-span-2 font-bold text-lg">{t('HISTORY_CASH_OUT')}</p>
 										<div className=" col-span-3">
 											<table className="rounded-t-lg m-5 w-11/12 mx-auto bg-gray-200 text-gray-800">
 												<tbody className=" text-center">
 													<tr className="border-b-2 py-2 border-gray-300">
 														<th className=" px-1">No. </th>
-														<th className=" px-1">Name</th>
-														<th className=" px-1">Ammount</th>
-														<th className=" px-1">Date</th>
+														<th className=" px-1">{t('NAME')}</th>
+														<th className=" px-1">{t('AMMOUNT')}</th>
+														<th className=" px-1">{t('AGENT_DATE')}</th>
 													</tr>
 													{/* <tr className="py-2"><td colSpan={3} className="text-center">Nothing to show</td></tr> */}
 

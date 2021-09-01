@@ -55,7 +55,7 @@ export default function WithdrawCash({onAgentAdd,Commission}) {
 				type="button"
 				onClick={() => setShowModal(true)}
 			>
-				Withdraw
+				{t('CASH_OUT')}
 			</button>
 			{showModal ? (
 				<>
@@ -80,7 +80,7 @@ export default function WithdrawCash({onAgentAdd,Commission}) {
 									}
 									<div className="flex items-starT justify-between p-5 rounded-t">
 										<h3 className="text-3xl font-semibold">
-											{t('CASH OUT')}
+											{t('CASH_OUT')}
 										</h3>
 										<button
 											className="p-1 ml-auto bg-transparent border-0 loat-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -94,19 +94,19 @@ export default function WithdrawCash({onAgentAdd,Commission}) {
 									<div>
 										<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
 											<label className="block tracking-wide text-gray-700 text-sm font-bold mb-2" htmlFor="address">
-												{t('Date')}
+												{t('AGENT_DATE')}
 											</label>
 											<input disabled value={now} className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500" />
 										</div>
 										<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
 											<label className="block tracking-wide text-gray-700 text-sm font-bold mb-2" htmlFor="address">
-												{t('AMMOUNT')}
+												{t('BALANCE')}
 											</label>
 											<input value={Commission.remaining_agency_commission_money} disabled className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500" type="number" />
 										</div>
 										<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
 											<label className="block tracking-wide text-gray-700 text-sm font-bold mb-2" htmlFor="address">
-												{t('Withdraw Amount')}
+												{t('AMMOUNT')}
 											</label>
 											<input required {...register('cash_out_amount')} onChange={handleChange} className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500" type="number" />
 										</div>
@@ -116,13 +116,13 @@ export default function WithdrawCash({onAgentAdd,Commission}) {
 												type="reset"
 												onClick={() => setShowModal(false)}
 											>
-												Close
+												{t('CLOSE')}
 											</button>
 											<button
 												className="font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
 												type="submit"
 											>
-												Add
+												{t('ADD')}
 											</button>
 										</div>
 									</div>

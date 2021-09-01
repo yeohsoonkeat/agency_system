@@ -77,11 +77,11 @@ function NewAgent() {
 									
 									<div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
 										<div className="grid grid-cols-1">
-											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('Full Name')}</label>
+											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('AGENT_FULL_NAME')}</label>
 											<input  {...register('full_name')} id="full_name" required className="py-2 px-3 rounded-lg border-2 border-blueGray-500 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="text" placeholder="Mongkul Makra Realty"/>
 										</div>
 										<div className="grid grid-cols-1">
-											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('Email')}</label>
+											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('USER_EMAIL')}</label>
 											<input {...register('email')} id="email" required className="py-2 px-3 rounded-lg border-2 border-blueGray-500 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="email" placeholder="example@gmail.com"/>
 										</div>
 									</div>
@@ -90,12 +90,12 @@ function NewAgent() {
 
 									<div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
 										<div className="grid grid-cols-1">
-											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('Password')}</label>
+											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('PASSWORD')}</label>
 											<input {...register('password')} id="password" required className="py-2 px-3 rounded-lg border-2 border-blueGray-500 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="password" placeholder="Enter the password"/>
 										</div>
 										
 										<div className="grid grid-cols-1 ">
-											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('Gender')}</label>
+											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('GENDER')}</label>
 											<select {...register('gender')} id="sex" className="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent">
 												<option>{t('Male')}</option>
 												<option>{t('Female')}</option>
@@ -104,11 +104,11 @@ function NewAgent() {
 										</div>
 									</div>
 									<div className="grid grid-cols-1 mt-5 mx-7">
-										<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('Address')}</label>
+										<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('USER_ADDRESS')}</label>
 										<input {...register('address')} id="address" required className="py-2 px-3 rounded-lg border-2 border-blueGray mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="address" placeholder="Kompong Speu"/>
 									</div>
 									<div className="grid grid-cols-1 mt-5 mx-7">
-										<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">Leader?</label>
+										<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('LEADER')}?</label>
 										<input {...register('isLeader')} id="isLeader"  className="py-2 px-3 rounded-lg border-2 border-blueGray mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="checkbox"/>
 									</div>
 									{/* New */}
@@ -122,7 +122,7 @@ function NewAgent() {
 											/>
 										</div>
 										<div className="grid grid-cols-1 ">
-											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('ROLE')}</label>
+											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('USER_ROLE')}</label>
 											{/* <select {...register('role')} id="sex" className="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent">
 												<option>{t('Admin')}</option>
 												<option>{t('Agency')}</option>
@@ -136,11 +136,11 @@ function NewAgent() {
 									</div>		
 									<div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
 										<div className="grid grid-cols-1">
-											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('Phone Number')}r</label>
+											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('AGENT_PHONE')}r</label>
 											<input {...register('phone1')} className="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="number" placeholder="012345678" required />
 										</div>
 										<div className="grid grid-cols-1">
-											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('Identify Card Number')}</label>
+											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('USER_IDCARD')}</label>
 											<input {...register('identify_card_number')} required className="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="number" placeholder="1122"/>
 										</div>
 									</div>				
