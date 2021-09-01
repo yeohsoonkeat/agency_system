@@ -20,25 +20,25 @@ function NewAgent(context) {
 
 	return (
 		<div >
-			<h1 className="mb-5 font-bold text-3xl text-yellow-lite">NEW PLAN</h1>		
+			<h1 className="mb-5 font-bold text-3xl text-yellow-lite">{t('NEW_PLAN')}</h1>		
 			<form onSubmit={handleSubmit(onSubmit)} >
 				<div className="relative p-6 flex-auto">
 					<div className="flex flex-wrap -mx-3 mb-6">
 						<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
 							<label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
-								{t('Plan Name')}
+								{t('PLAN_NAME')}
 							</label>
 							<input {...register('plan_name')} required className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Plan name" />
 						</div>
 						<div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
 							<label className="block tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-price">
-								{t('Price')}
+								{t('PRICE')}
 							</label>
 							<input {...register('commission_price')} required className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-price" type="number" min="0" placeholder="Plan price" />
 						</div>
 						<div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
 							<label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-state">
-								{t('Date')}
+								{t('COMMISSION_DATE')}
 							</label>
 							<div className="relative">
 								<input type="date" {...register('date')} required></input>
@@ -51,13 +51,13 @@ function NewAgent(context) {
 					<div className="flex flex-wrap -mx-3 mb-2">
 						<div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
 							<label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-city">
-								Location
+								{t('PLAN_LOCATION')}
 							</label>
 							<input {...register('location')} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Steung Mean Chei" />
 						</div>
 						<div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
 							<label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-city">
-								Descriptions
+								{t('ACTIVITY_DESCRIPTION')}
 							</label>
 							<textarea {...register('descriptions')} placeholder="More detail here" className="resize border rounded-md appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></textarea>
 							

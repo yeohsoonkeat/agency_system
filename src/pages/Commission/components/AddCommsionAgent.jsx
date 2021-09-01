@@ -10,7 +10,7 @@ export default function AddCommisionAgent({onAgentAdd}) {
 	const [showModal, setShowModal] = useState(false)
 	const [Agent, setAgent] = useState([])
 	const [Ammount, setAmmount] = useState(0)
-	const [SelectedAgent, setSelectedAgent] = useState()
+	const [SelectedAgent, setSelectedAgent] = useState('')
 	const [error, setError] = useState(false)
 
 	useEffect(() => {
@@ -51,12 +51,15 @@ export default function AddCommisionAgent({onAgentAdd}) {
 	
 	const onSubmit = (e) => {
 		e.preventDefault()
+		if (SelectedAgent == ''){
+			alert('Please Selete Agent')
+		}else{
 		let tmp = {
 			'agent': SelectedAgent,
 			'ammount': Ammount
 		}
 		onAgentAdd(tmp)
-		setShowModal(false)
+		setShowModal(false)}
 	}
 
 	return (
@@ -66,7 +69,7 @@ export default function AddCommisionAgent({onAgentAdd}) {
 				type="button"
 				onClick={() => setShowModal(true)}
 			>
-				Add
+				{t('ADD')}
 			</button>
 			{showModal ? (
 				<>
@@ -91,7 +94,7 @@ export default function AddCommisionAgent({onAgentAdd}) {
 							}
 								<div className="flex items-starT justify-between p-5 rounded-t">
 									<h3 className="text-3xl font-semibold">
-										{t('COMMISSION')}
+										{t('COMMISION')}
 									</h3>
 									<button
 										className="p-1 ml-auto bg-transparent border-0 loat-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -125,14 +128,29 @@ export default function AddCommisionAgent({onAgentAdd}) {
 											type="reset"
 											onClick={() => setShowModal(false)}
 										>
-											Close
+											{t('CLOSE')}
 										</button>
-										<button
-											className="font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+										{
+											error ? (
+												<button
+											className="font-bold uppercase text-sm px-6 py-3 rounded shadow outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
 											onClick={onSubmit}
-										>
-											Add
-										</button>
+											disabled
+											>
+													{t('ADD')}
+												</button>
+											) : 
+											(
+											<button
+												className="font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+												onClick={onSubmit}
+											
+											>
+												{t('ADD')}
+											</button>
+											)
+										}
+										
 									</div>
 								</div>
 							</div>

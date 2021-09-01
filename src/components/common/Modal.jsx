@@ -29,7 +29,7 @@ export default function Modal(obj) {
             setInterval(() => {
               setSuccess(false)
             }, 1000)
-             setShowModal(false)
+            setShowModal(false)
           }
         }).catch(err =>  console.log(err))
         break
