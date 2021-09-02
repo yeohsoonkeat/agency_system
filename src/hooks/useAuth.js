@@ -5,6 +5,7 @@ import { get_user_profile, login_user, register_user } from '../service/auth'
 import { set } from 'react-hook-form'
 import { stringify } from 'postcss'
 export const AuthContext = React.createContext()
+import { changeLanguage } from './useTranslation'
 
 
 const AuthProvider = ({ children }) => {
@@ -38,6 +39,7 @@ const AuthProvider = ({ children }) => {
 				setCurrentUser(x.data.user)
 				localStorage.setItem('token', x.data.token)
 				localStorage.setItem('user', JSON.stringify(x.data.user))
+				changeLanguage(localStorage.setItem('i18nextLng', 'kh'))
 				setPending(false)
 			}
 		}).catch(err => {
@@ -62,7 +64,8 @@ const AuthProvider = ({ children }) => {
 	}
 	const logout = () => {
 		setPending(true)
-		localStorage.clear()
+		localStorage.removeItem('token')
+		localStorage.removeItem('user')
 		setCurrentUser(false)
 		setPending(false)
 	}
