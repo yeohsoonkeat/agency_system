@@ -6,6 +6,7 @@
     "PLAN": "​គម្រោង",
     "AGENT": "ភ្នាក់ងារ",
     "COMMISION": "កម្រៃជើងសារ",
+    "TOTAL_COMMISSION": "កម្រៃជើងសារសរុប",
     "NEW_COMMISSION" : "បង្កើតកម្រៃជើងសារ",
     "ADD" : "បង្កើត",
 
@@ -13,7 +14,7 @@
     "AGENT_REPORT": "របាយការណ៍ភ្នាក់ងារ",
     "SETTING": "ការកំណត់",
     "USER_MANAGEMENT": "គ្រប់គ្រងអ្នកប្រើប្រាស់",
-    "MONEY_WITHDRAWN": "ទឹកប្រាក់បានដក",
+    "MONEY_WITHDRAWN": "ទឹកប្រាក់ដកសរុប",
     "BALANCE": "ទឹកប្រាក់នៅសល់",
     "LOGOUT": "ចាកចេញ",
     "LOGOUT_WARN": "អ្នករៀបនឹងចេញហើយ។",
@@ -26,6 +27,11 @@
     "PASSWORD" : "លេខសង្ងាត់",
     "LEADER" : "អ្នកដឹកនាំ",
     "AMMOUNT" : "ទឹកប្រាក់",
+    "COMMISSION_DETAIL" : "ពណ៍នាកម្រៃជើងសារ",
+    "NO." : "ល.រ",
+    "NOTHING TO SHOW" : "គ្មានអ្វីត្រូវបង្ហាញទេ",
+    "SAVE": "រក្សាទុក",
+    "CANCEL" : "បោះបង់",
 
 
     "PLAN_ID" : "ល.រ",

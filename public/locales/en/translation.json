@@ -6,11 +6,12 @@
     "PLAN": "Plans",
     "AGENT": "Agents",
     "COMMISION": "Commission",
+    "TOTAL_COMMISSION": "Total Commission",
     "INTEREST": "Withdrawn Reports",
     "AGENT_REPORT": "Agent Reports",
     "SETTING": "Setting",
     "USER_MANAGEMENT": "User Management",
-    "MONEY_WITHDRAWN": "Withdrawn",
+    "MONEY_WITHDRAWN": "Total WithDrawn",
     "BALANCE": "Balance",
     "LOGOUT": "Logout",
     "LOGOUT_WARN": "You are about to logout.",
@@ -24,7 +25,12 @@
     "PASSWORD" : "Password",
     "LEADER" : "Leader",
     "ADD" : "បង្កើត",
-    "AMMOUNT" : "Ammount",
+    "AMMOUNT" : "Amount",
+    "COMMISSION_DETAIL" : "Commission Detail",
+    "NO." : "No.",
+    "NOTHING TO SHOW" : "Nothing to show",
+    "SAVE": "Save",
+    "CANCEL" : "Cancel",
 
 
 

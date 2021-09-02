@@ -120,7 +120,7 @@ export default function Table({ data, columns }) {
 													)
 												})}
 												<td>
-													<button className="hover:text-grey-default">
+													<button className="hover:text-green-default mr-2">
 														<Link to={{pathname: `${url}/edit`, state: {data: row.original}}}>
 															<InlineIcon icon={pencilAddOutline} />
 														</Link>

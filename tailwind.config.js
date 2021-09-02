@@ -27,6 +27,10 @@ module.exports = {
 			inter:['Inter', 'sans-serif']
 		},
 	},
-	variants: {},
+	variants: {
+		extend: {
+			backgroundColor: ['active'],
+		}
+	},
 	plugins: [],
 }

@@ -129,9 +129,9 @@ function NewCommison() {
 					<div className="md:grid md:grid-cols-3 md:gap-6">
 						<div className="md:col-span-1">
 							<div className="px-4 sm:px-0">
-								<h3 className="text-lg font-medium leading-6 text-gray-900">Commision</h3>
+								<h3 className="text-lg font-medium leading-6 text-gray-900">{t('COMMISION')}</h3>
 								<p className="mt-1 text-sm text-gray-600">
-									Commision details
+									{t('COMMISSION_DETAIL')}
 								</p>
 							</div>
 						</div>
@@ -194,9 +194,9 @@ function NewCommison() {
 						</div>
 						<div className="md:col-span-1">
 							<div className="px-4 sm:px-0">
-								<h3 className="text-lg font-medium leading-6 text-gray-900">Agents</h3>
+								<h3 className="text-lg font-medium leading-6 text-gray-900">{t('AGENT')}</h3>
 								<p className="mt-1 text-sm text-gray-600">
-									Agent commision
+									{t('AGENT_COMMISSION')}
 								</p>
 							</div>
 						</div>
@@ -210,12 +210,12 @@ function NewCommison() {
 											<table className="rounded-t-lg m-5 w-11/12 mx-auto bg-gray-200 text-gray-800">
 												<tbody className=" text-center">
 													<tr className="border-b-2 py-2 border-gray-300">
-														<th className=" px-1">No. </th>
-														<th className=" px-1">Name</th>
-														<th className=" px-1">Ammount</th>
+														<th className=" px-1">{t('NO.')} </th>
+														<th className=" px-1">{t('NAME')}</th>
+														<th className=" px-1">{t('AMMOUNT')}</th>
 													</tr>
 
-													{CommissionTo.length === 0 && <tr className="py-2"><td colSpan={3} className="text-center">Nothing to show</td></tr>}
+													{CommissionTo.length === 0 && <tr className="py-2"><td colSpan={3} className="text-center">{t('NOTHING TO SHOW')}</td></tr>}
 													{CommissionTo.length > 0 &&
 														CommissionTo.map((x, index) =>{ 
 															console.log(CommissionTo)
@@ -239,7 +239,7 @@ function NewCommison() {
 							</div>
 						</div>
 						<button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-							Save
+							{t('SAVE')}
 						</button>
 
 					</div>

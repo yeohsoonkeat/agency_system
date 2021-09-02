@@ -75,7 +75,7 @@ export default function Sidebar() {
                     
 						{/* nav */}
 						<ul className="md:flex-col md:min-w-full flex flex-col text-lg list-none  text-gray-800">
-							<li className="items-center hover:text-yellow-500 active:text-yellow-500">
+							<li className="items-center hover:text-yellow-500 focus-within:text-yellow-500">
 								<Link
 									className=" py-3 block"
 									to="/"
@@ -87,7 +87,7 @@ export default function Sidebar() {
 								user != null ? 
 									user.roleId == 2 ? null : 
 									(
-										<li className="items-center hover:text-yellow-500">
+										<li className="items-center hover:text-yellow-500 focus-within:text-yellow-500">
 										<Link
 											className="  py-3 block"
 											to="/plan"
@@ -101,7 +101,7 @@ export default function Sidebar() {
 								user != null ? 
 									user.roleId == 2 ? null : 
 									(
-										<li className="items-center hover:text-yellow-500">
+										<li className="items-center hover:text-yellow-500 focus-within:text-yellow-500">
 									<Link
 										className="  py-3 block"
 										to="/agent"
@@ -114,15 +114,15 @@ export default function Sidebar() {
                             
 							<li className="items-center">
 								<Link
-									className="  py-3 block hover:text-yellow-500"
-									to="/commission"
+									className="  py-3 block hover:text-yellow-500 focus-within:text-yellow-500"
+									to="/commission" 
 								>
 									<InlineIcon icon={percentOutline} className="inline w-5 h-5 text-gray-400 mr-2" />{t('COMMISION')}
 								</Link>
 							</li>
 							<li className="items-center">
 								<Link
-									className=" py-3 block hover:text-yellow-500"
+									className=" py-3 block hover:text-yellow-500 focus-within:text-yellow-500"
 									to="/interest_report"
 								>
 									<InlineIcon icon={filePercentOutline} className="inline w-5 h-5 text-gray-400 mr-2" />{t('INTEREST')}
@@ -134,7 +134,7 @@ export default function Sidebar() {
 									(
 										<li className="items-center">
 										<Link
-											className=" py-3 block hover:text-yellow-500"
+											className=" py-3 block hover:text-yellow-500 focus-within:text-yellow-500"
 											to="/agent_report"
 										>
 											<InlineIcon icon={noteEdit } className="inline w-5 h-5 text-gray-400 mr-2" />{t('AGENT_REPORT')}
@@ -164,13 +164,13 @@ export default function Sidebar() {
 								</h1>
 								<li className="ml-8 text-base">
 									<Link
-										className="py-2 block hover:text-yellow-500"
+										className="py-2 block hover:text-yellow-500 focus-within:text-yellow-500"
 										to="/activity_log"
 									>
 									{t('ACTIVITY_LOG')}
 									</Link>
 								</li>
-								<li className="ml-8 text-base hover:text-yellow-500">
+								<li className="ml-8 text-base hover:text-yellow-500 focus-within:text-yellow-500">
 									<Link
 										className="py-2 block"
 										to="/users"
@@ -178,12 +178,12 @@ export default function Sidebar() {
 									{t('USER')}
 									</Link>
 								</li>
-								<li className="ml-8 text-base hover:text-yellow-500">
+								<li className="ml-8 text-base hover:text-yellow-500 focus-within:text-yellow-500">
 									<Link
 										className="py-2 block"
 										to="/pending_register"
 									>
-									 {t('PENDING_REGISTER')}
+									{t('PENDING_REGISTER')}
 									</Link>
 								</li>
 								

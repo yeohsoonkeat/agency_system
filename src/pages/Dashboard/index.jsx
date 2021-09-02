@@ -106,7 +106,7 @@ export default function Dashboard() {
 								<div className="flex flex-wrap">
 									<div className="relative w-full pr-4 max-w-full flex-grow flex-1">
 										<h5 className=" text-gray-500 font-semibold text-2xs">
-											{t('BALANCE')}
+											{t('TOTAL_COMMISSION')}
 										</h5>
 										<span className="font-semibold text-xl text-blueGray-700">
 											$ {Number(totalMoneys).toLocaleString()}

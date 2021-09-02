@@ -79,7 +79,7 @@ export default function Table({ data, columns }) {
 											<th
 												className="px-6 py-3 text-left tracking-wider"
 											>
-												ID
+												{t('NO.')}
 											</th>
 											{headerGroup.headers.map((column,index) => (
 												<th
