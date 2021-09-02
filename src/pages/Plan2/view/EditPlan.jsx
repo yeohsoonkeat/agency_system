@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
-import { Link, useHistory } from 'react-router-dom'
 import { useLocation } from 'react-router'
 import { useParams } from 'react-router-dom'
 import { editPlan } from '../../../service/client/Plan'
+import { Link, useHistory } from 'react-router-dom'
 
 function EditPlan(context) {
     const location = useLocation()
@@ -14,14 +14,19 @@ function EditPlan(context) {
 	const {id} = useParams() 
 	const {register,handleSubmit} = useForm()
 	const onSubmit = async (data)=>{
-		// const token = localStorage.getItem('token')
+		console.log(data)
 		editPlan(data,id).then(res => {
+			// console.log(res)
 			if (!res?.data.error){
-				if(res.data.created == false) alert(res.data.message)
-				else history.push('plan')
-				
+				if(res.data.created == true){
+					alert(res.data.message)
+					history.push('/plan')
+				}else{
+					alert(res.data.message)
+				}
 			}
-		}).catch(err =>  console.log(err))
+		}).catch(err =>  {
+			console.log(err)})
 	}
 
 	return (
