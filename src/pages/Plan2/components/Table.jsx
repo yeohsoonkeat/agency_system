@@ -119,6 +119,7 @@ export default function Table({ data, columns, handleDelete }) {
 												<td className="px-6 py-4 whitespace-nowrap max-w-sm " >{index + 1}</td>
 												{row.cells.map((cell,index) => {
 													console.log(cell.row.original)
+													if (cell.column.id != 'id')
 													return (
 														<td
 															{...cell.getCellProps()}
