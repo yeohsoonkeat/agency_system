@@ -32,10 +32,7 @@ function PlanList() {
 	}
 	const columns = React.useMemo(
 		() => [
-			{
-				Header: t('PLAN_ID'),
-				accessor: 'id',
-			},
+			
 			{
 				Header: t('PLAN_NAME'),
 				accessor: 'plan_name', // accessor is the "key" in the data
@@ -60,6 +57,9 @@ function PlanList() {
 			{
 				Header: t('PLAN_DATE'),
 				accessor: 'date',
+			},
+			{
+				accessor: 'id',
 			},
 		],
 		[]
