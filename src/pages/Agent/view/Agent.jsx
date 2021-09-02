@@ -128,10 +128,6 @@ function AgentList() {
 				accessor: 'fullname', // accessor is the "key" in the data
 			},
 			{
-				Header: 'ID',
-				accessor: 'id',
-			},
-			{
 				Header: 'SEX',
 				accessor: 'sex',
 			},
@@ -161,7 +157,7 @@ function AgentList() {
 				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">{t('AGENT')}</h1>
 				<Link to={`${url}/new_agent`} className="border-2 p-2 text-white opacity-80 hover:opacity-100 rounded items-center">
 					<div>
-                        New Agent
+                        {t('NEW_AGENT')}
 					</div>
 				</Link>
 			</div>

@@ -7,6 +7,7 @@
     "AGENT": "ភ្នាក់ងារ",
     "COMMISION": "កម្រៃជើងសារ",
     "NEW_COMMISSION" : "បង្កើតកម្រៃជើងសារ",
+    "ADD" : "បង្កើត",
 
     "INTEREST": "របាយការណ៍ដកប្រាក់",
     "AGENT_REPORT": "របាយការណ៍ភ្នាក់ងារ",
@@ -20,14 +21,22 @@
     "ACTIVITY_LOG": "សកម្មភាព",
     "PENDING_REGISTER": "រងចាំ",    
     "USER": "អ្នកប្រើប្រាស់",
+    "PRICE" : "តម្លៃ",
+    "GENDER" : "ភេទ",
+    "PASSWORD" : "លេខសង្ងាត់",
+    "LEADER" : "អ្នកដឹកនាំ",
+    "AMMOUNT" : "ទឹកប្រាក់",
+
 
     "PLAN_ID" : "ល.រ",
     "PLAN_NAME" : "ឈ្មោះគម្រោង",
+    "NAME" : "ឈ្មោះ",
     "PLAN_COMMISSION_PRICE" : "ចំនួនទឹកប្រាក់",
     "PLAN_LOCATION" : "ទីតាំង",
     "IS_COMMISSION" : "ប្រើប្រាស់",
     "PLAN_CREATOR" : "អ្នកបង្កើត",
     "PLAN_DATE" : "ថ្ងៃទីបង្កើត",
+    "NEW_PLAN" : "បង្កើតគម្រោង",
 
     "AGENT_DATE" : "ថ្ងៃទី",
     "AGENT_FULL_NAME" : "ឈ្មោះពេញ",
@@ -59,6 +68,8 @@
     "AGENT_TOTAL_WITHDRAWN" : "លុយដកសរុប",
     "AGENT_TOTAL_COMMISSION" : "លុយសរុប",
     "AGENT_REMAINING" : "លុយនៅសល់",
+    "NEW_AGENT" : "បង្កើតភ្នាក់ងារ",
+    "AGENT_COMMISSION" : "កម្រៃជើងសាររបស់ភ្នាក់ងារ",
 
     "ACTIVITY_ID" : "ល.រ",
     "ACTIVITY_ACTION" : "សកម្មភាព",
@@ -78,7 +89,12 @@
     "SHOW" : "បង្ហាញ",
 
     "RECORD" : "ទិន្នន័យ",
-    "PRINT" : "ព្រីន"
+    "PRINT" : "ព្រីន",
+    "CLOSE": "បិទ",
+    "CASH_OUT" : "ដកប្រាក់",
+    "HISTORY_CASH_OUT" : "ប្រវត្តិដកប្រាក់"
+    
 
+ 
 
 }

@@ -3,11 +3,10 @@ import { InlineIcon } from '@iconify/react'
 import trashCanOutline from '@iconify-icons/mdi/trash-can-outline'
 import { deletePlan } from '../../service/client/Plan'
 import { deleteCommission } from '../../service/client/Commision'
+import PropTypes from 'prop-types'
 export default function Modal(obj) {
   const [showModal, setShowModal] = React.useState(false)
   const [success, setSuccess] = React.useState(false)
-
-
   const SuccessDelete = () => {
     return (
       <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
@@ -23,15 +22,14 @@ export default function Modal(obj) {
     
     switch(obj.page){
       case 'plan':
-        
         deletePlan(obj.id).then(res => {
           if (!res?.data.error){
-            
+            obj.handleSelectedDelete(obj.id)
             setSuccess(true)
             setInterval(() => {
               setSuccess(false)
             }, 1000)
-             setShowModal(false)
+            setShowModal(false)
           }
         }).catch(err =>  console.log(err))
         break
@@ -127,4 +125,8 @@ export default function Modal(obj) {
       ) : null}
     </>
   )
+}
+
+Modal.propTypes = {
+  handleDelete: PropTypes.func
 }

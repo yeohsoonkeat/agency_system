@@ -19,6 +19,15 @@
     "PENDING_REGISTER": "Pending Register",
     "USER": "User",
     "NEW_COMMISSION" : "New Commission",
+    "PRICE" : "Price",
+    "GENDER" : "GENDER",
+    "PASSWORD" : "Password",
+    "LEADER" : "Leader",
+    "ADD" : "បង្កើត",
+    "AMMOUNT" : "Ammount",
+
+
+
 
     "PLAN_ID" : "ID",
     "PLAN_NAME" : "PLAN NAME",
@@ -27,6 +36,8 @@
     "IS_COMMISSION" : "IS COMMISSION",
     "PLAN_CREATOR" : "CREATOR",
     "PLAN_DATE" : "DATE",
+    "NEW_PLAN" : "NEW PLAN",
+    
 
     "AGENT_FULL_NAME" : "FULL NAME",
     "AGENT_ID" : "ID",
@@ -36,6 +47,9 @@
     "AGENT_REMAIN" : "REMAINING MONEY",
     "AGENT_TOTAL" : "TOTAL MONEY",
     "AGENT_JOINED_DATE" : "JOINED DATE",
+    "NEW_AGENT" : "NEW AGENT",
+    "AGENT_COMMISSION" : "Agent Commissions",
+
 
     "COMMISSION_DATE" : "DATE",
     "COMMISSION_REAL_ESTATE" : "REAL ESTATE",
@@ -76,6 +90,13 @@
     "PAGE" : "Page",
     "SHOW" : "Show",
     "RECORD" : "records",
-    "PRINT" : "PRINT"
+    "PRINT" : "PRINT",
+    "CLOSE": "CLOSE",
+    "CASH_OUT" : "Cash Out",
+    "HISTORY_CASH_OUT" : "Cash out History",
+    "Name" : "Name"
+
+
+
 
 }

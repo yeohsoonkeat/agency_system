@@ -24,6 +24,12 @@ function PlanList() {
 		}).catch(err =>  console.log(err))
 	}, [])
 
+	const handleDelete = (id) => {
+		setData(
+			data.filter(x => x.id != id)
+		)
+		console.log(id)
+	}
 	const columns = React.useMemo(
 		() => [
 			{
@@ -62,15 +68,15 @@ function PlanList() {
 	return (
 		<div >
 			<div className="flex w-full">
-				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">{t('Plan')}</h1>
+				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">{t('PLAN')}</h1>
 				<Link to={`${url}/new_agent`} className="border-2 p-2 text-white opacity-80 hover:opacity-100 rounded items-center">
 					<div>
-                        New Plan
+                        {t('NEW_PLAN')}
 					</div>
 				</Link>
 			</div>
 			<div className="mt-4"/>
-			<Table data={data} columns={columns}/>
+			<Table data={data} columns={columns} handleDelete={handleDelete}/>
 		</div>
 	)
 }

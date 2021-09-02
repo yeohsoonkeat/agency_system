@@ -120,7 +120,7 @@ function NewCommison() {
 	return (
 		<div >
 			<div className="flex w-full">
-				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">{t('NEW_COMMISION')}</h1>
+				<h1 className="flex-1 font-bold text-3xl text-yellow-lite">{t('NEW_COMMISSION')}</h1>
 			</div>
 			<div className="mt-10" />
 			<div >
@@ -144,7 +144,7 @@ function NewCommison() {
 									<div className="grid grid-cols-3 gap-6">
 										<div className="col-span-3 sm:col-span-2">
 											<label htmlFor="fullname" className="block text-sm font-medium text-gray-700">
-												{t('REAL_ESTATE')}
+												{t('COMMISSION_REAL_ESTATE')}
 											</label>
 											<div className="mt-1 flex rounded-md shadow-sm">
 												<input required {...register('real_estate')} type="text" className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 p-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" />
@@ -154,7 +154,7 @@ function NewCommison() {
 									<div className="grid grid-cols-3 gap-6">
 										<div className="col-span-3 sm:col-span-2">
 											<label htmlFor="number_lots"  className="block text-sm font-medium text-gray-700">
-												{t('NUMBER_LOTS')}
+												{t('COMMISSION_NUMBER_LOTS')}
 											</label>
 											<div className="mt-1 flex rounded-md shadow-sm">
 												<input required {...register('number_lots')} onChange={numberLotsChange} type="number" className="focus:ring-indigo-500 focus:border-indigo-500 p-1 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" />
@@ -179,7 +179,7 @@ function NewCommison() {
 									<div className="grid grid-cols-3 gap-6">
 										<div className="col-span-3 sm:col-span-2">
 											<label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-												{t('Total Commission Price')}
+												{t('PLAN_COMMISSION_PRICE')}
 											</label>
 											<div className="mt-1 flex rounded-md shadow-sm">
 
@@ -204,7 +204,7 @@ function NewCommison() {
 							<div className="shadow sm:rounded-md ">
 								<div className="px-4 py-5 bg-white space-y-6 sm:p-6">
 									<div className="grid grid-cols-3">
-										<p className=" col-span-2 font-bold text-lg">Agent commisions</p>
+										<p className=" col-span-2 font-bold text-lg">{t('AGENT_COMMISSION')}</p>
 										<AddCommisionAgent onAgentAdd={onAgentAdd} />
 										<div className=" col-span-3">
 											<table className="rounded-t-lg m-5 w-11/12 mx-auto bg-gray-200 text-gray-800">
