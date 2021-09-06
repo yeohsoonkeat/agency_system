@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { AuthContext } from '../../../hooks/useAuth'
 import { create_plan } from '../../../service/client/Plan'
 import { Link, useHistory } from 'react-router-dom'
+import { SheetJSApp } from '../../../components/excelReader/SheetJS'
 
 
 function NewAgent(context) {
@@ -71,6 +72,11 @@ function NewAgent(context) {
 												{t('ACTIVITY_DESCRIPTION')}
 											</label>
 											<textarea {...register('descriptions')} placeholder="More detail here" className="resize border rounded-md appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></textarea>
+										</div>
+									</div>	
+									<div className="grid grid-cols-1 gap-5 md:gap-8 mt-5 mx-7">
+										<div className="grid grid-cols-1">
+											<SheetJSApp />
 										</div>
 									</div>	
 								</div>

@@ -17,7 +17,7 @@ export default function index() {
 	}
 	return (
 		<div className="flex min-h-screen mb-8">
-			<div className="w-full md:w-5/12 flex justify-center items-center flex-col md:grid place-content-center mx-auto ">
+			<div className="w-full flex-1 md:w-5/12 flex justify-center items-center flex-col md:grid place-content-center mx-auto ">
 				<h1 className="text-5xl font-black uppercase text-center block">Mongkul <br/>Makra</h1>
 				
 				<form  onSubmit={handleSubmit(onSubmit)} className="w-11/12 mx-auto sm:w-full">
