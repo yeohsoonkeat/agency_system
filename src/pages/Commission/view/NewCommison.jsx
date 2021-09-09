@@ -7,10 +7,13 @@ import { getAvailablePlan, getPlanById, get_plan } from '../../../service/client
 getAvailablePlan
 import { createCommission } from '../../../service/client/Commision'
 import { useHistory } from 'react-router-dom'
+import makeAnimated from 'react-select/animated'
+import { getRealEstateById } from '../../../service/client/RealEstate'
 
 function NewCommison() {
 	const { t } = useTranslation()
-	const [numberLots, setNumberLots] = useState(1)
+	const animatedComponents = makeAnimated()
+	const [real_estates, setRealEstates] = useState([])
 	const [CommissionPrice, setCommissionPrice] = useState(0)
 	const [CommissionTotalPrice, setCommissionTotalPrice] = useState(0)
 	const [Agency, setAgency] = useState([])
@@ -19,7 +22,7 @@ function NewCommison() {
 	const [CommissionTo, setCommissionTo] = useState([])
 	const history = useHistory()
 	const { register, handleSubmit, control } = useForm()
-
+	const [selectedOptionRealEstate, setSelectedOptionRealEstate] = useState([])
 	useEffect(() => {
 		const token = localStorage.getItem('token')
 		get_plan(token).then(res => {
@@ -39,7 +42,7 @@ function NewCommison() {
 		}])
 
 	}, [])
-
+	// 
 	const AlertMessage = () => {
 		return(
 			<div role="alert" className="mb-5">
@@ -52,10 +55,11 @@ function NewCommison() {
 			</div>
 		)
 	}
+	const [errorNameRealEstate, setErrorNameRealEstate] = useState(false)
 	const [error, setError] = useState(false)
 	const onSubmit = async(data) => {
 		const commission = {
-			'real_estate': data.real_estate,
+			'real_estate': real_estates,
 			'plan_id': selectedPlan,
 			'num_lots': data.number_lots,
 			'total_commission_price': CommissionTotalPrice,
@@ -74,7 +78,12 @@ function NewCommison() {
 		if(CommissionTotalPrice == totalMoneyCommission){
 			const token = localStorage.getItem('token')
 			createCommission(commission,token).then(res=>{
-				setError(false)
+				console.log(res.data)
+				// if(!res.data.checkStatus) {
+				// 	setErrorNameRealEstate(true)
+				// 	return null
+				// }
+				setError(true)
 				history.push('/commission')
 				
 			}).catch(err =>  console.log(err))		
@@ -83,10 +92,10 @@ function NewCommison() {
 		}
 		
 	}
-	const numberLotsChange=(event)=>{
-		setNumberLots(event.target.value)
-		setCommissionTotalPrice(CommissionPrice * event.target.value )
-	}
+	// const numberLotsChange=(event)=>{
+	// 	setNumberLots(event.target.value)
+	// 	// setCommissionTotalPrice(CommissionPrice * event.target.value )
+	// }
 
 	const onAgentAdd = (data) => {
 		let agent = data.agent.split('/')
@@ -97,12 +106,27 @@ function NewCommison() {
 		}])
 	}
 	const onPlanChange = async (data) => {
+		getRealEstateById(data.value).then(res => {
+			if (!res?.data.error){
+				let k = res.data.map(x => {
+					return {
+						'label': x.realestate_name,
+						'value': x.id
+					}
+				})
+				console.log(k)
+				setSelectedOptionRealEstate(k)
+				
+			}
+		}).catch(err =>  console.log(err))
+		console.log(selectedOptionRealEstate.length)
 		const token = localStorage.getItem('token')
 		setSelectedPlan(data.value)
 		const plan = await getPlanById(data.value,token)
+		console.log(plan.data.commission_price)
 		setCommissionPrice(plan.data.commission_price )
-		// alert(CommissionPrice)
-		setCommissionTotalPrice(plan.data.commission_price * numberLots)
+
+		
 
 	}
 
@@ -112,10 +136,12 @@ function NewCommison() {
 		)
 	}
 
-	const handleDeleteAgent = (e) => {
-		e.preventDefault()
-		console.log(CommissionTo)
-		CommissionTo.pop()
+	const realEstateChange =(data)=>{
+		console.log(data)
+		console.log(data.length)
+		console.log(CommissionPrice * data.length)
+		setRealEstates(data)
+		setCommissionTotalPrice(CommissionPrice * data.length)
 	}
 	return (
 		<div >
@@ -137,11 +163,12 @@ function NewCommison() {
 						</div>
 						{/* <input onChange={event => setTitle(event.target.value)} /> */}
 						{/* {numberLots} */}
+						
 						<div className="mt-5 md:mt-0 md:col-span-2">
 						{error ? <AlertMessage/> : null}
 							<div className="shadow sm:rounded-md ">
 								<div className="px-4 py-5 bg-white space-y-6 sm:p-6">
-									<div className="grid grid-cols-3 gap-6">
+									{/* <div className="grid grid-cols-3 gap-6">
 										<div className="col-span-3 sm:col-span-2">
 											<label htmlFor="fullname" className="block text-sm font-medium text-gray-700">
 												{t('COMMISSION_REAL_ESTATE')}
@@ -149,18 +176,11 @@ function NewCommison() {
 											<div className="mt-1 flex rounded-md shadow-sm">
 												<input required {...register('real_estate')} type="text" className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 p-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" />
 											</div>
+											<p className="text-lg font-medium leading-3 text-red-500">{errorNameRealEstate ?'Real Estate name is already create' : null}</p>
+											
 										</div>
-									</div>
-									<div className="grid grid-cols-3 gap-6">
-										<div className="col-span-3 sm:col-span-2">
-											<label htmlFor="number_lots"  className="block text-sm font-medium text-gray-700">
-												{t('COMMISSION_NUMBER_LOTS')}
-											</label>
-											<div className="mt-1 flex rounded-md shadow-sm">
-												<input required {...register('number_lots')} onChange={numberLotsChange} type="number" className="focus:ring-indigo-500 focus:border-indigo-500 p-1 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" />
-											</div>
-										</div>
-									</div>
+										
+									</div> */}
 									<div className="grid grid-cols-3 gap-6">
 										
 										<div className="col-span-3 sm:col-span-2">
@@ -176,6 +196,47 @@ function NewCommison() {
 											
 										</div>
 									</div>
+									{/* <div className="grid grid-cols-3 gap-6">
+										<div className="col-span-3 sm:col-span-2">
+											<label htmlFor="number_lots"  className="block text-sm font-medium text-gray-700">
+												{t('COMMISSION_NUMBER_LOTS')}
+											</label>
+											<div className="mt-1 flex rounded-md shadow-sm">
+												<input required {...register('number_lots')} onChange={numberLotsChange} type="number" className="focus:ring-indigo-500 focus:border-indigo-500 p-1 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" />
+											</div>
+										</div>
+									</div> */}
+									<div className="grid grid-cols-3 gap-6">
+										
+										<div className="col-span-3 sm:col-span-2">
+											<label htmlFor="plan" className="block text-sm font-medium text-gray-700">
+												{t('COMMISSION_REAL_ESTATE')}
+
+											</label>
+											<Select
+												// isClearable={false}
+												closeMenuOnSelect={false}
+												isMulti			
+												defaultValue={selectedOptionRealEstate}
+												onChange={realEstateChange}
+												// onChange={data=>{
+												// 	setRealEstates(data)
+												// 	console.log(CommissionPrice)
+												// 	console.log(real_estates)
+												// 	console.log(real_estates.length)
+												// 	// console.log(CommissionPrice * real_estates.length)
+												// 	setCommissionTotalPrice(CommissionPrice * real_estates.length)
+
+												// }}
+												options={selectedOptionRealEstate}
+											/>	
+										</div>
+										{/* {console.log(CommissionPrice)} */}
+										
+									</div>
+									{/* <h1>hello world</h1>
+									 */}
+									
 									<div className="grid grid-cols-3 gap-6">
 										<div className="col-span-3 sm:col-span-2">
 											<label htmlFor="phone" className="block text-sm font-medium text-gray-700">

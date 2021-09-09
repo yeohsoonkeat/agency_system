@@ -19,7 +19,12 @@ function AgentList() {
 			console.log(err)
 		})
 	}, [])
-
+	const handleDelete = (id) => {
+		setCommission(
+			commission.filter(x => x.commission_id != id)
+		)
+		console.log(id)
+	}
 
 	const columns = React.useMemo(
 		() => [
@@ -38,10 +43,6 @@ function AgentList() {
 			{
 				Header: t('COMMISSION_PLAN_LOCATION'),
 				accessor: 'plan.location',
-			},
-			{
-				Header: t('COMMISSION_NUMBER_LOTS'),
-				accessor: 'num_lots',
 			},
 			{
 				Header: t('COMMISSION_AGENCY'),
@@ -83,7 +84,7 @@ function AgentList() {
 				
 			</div>
 			<div className="mt-4"/>
-			<Table data={commission} columns={columns}/>
+			<Table data={commission} columns={columns} handleDelete={handleDelete}/>
 		</div>
 	)
 }

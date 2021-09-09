@@ -33,19 +33,15 @@ export default function Modal(obj) {
           }
         }).catch(err =>  console.log(err))
         break
-      // case 'agent':
-      //   deleteCommission(obj.id).then(res => {
-      //     if (!res?.data.error){
-      //        alert(res.data.message)
-      //        setShowModal(false)
-      //     }
-      //   }).catch(err =>  console.log(err))
-      //   break
       case 'commission':
          deleteCommission(obj.id).then(res => {
           if (!res?.data.error){
-             setSuccess(true)
-             setShowModal(false)
+            obj.handleSelectedDelete(obj.id)
+            setSuccess(true)
+            setInterval(() => {
+              setSuccess(false)
+            }, 1000)
+            setShowModal(false)
           }
         }).catch(err =>  console.log(err))
         break

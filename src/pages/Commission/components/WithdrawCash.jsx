@@ -17,9 +17,8 @@ export default function WithdrawCash({onAgentAdd,Commission}) {
 	const {register,handleSubmit} = useForm()
 	const history = useHistory()
 
-	useEffect(() => {
-	
-
+	useEffect(() => {	
+			
 	}, [])
 
 	const handleChange = (e) => {

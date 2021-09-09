@@ -17,7 +17,7 @@ import Modal from '../../../components/common/Modal'
 import { useTranslation } from 'react-i18next'
 
 
-export default function Table({ data, columns,action }) {
+export default function Table({ data, columns,handleDelete }) {
 	const{t} =useTranslation()
 	const {
 		getTableProps,
@@ -47,6 +47,9 @@ export default function Table({ data, columns,action }) {
 		useSortBy,
 		usePagination,
 	)
+	const handleSelectedDelete = (id) => {
+		handleDelete(id)
+	}
 
 	const count = preGlobalFilteredRows.length
 	const { url } = useRouteMatch()
@@ -146,7 +149,7 @@ export default function Table({ data, columns,action }) {
 																	<InlineIcon icon={cash} />
 																</Link>
 															</button>
-															<Modal id={row.values.commission_id} page='commission' />
+															<Modal id={row.values.commission_id} page='commission' handleSelectedDelete={handleSelectedDelete} />
 														</td>
 													)
 												}
@@ -218,5 +221,6 @@ export default function Table({ data, columns,action }) {
 Table.propTypes = {
 	data: PropTypes.array,
 	columns: PropTypes.array,
-	action: PropTypes.array
+	handleDelete: PropTypes.func
+
 }

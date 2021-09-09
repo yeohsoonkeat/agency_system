@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
-import { AuthContext } from '../../../hooks/useAuth'
 import { create_plan } from '../../../service/client/Plan'
 import { Link, useHistory } from 'react-router-dom'
 import { SheetJSApp } from '../../../components/excelReader/SheetJS'
@@ -12,15 +11,20 @@ function NewAgent(context) {
 	const { t } = useTranslation()
 	const history = useHistory()
 	const {register,handleSubmit} = useForm()
+	const [sheetData,setSheetData] = useState([])
+	
 	const onSubmit = async (data)=>{
+		data['realestates'] = sheetData
 		const token = localStorage.getItem('token')
+		console.log(data)
 		const result = await create_plan(token,data)
-		if(result.data.message == 'Plan name is already existing !') alert(result.data.message)
+		if(!result.data.createdStatus) alert(result.data.message)
 		else history.push('/plan')
 	}
 
 	return (
 		<div >
+			{/* <pre>{JSON.stringify(data, null, 1)}</pre> */}
 			<h1 className="mb-5 font-bold text-3xl text-yellow-lite">{t('NEW_PLAN')}</h1>		
 			<div >	
 		
@@ -76,7 +80,7 @@ function NewAgent(context) {
 									</div>	
 									<div className="grid grid-cols-1 gap-5 md:gap-8 mt-5 mx-7">
 										<div className="grid grid-cols-1">
-											<SheetJSApp />
+											<SheetJSApp toChild={setSheetData} SheetData= {sheetData}/>
 										</div>
 									</div>	
 								</div>

@@ -13,6 +13,7 @@ export class SheetJSApp extends React.Component {
 
   constructor(props) {
     super(props)
+    
     this.state = {
       data: [], /* Array of Arrays e.g. [["a","b"],[1,2]] */
       cols: [] /* Array of column objects e.g. { name: "C", K: 2 } */
@@ -20,6 +21,7 @@ export class SheetJSApp extends React.Component {
     this.handleFile = this.handleFile.bind(this)
     this.exportFile = this.exportFile.bind(this)
   }
+  // this.props.toChild
   
   handleFile(file /*:File*/) {
     /* Boilerplate to set up FileReader */
@@ -31,15 +33,22 @@ export class SheetJSApp extends React.Component {
       const wb = XLSX.read(bstr, { type: rABS ? 'binary' : 'array' })
       /* Get first worksheet */
       const wsname = wb.SheetNames[0]
+      console.log(wsname)
       const ws = wb.Sheets[wsname]
+      console.log(ws)
       /* Convert array of arrays */
       const data = XLSX.utils.sheet_to_json(ws, {
         header: 1
       })
+      console.log(make_cols(ws['!ref']))
       /* Update state */
       this.setState({ data: data, cols: make_cols(ws['!ref']) })
       console.log(data)
+      this.props.toChild(data)
+      // console.log(this.props.toChild)
+      console.log(this.props.SheetData)
     }
+    console.log(rABS)
     if (rABS) reader.readAsBinaryString(file)
     else reader.readAsArrayBuffer(file)
   }
@@ -51,11 +60,13 @@ export class SheetJSApp extends React.Component {
     /* generate XLSX file and send to client */
     XLSX.writeFile(wb, 'sheetjs.xlsx')
   }
-  render() {
+  render() {  
     return (
       <DragDropFile handleFile={this.handleFile}>
+        {/* {console.log(this.props.toChild)} */}
         <div className="row">
           <div className="col-xs-12">
+            {/* <h1>hello world</h1> */}
             <DataInput handleFile={this.handleFile} />
           </div>
         </div>
@@ -84,6 +95,11 @@ export class SheetJSApp extends React.Component {
     )
   }
 }
+SheetJSApp.propTypes ={
+  toChild: PropTypes.func,
+  SheetData: PropTypes.array
+}
+
 
 // if (typeof module !== "undefined") module.exports = SheetJSApp;
 
@@ -150,10 +166,10 @@ class DataInput extends React.Component {
   }
   render() {
     return (
-      <form className="form-inline">
         <div className="form-group">
-          <label htmlFor="file">Input excel</label>
+          <label htmlFor="file">Input Excel File Here</label>
           <input
+            required
             type="file"
             className="form-control"
             id="file"
@@ -161,7 +177,6 @@ class DataInput extends React.Component {
             onChange={this.handleChange}
           />
         </div>
-      </form>
     )
   }
 }

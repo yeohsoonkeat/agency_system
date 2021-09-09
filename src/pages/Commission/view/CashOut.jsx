@@ -81,6 +81,7 @@ function CashOut(props) {
 									<div className="grid grid-cols-3">
 										<p className=" col-span-2 font-bold text-lg">{t('AGENT_COMMISSION')}</p>
 										<WithdrawCash onAgentAdd={onAgentAdd} Commission ={CommissionTo[0]}/>
+										{console.log(CommissionTo[0])}
 										<div className=" col-span-3">
 											<table className="rounded-t-lg m-5 w-11/12 mx-auto bg-gray-200 text-gray-800">
 												<tbody className=" text-center">

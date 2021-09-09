@@ -95,3 +95,18 @@ export const getApprovedAgent = (data,token,id) => {
 }
 
 
+export const updateAgency = (id,data) => {
+	console.log(id)
+	const token = localStorage.getItem('token')
+	console.log(token)
+	const config =  {
+		method: 'put',
+		url: `http://localhost:8080/api/agency/update_agency/${id}`,
+		headers: { 
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${token}`
+		},
+		data: data
+	}
+	return axios(config)
+}

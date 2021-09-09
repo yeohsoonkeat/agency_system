@@ -12,7 +12,7 @@ export default function AddCommisionAgent({onAgentAdd}) {
 	const [Ammount, setAmmount] = useState(0)
 	const [SelectedAgent, setSelectedAgent] = useState('')
 	const [error, setError] = useState(false)
-
+	
 	useEffect(() => {
 		const token = localStorage.getItem('token')
 		getAgencyAvailalble(token).then(res => {

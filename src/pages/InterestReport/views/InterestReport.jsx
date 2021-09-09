@@ -12,6 +12,9 @@ function InterestReport() {
 	useEffect(()=>{
 		const token = localStorage.getItem('token')
 		allAgentWithdrawHistory(token).then(res=>{
+			res.data.filter(x=>{
+				x.realestate_plan = `${x.commission.real_estate}/ ${x.plan.plan_name}`
+			})
 			console.log(res.data)
 			setAgentCommissionReport(res.data)
 		})
@@ -28,8 +31,8 @@ function InterestReport() {
 				accessor:'agency.full_name'
 			},
 			{
-				Header: t('INTEREST_REAL_ESTATE'),
-				accessor:'commission.real_estate'
+				Header: t('INTEREST_REAL_ESTATE/INTEREST_PLAN'),
+				accessor:'realestate_plan'
 			},
 			// {
 			// 	Header: t('PHONE NUMBER'),

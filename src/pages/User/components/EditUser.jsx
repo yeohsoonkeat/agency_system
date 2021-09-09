@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
 import Select from 'react-select'
-import { createAgentByAdmin, create_agency, getAgencyAvailalble, getAgencyLeader } from '../../../service/client/agency'
+import { createAgentByAdmin, create_agency, getAgencyAvailalble, getAgencyLeader, updateAgency } from '../../../service/client/agency'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import { get_role } from '../../../service/client/Role'
 function EditUser() {
@@ -15,7 +15,7 @@ function EditUser() {
 	const history = useHistory()
 	const location = useLocation()
 	const data  = location.state.data
-	console.log(data)
+	const agencyId = data.id
 
 	useEffect(()=>{
 		const token = localStorage.getItem('token')
@@ -49,12 +49,13 @@ function EditUser() {
 		console.log(data.value)
 		setLeaderName(data.value)
 	}
-	const onSubmit = async (data)=>{
-		data['role_id'] = RoleID
-		data['leader'] = LeaderName
-		let token = localStorage.getItem('token')
-		await createAgentByAdmin(token,data)
-		history.push('/agent')
+	const onSubmit = async (agency)=>{
+		agency['roleId'] = RoleID
+		// data['leader'] = LeaderName
+		console.log(LeaderName)
+		// console.log(agency)
+		await updateAgency(agencyId,agency)
+		history.push('/users')
 	}
 	console.log(Leader)
 	return (
@@ -131,7 +132,7 @@ function EditUser() {
 										</div> */}
 										<div className="grid grid-cols-1">
 											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('LEADER')} ({data.leader})</label>
-											<select {...register('role')} id="sex" className="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent">
+											<select {...register('leader')} defaultValue={data.leader} id="sex" className="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent">
 												<option></option>
 												{
 													Leader.map(data=> {

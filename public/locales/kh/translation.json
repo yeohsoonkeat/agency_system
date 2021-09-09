@@ -65,7 +65,7 @@
 
     "INTEREST_ID" : "ល.រ",
     "INTEREST_FULL_NAME" : "ឈ្មោះពេញ",
-    "INTEREST_REAL_ESTATE" : "អចលនទ្រព្យ",
+    "INTEREST_REAL_ESTATE/INTEREST_PLAN" : "អចលនទ្រព្យ/គម្រោង",
     "INTEREST_TOTAL_MONEY" : "លុយសរុប",
     "INTEREST_DATE" : "ថ្ងៃទី",
     "INTEREST_CREATOR": "អ្នកបង្កើត",

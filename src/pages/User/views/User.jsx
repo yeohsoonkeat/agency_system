@@ -11,7 +11,6 @@ function User() {
 		const token = localStorage.getItem('token')
 		get_agency(token).then(res=>{
 			const show = res.data.filter((x)=>{
-				console.log(x.leader)
 				x.is_verified? x['status'] = 'Active': x['status'] = 'Inactive'
 				x.leader == null? x.leader = 'No Leader': x.leader
 				return x.is_verified == true 
