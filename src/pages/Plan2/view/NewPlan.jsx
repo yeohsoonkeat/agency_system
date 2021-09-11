@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useForm } from 'react-hook-form'
+import { set, useForm } from 'react-hook-form'
 import { create_plan } from '../../../service/client/Plan'
 import { Link, useHistory } from 'react-router-dom'
 import { SheetJSApp } from '../../../components/excelReader/SheetJS'
@@ -12,13 +12,14 @@ function NewAgent(context) {
 	const history = useHistory()
 	const {register,handleSubmit} = useForm()
 	const [sheetData,setSheetData] = useState([])
+	const [error,setError] = useState(false)
 	
 	const onSubmit = async (data)=>{
 		data['realestates'] = sheetData
 		const token = localStorage.getItem('token')
 		console.log(data)
 		const result = await create_plan(token,data)
-		if(!result.data.createdStatus) alert(result.data.message)
+		if(!result.data.createdStatus) setError(true)
 		else history.push('/plan')
 	}
 
@@ -46,9 +47,12 @@ function NewAgent(context) {
 									
 									<div className="grid grid-cols-1 gap-5 md:gap-8 mt-5 mx-7">
 										<div className="grid grid-cols-1">
+										
 											<label className="uppercase md:text-sm text-xs text-primary-default text-light font-semibold">{t('PLAN_NAME')}</label>
 											<input  {...register('plan_name')} id="full_name" required className="py-2 px-3 rounded-lg border-2 border-blueGray-500 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="text" placeholder="Plan Name"/>
+											{error ? <p className="font-small text-red-500">Plan name is already have !!</p> : null}
 										</div>
+										
 									</div>	
 
 									<div className="grid grid-cols-1 gap-5 md:gap-8 mt-5 mx-7">

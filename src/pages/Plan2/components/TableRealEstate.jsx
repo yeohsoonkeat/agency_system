@@ -20,7 +20,7 @@ import trashCanOutline from '@iconify-icons/mdi/trash-can-outline'
 
 
 
-export default function Table({ data, columns, handleDelete }) {
+export default function TableRealEstate({ data, columns, handleDelete }) {
 	const { url } = useRouteMatch()
 	const{t} = useTranslation()
 	const {
@@ -143,42 +143,21 @@ export default function Table({ data, columns, handleDelete }) {
 													<Modal id={row.values.commission_id} page='agent' />
 
 												</td> */}
-												{
-													row.original.is_commission ? (
+												{/* {
+													row.original.is_used ? (
 														<td className="block px-6 py-4 text-gray-400 whitespace-nowrap space-x-3 text-right text-xl font-medium">
-															<Link
-																to={`${url}/real_estate/${row.original.id}`}
-																className=" inline-block"
-															>
-																<InlineIcon className="text-black" icon={archiveEyeOutline}/>
-															</Link>
-													
-															<InlineIcon className=" inline-block" icon={pencilOutline}/>
 															<InlineIcon className="inline-block" icon={trashOutline} />
 														</td>
 													) : 
 													(
 														<td className="block px-6 py-4 whitespace-nowrap space-x-3 text-right text-xl font-medium">
-															<Link
-																to={`${url}/real_estate/${row.original.id}`}
-																className=" inline-block"
-															>
-																<InlineIcon icon={archiveEyeOutline}/>
-															</Link>
-															<Link
-																to={{pathname: `${url}/edit/${row.original.id}`,
-																state: {data: row.original}
-																}}
-																className=" inline-block"
-															>
-																<InlineIcon icon={pencilOutline}/>
-															</Link>
-															{/* <InlineIcon className=" inline-block" icon={archiveEyeOutline}/>	 */}
+															
+															<InlineIcon className=" inline-block" icon={archiveEyeOutline}/>	
 															<Modal id={row.values.id} page='plan' handleSelectedDelete={handleSelectedDelete} />
 														</td>
 														
 													)
-												}
+												} */}
 
 												
 											</tr>
@@ -245,7 +224,7 @@ export default function Table({ data, columns, handleDelete }) {
 		</>
 	)
 }
-Table.propTypes = {
+TableRealEstate.propTypes = {
 	data: PropTypes.array,
 	columns: PropTypes.array,
 	handleDelete: PropTypes.func

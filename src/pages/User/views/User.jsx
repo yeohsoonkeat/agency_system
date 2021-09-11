@@ -9,13 +9,19 @@ function User() {
 	const [agency, setAgency] = useState([])
 	useEffect(()=>{
 		const token = localStorage.getItem('token')
+		// const user = localStorage.getItem('user')
+		const user = JSON.parse(localStorage.getItem('user'))
+		// console.log(user)
 		get_agency(token).then(res=>{
 			const show = res.data.filter((x)=>{
 				x.is_verified? x['status'] = 'Active': x['status'] = 'Inactive'
 				x.leader == null? x.leader = 'No Leader': x.leader
-				return x.is_verified == true 
+				return x.is_verified == true && x.id != user.id
+			
 				// x.role.name != 'admin'
 			})
+
+			
 			setAgency(show)
 		})
 	},[])
