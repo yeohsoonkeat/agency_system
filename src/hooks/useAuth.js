@@ -11,6 +11,7 @@ import { changeLanguage } from './useTranslation'
 const AuthProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState(false)
 	const [pending, setPending] = useState(false)
+	const [error, setError] = useState(false)
 
 
 	useEffect(() => {
@@ -28,6 +29,11 @@ const AuthProvider = ({ children }) => {
 	}, [])
 
 	if (pending) {
+		if(error){
+			return (
+				<Loader error={true}/>
+			)
+		}
 		return <Loader/>
 	}
 
@@ -44,8 +50,9 @@ const AuthProvider = ({ children }) => {
 			}
 		}).catch(err => {
 			setCurrentUser(false)
-			setPending(false)
-			alert('Login failed')
+			// setPending(false)
+			setError(true)
+			// alert('Login failed')
 		})
 	}
 
