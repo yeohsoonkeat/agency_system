@@ -130,10 +130,11 @@ function NewCommison() {
 
 	}
 
-	const onDelete = (selected) => {
+	const onDelete = (selected, e) => {
 		setCommissionTo(
 			CommissionTo.filter(x => x.id !== selected.id)
 		)
+		e.preventDefault()
 	}
 
 	const realEstateChange =(data)=>{
@@ -285,7 +286,9 @@ function NewCommison() {
 																<td className=" p-1">{index + 1}</td>
 																<td className="p-1">{x.name}</td>
 																<td className="p-1">{x.ammount}</td>
-																<td className='p-1' ><button onClick={() => onDelete(x)}>delete</button></td>
+																<td className='p-1' ><button onClick={(e) => 
+																	
+																	onDelete(x, e)}>delete</button></td>
 															</tr>
 														)})
 													}

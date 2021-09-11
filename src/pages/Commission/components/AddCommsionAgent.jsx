@@ -12,7 +12,7 @@ export default function AddCommisionAgent({onAgentAdd}) {
 	const [Ammount, setAmmount] = useState(0)
 	const [SelectedAgent, setSelectedAgent] = useState('')
 	const [error, setError] = useState(false)
-	
+	console.log(Agent)
 	useEffect(() => {
 		const token = localStorage.getItem('token')
 		getAgencyAvailalble(token).then(res => {
@@ -59,6 +59,9 @@ export default function AddCommisionAgent({onAgentAdd}) {
 			'ammount': Ammount
 		}
 		onAgentAdd(tmp)
+		setAgent(
+			Agent.filter(x => x.label != tmp.agent.split('/')[1])
+		)
 		setShowModal(false)}
 	}
 
