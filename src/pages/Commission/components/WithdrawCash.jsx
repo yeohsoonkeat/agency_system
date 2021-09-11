@@ -11,6 +11,7 @@ export default function WithdrawCash({onAgentAdd,Commission}) {
 	const [showModal, setShowModal] = useState(false)
 	const [Ammount, setAmmount] = useState(0)
 	const [error, setError] = useState(false)
+	const [error1, setError1] = useState(false)
 	const today = Date.now()
 	const now = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(today)
 	const {id, agencyId} = useParams() 
@@ -32,7 +33,7 @@ export default function WithdrawCash({onAgentAdd,Commission}) {
 		data['agency_id'] = agencyId
 		data['commission_id'] = id
 		if(Commission.remaining_agency_commission_money <= 0) {
-			alert('You can not withdrawn money!')
+			setError1(true)
 			return
 		}
 		if(Ammount <= 0){
@@ -45,6 +46,18 @@ export default function WithdrawCash({onAgentAdd,Commission}) {
 		}).catch(err =>  console.log(err))
 		setShowModal(false)
 		history.push('/commission')
+	}
+	const AlertMessage = () => {
+		return(
+			<div role="alert" className="mb-5">
+				<div className="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+					Alert!
+				</div>
+				<div className="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+					<p>Balance is 0!</p>
+				</div>
+			</div>
+		)
 	}
 
 	return (
@@ -65,7 +78,9 @@ export default function WithdrawCash({onAgentAdd,Commission}) {
 							<div className="relative md:w-6/12 my-6 mx-auto max-w-3xl">
 								{/*content*/}
 								<div className="border-0 rounded-lg border-solid border-black-default shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-									{/*header*/}
+									{error1 ? <AlertMessage/> : null}
+									
+									
 									{
 										error ? (
 											<div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Link, useRouteMatch } from 'react-router-dom'
 import TableRealEstate from '../components/TableRealEstate'
 import { get_plan } from '../../../service/client/Plan'
-import { getRealEstateById } from '../../../service/client/RealEstate'
+import { getAllRealEstateById } from '../../../service/client/RealEstate'
 import { useParams } from 'react-router-dom'
 function RealEstateList() {
 	const { t } = useTranslation()
@@ -14,10 +14,9 @@ function RealEstateList() {
 	useEffect(() => {
         // const id = 1
 		const token = localStorage.getItem('token')
-		getRealEstateById(id).then(res => {
+		getAllRealEstateById(id).then(res => {
 			if (!res?.data.error){
 				res.data.filter((x)=>{
-					console.log(x)
 					x.is_used? x['status'] = 'True': x['status'] = 'False'
 					// return x.is_verified == true
 				})

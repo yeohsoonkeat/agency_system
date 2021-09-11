@@ -112,21 +112,25 @@ export default function TableRealEstate({ data, columns, handleDelete }) {
 								</thead>
 								<tbody {...getTableBodyProps()}>
 									{page.map((row,index) => {
-										console.log(row.original)
+										// console.log(row.original)
 										prepareRow(row)
 										return (
-											<tr key={'row-' + index} {...row.getRowProps()}>
+											<tr key={'row-' + index} {...row.getRowProps()} className={ row.original.is_used ?'text-red-600':''}>
 												<td className="px-6 py-4 whitespace-nowrap max-w-sm " >{index + 1}</td>
 												{row.cells.map((cell,index) => {
-													console.log(cell.row.original)
+													// console.log(cell.row.original)
 													if (cell.column.id != 'id')
 													return (
-														<td
+														<td		
 															{...cell.getCellProps()}
-															className="px-6 py-4 whitespace-nowrap max-w-sm "
+															className="px-6 py-4 whitespace-nowrap max-w-sm "															
 															key={'cell-' + index}
+															
 														>
-															<div className="text-sm text-gray-900 overflow-x-hidden">
+															{console.log(row.original.is_used)}
+															<div className={ row.original.is_used ?'text-meduim text-red-600 overflow-x-hidden':'text-sm text-gray-900 overflow-x-hidden'}
+															// className="text-sm text-gray-900 overflow-x-hidden"
+															>
 																{cell.value}
 															</div>
 														</td>

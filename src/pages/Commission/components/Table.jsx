@@ -15,7 +15,7 @@ import arrowUpDropCircleOutline from '@iconify-icons/mdi/arrow-up-drop-circle-ou
 import { Link, useRouteMatch } from 'react-router-dom'
 import Modal from '../../../components/common/Modal'
 import { useTranslation } from 'react-i18next'
-
+import trashOutline from '@iconify-icons/mdi/trash-can-outline'
 
 export default function Table({ data, columns,handleDelete }) {
 	const{t} =useTranslation()
@@ -149,7 +149,17 @@ export default function Table({ data, columns,handleDelete }) {
 																	<InlineIcon icon={cash} />
 																</Link>
 															</button>
-															<Modal id={row.values.commission_id} page='commission' handleSelectedDelete={handleSelectedDelete} />
+															
+															{row.original.remaining_agency_commission_money == row.original.total_commission_price ?(
+																<Modal id={row.values.commission_id} page='commission' handleSelectedDelete={handleSelectedDelete} />	
+															):(
+																<button disabled className="hover:text-red-default text-gray-400">
+																	{/*  onClick={() => setShowModal(true)}> */}
+																	<InlineIcon icon={trashCanOutline} />
+																</button>
+															)
+															}
+															
 														</td>
 													)
 												}
