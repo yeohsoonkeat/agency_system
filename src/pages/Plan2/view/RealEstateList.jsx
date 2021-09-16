@@ -44,6 +44,10 @@ function RealEstateList() {
 				accessor: 'realestate_name', // accessor is the "key" in the data
 			},
 			{
+				Header: t('REAL ESTATE PRICE'),
+				accessor: 'realestate_price', // accessor is the "key" in the data
+			},
+			{
 				Header: t('IS USED'),
 				accessor: 'status',
 			},
