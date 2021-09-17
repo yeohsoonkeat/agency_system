@@ -137,16 +137,25 @@ export default function TableRealEstate({ data, columns, handleDelete }) {
 														
 													)
 												})}
-												{/* <td className="block px-6 py-4 whitespace-nowrap space-x-3 text-right text-xl font-medium">
-													<Link
-														to={`${url}/${row.original.id}`}
+												<td className="block px-6 py-4 whitespace-nowrap space-x-3 text-right text-xl font-medium">
+													{/* <Link
+														to={{`${url}/edit`},
+															
+															}
 														className=" inline-block"
 													>
-														<InlineIcon icon={archiveEyeOutline}/>
-													</Link>
-													<Modal id={row.values.commission_id} page='agent' />
+														<InlineIcon icon={pencilOutline}/>
+													</Link> */}
+													<Link
+																to={{pathname: `${url}/edit/`,
+																state: {data: row.original}
+																}}
+																className=" inline-block"
+															>
+																<InlineIcon icon={pencilOutline}/>
+															</Link>
 
-												</td> */}
+												</td>
 												{/* {
 													row.original.is_used ? (
 														<td className="block px-6 py-4 text-gray-400 whitespace-nowrap space-x-3 text-right text-xl font-medium">

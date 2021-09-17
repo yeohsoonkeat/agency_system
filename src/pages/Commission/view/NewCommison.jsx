@@ -8,7 +8,7 @@ getAvailablePlan
 import { createCommission } from '../../../service/client/Commision'
 import { useHistory } from 'react-router-dom'
 import makeAnimated from 'react-select/animated'
-import { getRealEstateById } from '../../../service/client/RealEstate'
+import { getRealEstateById,getRealEstatesSpecificId } from '../../../service/client/RealEstate'
 
 function NewCommison() {
 	const { t } = useTranslation()
@@ -138,11 +138,23 @@ function NewCommison() {
 	}
 
 	const realEstateChange =(data)=>{
-		console.log(data)
+		
+		getRealEstatesSpecificId(data).then(res => {
+			if (!res?.data.error){
+				let totat_commission_price = 0
+				// console.log()
+				// console.log(typeof (res.data))
+				res.data.real_estates.filter(x=>{
+					totat_commission_price += x.realestate_price
+				})
+				console.log(totat_commission_price)
+				setCommissionTotalPrice(totat_commission_price)				
+			}
+		}).catch(err =>  console.log(err))
 		console.log(data.length)
-		console.log(CommissionPrice * data.length)
+		// console.log(CommissionPrice * data.length)
 		setRealEstates(data)
-		setCommissionTotalPrice(CommissionPrice * data.length)
+		
 	}
 	return (
 		<div >

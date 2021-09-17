@@ -35,7 +35,8 @@ export const getAvailablePlan = (token) => {
 }
 
 
-export const create_plan = (token, plan) => { 
+export const create_plan = (token, plan) => {
+	console.log(plan) 
 	const data = JSON.stringify(plan)
 	const config =  {
 		method: 'post',
