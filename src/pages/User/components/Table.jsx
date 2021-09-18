@@ -76,6 +76,7 @@ export default function Table({ data, columns }) {
 								<thead className=" bg-primary-default text-sm lg:text-md text-white ">
 									{headerGroups.map((headerGroup,index) => (
 										<tr key={'row'+ index} {...headerGroup.getHeaderGroupProps()}>
+											<th className="px-5">ID</th>
 											{headerGroup.headers.map((column,index) => (
 												<th
 													{...column.getHeaderProps(column.getSortByToggleProps())}
@@ -105,8 +106,10 @@ export default function Table({ data, columns }) {
 										prepareRow(row)
 										return (
 											<tr key={'row-' + index} {...row.getRowProps()}>
+												<td className="px-6">{index +1}</td>
 												{row.cells.map((cell,index) => {
 													return (
+													
 														<td
 															{...cell.getCellProps()}
 															className="px-6 py-4 whitespace-nowrap max-w-sm "
