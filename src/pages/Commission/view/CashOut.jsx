@@ -5,11 +5,13 @@ import { getCommissionById } from '../../../service/client/Commision'
 import { useLocation, useParams } from 'react-router'
 import WithdrawCash from '../components/WithdrawCash'
 import { agentWithdrawHistory } from '../../../service/client/WithdrawCash'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, useRouteMatch } from 'react-router-dom'
 
 
 function CashOut(props) {
     const location = useLocation()
+	const { url } = useRouteMatch()
+
     // console.log(location.state.hello)
 	const { t } = useTranslation()
 	const [Agency, setAgency] = useState([])
@@ -145,6 +147,16 @@ function CashOut(props) {
 																<td className="p-1">{x.agency.full_name}</td>
 																<td className="p-1">{x.cash_out_amount}</td>
 																<td className="p-1">{x.date}</td>
+																<td className="p-1">
+																	<Link to={{
+																		pathname: '/commission/receipt',
+																		state: {
+																			data: x
+																		}
+																}}>
+																		Print
+																	</Link>
+																</td>
 															</tr>
 														))
 													}

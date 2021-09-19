@@ -73,7 +73,11 @@ export default function Table({ data, columns,handleDelete }) {
 					placeholder={`${count} ${t('RECORD')}...`}
 					className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b pl-8 pr-6 py-2 bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
 				/>
+				<h1 className="inline-block mx-10">Date:</h1>
+				<input type="date" onChange={e => {setValue(e.target.value) 
+				onChange(e.target.value)}}></input>
 			</div>
+			
 			<div className="flex flex-col mt-5 bg-white">
 				<div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 					<div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">

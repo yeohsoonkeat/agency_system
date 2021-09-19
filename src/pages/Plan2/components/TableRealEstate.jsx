@@ -16,6 +16,7 @@ import pencilOutline from '@iconify-icons/mdi/pencil-outline'
 import Modal from '../../../components/common/Modal'
 import { useTranslation } from 'react-i18next'
 import trashCanOutline from '@iconify-icons/mdi/trash-can-outline'
+import RealEstateEditModa from '../../../components/common/RealEstateEditModa'
 
 
 
@@ -137,41 +138,35 @@ export default function TableRealEstate({ data, columns, handleDelete }) {
 														
 													)
 												})}
-												<td className="block px-6 py-4 whitespace-nowrap space-x-3 text-right text-xl font-medium">
+												{
+													row.original.is_used ? 
+													(
+													<td className="block px-6 py-4 whitespace-nowrap space-x-3 text-right text-xl font-medium">
+														<Link
+																	
+																	className=" inline-block text-gray-300"
+																>
+																	<InlineIcon icon={pencilOutline}/>
+																</Link>
+
+													</td>
+													) : 
+													(
+														<td className="block px-6 py-4 whitespace-nowrap space-x-3 text-right text-xl font-medium">
 													{/* <Link
-														to={{`${url}/edit`},
-															
-															}
-														className=" inline-block"
-													>
-														<InlineIcon icon={pencilOutline}/>
-													</Link> */}
-													<Link
 																to={{pathname: `${url}/edit/`,
 																state: {data: row.original}
 																}}
 																className=" inline-block"
 															>
 																<InlineIcon icon={pencilOutline}/>
-															</Link>
+															</Link> */}
+															<RealEstateEditModa data={row.original} />
 
 												</td>
-												{/* {
-													row.original.is_used ? (
-														<td className="block px-6 py-4 text-gray-400 whitespace-nowrap space-x-3 text-right text-xl font-medium">
-															<InlineIcon className="inline-block" icon={trashOutline} />
-														</td>
-													) : 
-													(
-														<td className="block px-6 py-4 whitespace-nowrap space-x-3 text-right text-xl font-medium">
-															
-															<InlineIcon className=" inline-block" icon={archiveEyeOutline}/>	
-															<Modal id={row.values.id} page='plan' handleSelectedDelete={handleSelectedDelete} />
-														</td>
-														
 													)
-												} */}
-
+												}
+												
 												
 											</tr>
 										)
