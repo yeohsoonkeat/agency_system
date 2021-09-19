@@ -153,11 +153,11 @@ export default function Table({ data, columns,handleDelete }) {
 																	<InlineIcon icon={cash} />
 																</Link>
 															</button>
-															
-															{row.original.remaining_agency_commission_money == row.original.total_commission_price ?(
+														
+															{row.original.remaining_agency_commission_money == row.original.total_agency_commission_money ?(
 																<Modal id={row.values.commission_id} page='commission' handleSelectedDelete={handleSelectedDelete} />	
 															):(
-																<button disabled className="hover:text-red-default text-gray-400">
+																<button disabled className=" text-gray-400">
 																	{/*  onClick={() => setShowModal(true)}> */}
 																	<InlineIcon icon={trashCanOutline} />
 																</button>
