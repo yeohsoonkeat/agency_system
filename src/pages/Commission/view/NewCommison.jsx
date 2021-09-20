@@ -106,6 +106,7 @@ function NewCommison() {
 		}])
 	}
 	const onPlanChange = async (data) => {
+		setCommissionTotalPrice(0)
 		getRealEstateById(data.value).then(res => {
 			if (!res?.data.error){
 				let k = res.data.map(x => {
@@ -232,15 +233,6 @@ function NewCommison() {
 												isMulti			
 												defaultValue={selectedOptionRealEstate}
 												onChange={realEstateChange}
-												// onChange={data=>{
-												// 	setRealEstates(data)
-												// 	console.log(CommissionPrice)
-												// 	console.log(real_estates)
-												// 	console.log(real_estates.length)
-												// 	// console.log(CommissionPrice * real_estates.length)
-												// 	setCommissionTotalPrice(CommissionPrice * real_estates.length)
-
-												// }}
 												options={selectedOptionRealEstate}
 											/>	
 										</div>

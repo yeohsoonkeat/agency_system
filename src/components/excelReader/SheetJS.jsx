@@ -169,7 +169,6 @@ class DataInput extends React.Component {
         <div className="form-group">
           <label htmlFor="file">Input Excel File Here</label>
           <input
-            required
             type="file"
             className="form-control"
             id="file"

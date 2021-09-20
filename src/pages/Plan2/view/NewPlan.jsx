@@ -13,14 +13,18 @@ function NewAgent(context) {
 	const {register,handleSubmit} = useForm()
 	const [sheetData,setSheetData] = useState([])
 	const [error,setError] = useState(false)
+	const [error1,setError1] = useState(false)
 	
 	const onSubmit = async (data)=>{
 		data['realestates'] = sheetData
 		const token = localStorage.getItem('token')
 		console.log(data)
+		if(sheetData.length==0) setError1(true)
+		else{
 		const result = await create_plan(token,data)
 		if(!result.data.createdStatus) setError(true)
 		else history.push('/plan')
+		}
 	}
 
 	return (
@@ -85,7 +89,9 @@ function NewAgent(context) {
 									<div className="grid grid-cols-1 gap-5 md:gap-8 mt-5 mx-7">
 										<div className="grid grid-cols-1">
 											<SheetJSApp toChild={setSheetData} SheetData= {sheetData}/>
+											{error1 ? <p className="font-small text-red-500">Please Input with Data </p> : null}
 										</div>
+										
 									</div>	
 								</div>
 								<div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
