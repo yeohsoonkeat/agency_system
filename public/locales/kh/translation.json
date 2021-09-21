@@ -99,9 +99,19 @@
     "PRINT" : "ព្រីន",
     "CLOSE": "បិទ",
     "CASH_OUT" : "ដកប្រាក់",
-    "HISTORY_CASH_OUT" : "ប្រវត្តិដកប្រាក់"
+    "HISTORY_CASH_OUT" : "ប្រវត្តិដកប្រាក់",
     
-
+    "COMMISSION_REPORT": "បង្កាន់ដៃចំណាយ",
+    "SELLER_NAME": "ឈ្មោះអ្នកលក់",
+    "EXPENSE_DATE": "ថ្ងៃប្រគល់ប្រាក់",
+    "PROPERTY_CODE": "លេខក្បាលដី",
+    "PROJECT": "គម្រោង",
+    "PAID_AMMOUNT": "ទឹកប្រាក់បានទូទាត់",
+    "REMAINING_AMMOUNT": "ទឹកប្រាក់នៅសល់",
+    "Accountant": "គណនេយ្យករ",
+    "Receive By": "អ្នកទទួលប្រាក់",
+    "Paid By": "អ្នកប្រគល់ប្រាក់",
+    "Code": "លេខកូដ: "
  
 
 }

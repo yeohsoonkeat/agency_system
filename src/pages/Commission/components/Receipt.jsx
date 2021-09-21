@@ -18,7 +18,8 @@ function Receipt(context) {
 	const history = useHistory()
     const location = useLocation()
     const data = location.state.data
-	const protery_code = `${data.plan.plan_name}-${data.commission.real_estate}-${data.id}`
+	const protery_code = `${data.commission.real_estate}`
+	const code = `${data.plan.plan_name}-${data.commission.real_estate}-${data.id}`
     // console.log(location.state.data)
 	const Receipt = () => {
 		return(
@@ -33,7 +34,9 @@ function Receipt(context) {
                         <img src={logo} className="w-10"></img>
                     </div>
                     <div className="flex-1 float-right text-right text-xs ">
-                        <h1> Code: 5012</h1>
+                        <h1> {t('Code')}
+						<input disabled value={code}></input>
+						</h1> 
 						{console.log(location.state.data)}
 						{console.log(data)}
                     </div>
@@ -72,15 +75,15 @@ function Receipt(context) {
 									</div>		
                                     <div className="flex justify-evenly align-middle text-xs">
                                         <div className>
-                                            <h1 className="mx-9">Accountant</h1>
+                                            <h1 className="mx-9">{t('Accountant')}</h1>
                                             <h1 className="mt-16">_________________________</h1>
                                         </div>
                                         <div className>
-                                            <h1 className="mx-9">Receive By</h1>
+                                            <h1 className="mx-9">{t('Receive By')}</h1>
                                             <h1 className="mt-16">_________________________</h1>
                                         </div>
                                         <div className>
-                                            <h1 className="mx-9">Paid By</h1>
+                                            <h1 className="mx-9">{t('Paid By')}</h1>
                                             <h1 className="mt-16">_________________________</h1>
                                         </div>
                                     </div>

@@ -24,7 +24,7 @@
     "GENDER" : "GENDER",
     "PASSWORD" : "Password",
     "LEADER" : "Leader",
-    "ADD" : "បង្កើត",
+    "ADD" : "Add",
     "AMMOUNT" : "Amount",
     "REMAINING_AMOUNT":"REMAINING AMOUNT",	
     "COMMISSION_DETAIL" : "Commission Detail",
@@ -101,9 +101,19 @@
     "CLOSE": "CLOSE",
     "CASH_OUT" : "Cash Out",
     "HISTORY_CASH_OUT" : "Cash out History",
-    "Name" : "Name"
+    "Name" : "Name",
 
-
+    "COMMISSION_REPORT": "Expense Receipt",
+    "SELLER_NAME": "Seller Name",
+    "EXPENSE_DATE": "Expense Date",
+    "PROPERTY_CODE": "Property Code",
+    "PROJECT": "Project",
+    "PAID_AMMOUNT": "Paid Amount",
+    "REMAINING_AMMOUNT": "Remaining Amount",
+    "Accountant": "Accountant",
+    "Receive By": "Receive By",
+    "Paid By": "Paid By",
+    "Code": "Code: "
 
 
 }

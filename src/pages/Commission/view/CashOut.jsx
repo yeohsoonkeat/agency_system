@@ -157,7 +157,7 @@ function CashOut(props) {
 																			data: x
 																		}
 																}}>
-																		Print
+																		{t('PRINT')}
 																	</Link>
 																</td>
 															</tr>
