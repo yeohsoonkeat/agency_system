@@ -12,6 +12,7 @@ export default function WithdrawCash({onAgentAdd,Commission}) {
 	const [Ammount, setAmmount] = useState(0)
 	const [error, setError] = useState(false)
 	const [error1, setError1] = useState(false)
+	const [error2, setError2] = useState(false)
 	const today = Date.now()
 	const now = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(today)
 	const {id, agencyId} = useParams() 
@@ -29,15 +30,26 @@ export default function WithdrawCash({onAgentAdd,Commission}) {
 	}
 
 	const onSubmit = (data) => {
+		// console.log(Commission.remaining_agency_commission_money)
+		if(data.cash_out_amount > Commission.remaining_agency_commission_money ){
+			setError2(true)
+			setError1(false)
+			setError(false)
+			return
+		}
 		data['date']= now
 		data['agency_id'] = agencyId
 		data['commission_id'] = id
 		if(Commission.remaining_agency_commission_money <= 0) {
 			setError1(true)
+			setError(false)
+			setError2(false)
 			return
 		}
 		if(Ammount <= 0){
 			setError(true)
+			setError1(false)
+			setError2(false)
 			return
 		}
 		const token = localStorage.getItem('token')
@@ -123,6 +135,9 @@ export default function WithdrawCash({onAgentAdd,Commission}) {
 												{t('AMMOUNT')}
 											</label>
 											<input required {...register('cash_out_amount')} onChange={handleChange} className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500" type="number" />
+											{error2 ?(
+												<h1 className="text-red-500 text-large mb-5 font-bold">You Ammount must be smaller than Balance *</h1>
+											): null}
 										</div>
 										<div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
 											<button
