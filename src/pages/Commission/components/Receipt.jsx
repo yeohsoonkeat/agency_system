@@ -18,7 +18,8 @@ function Receipt(context) {
 	const history = useHistory()
     const location = useLocation()
     const data = location.state.data
-    console.log(location.state.data)
+	const protery_code = `${data.plan.plan_name}-${data.commission.real_estate}-${data.id}`
+    // console.log(location.state.data)
 	const Receipt = () => {
 		return(
 			<div>    
@@ -33,6 +34,8 @@ function Receipt(context) {
                     </div>
                     <div className="flex-1 float-right text-right text-xs ">
                         <h1> Code: 5012</h1>
+						{console.log(location.state.data)}
+						{console.log(data)}
                     </div>
                 </div>				
 									<div className="grid grid-cols-2 gap-5 md:gap-8 mx-7 text-xs">
@@ -48,11 +51,11 @@ function Receipt(context) {
                                     <div className="grid grid-cols-2 gap-5 md:gap-8 mx-7 text-xs">
 										<div className="grid grid-cols-1">
 											<label className="uppercase  text-xs text-primary-default text-light font-semibold">{t('PROPERTY_CODE')}</label>
-											<input disabled  id="full_name" required className="py-2 px-3 rounded-lg border-2 border-blueGray-500 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="text" placeholder="Plan Name"/>
+											<input disabled value={protery_code} id="plan" required className="py-2 px-3 rounded-lg border-2 border-blueGray-500 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="text" placeholder="Plan Name"/>
 										</div>
                                         <div className="grid grid-cols-1">
 											<label className="uppercase  text-xs text-primary-default text-light font-semibold">{t('PROJECT')}</label>
-											<input disabled  id="full_name" required className="py-2 px-3 rounded-lg border-2 border-blueGray-500 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="text" placeholder="Plan Name"/>
+											<input disabled value={data.plan.plan_name} id="full_name" required className="py-2 px-3 rounded-lg border-2 border-blueGray-500 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="text" placeholder="Plan Name"/>
 										</div>
 									</div>	
                                     <div className="grid grid-cols-1 gap-5 md:gap-8 mx-7 text-xs">
@@ -64,7 +67,7 @@ function Receipt(context) {
                                     <div className="grid grid-cols-1 gap-5 md:gap-8 mx-7 text-xs">
 										<div className="grid grid-cols-1">
 											<label className="uppercase text-xs text-primary-default text-light font-semibold">{t('REMAINING_AMMOUNT')}</label>
-											<input disabled id="full_name" required className="py-2 px-3 rounded-lg border-2 border-blueGray-500 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="text" placeholder="Plan Name"/>
+											<input disabled value={data.remaining_amount} id="full_name" required className="py-2 px-3 rounded-lg border-2 border-blueGray-500 mt-1 focus:outline-none focus:ring-2 focus:ring-primary-default focus:border-transparent" type="text" placeholder=""/>
 										</div>
 									</div>		
                                     <div className="flex justify-evenly align-middle text-xs">

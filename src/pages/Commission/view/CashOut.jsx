@@ -91,6 +91,7 @@ function CashOut(props) {
 														<th className=" px-1">No. </th>
 														<th className=" px-1">{t('NAME')}</th>
 														<th className=" px-1">{t('AMMOUNT')}</th>
+														
 													</tr>
 
 													{CommissionTo.length === 0 && <tr className="py-2"><td colSpan={3} className="text-center">Nothing to show</td></tr>}
@@ -135,17 +136,19 @@ function CashOut(props) {
 														<th className=" px-1">No. </th>
 														<th className=" px-1">{t('NAME')}</th>
 														<th className=" px-1">{t('AMMOUNT')}</th>
+														<th className=" px-1">{t('REMAINING_AMOUNT')}</th>
 														<th className=" px-1">{t('AGENT_DATE')}</th>
 													</tr>
 													{/* <tr className="py-2"><td colSpan={3} className="text-center">Nothing to show</td></tr> */}
 
-													{agentWithDrawHistory.length === 0 && <tr className="py-2"><td colSpan={3} className="text-center">Nothing to show</td></tr>}
+													{agentWithDrawHistory.length === 0 && <tr className="py-2"><td colSpan={5} className="text-center">Nothing to show</td></tr>}
 													{agentWithDrawHistory.length > 0 &&
 														agentWithDrawHistory.map((x, index) => (
 															<tr key={'history_cashout' + index} className="py-2">
 																<td className=" p-1">{index + 1}</td>
 																<td className="p-1">{x.agency.full_name}</td>
 																<td className="p-1">{x.cash_out_amount}</td>
+																<td className="p-1">{x.remaining_amount}</td>
 																<td className="p-1">{x.date}</td>
 																<td className="p-1">
 																	<Link to={{

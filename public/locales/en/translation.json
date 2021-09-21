@@ -26,6 +26,7 @@
     "LEADER" : "Leader",
     "ADD" : "បង្កើត",
     "AMMOUNT" : "Amount",
+    "REMAINING_AMOUNT":"REMAINING AMOUNT",	
     "COMMISSION_DETAIL" : "Commission Detail",
     "NO." : "No.",
     "NOTHING TO SHOW" : "Nothing to show",
