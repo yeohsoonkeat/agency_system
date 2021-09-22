@@ -16,9 +16,9 @@ function User() {
 			const show = res.data.filter((x)=>{
 				x.is_verified? x['status'] = 'Active': x['status'] = 'Inactive'
 				x.leader == null? x.leader = 'No Leader': x.leader
-				return x.is_verified == true && x.id != user.id
-			
-				// x.role.name != 'admin'
+				return x.is_verified == true 
+				// && x.id != user.id
+
 			})
 
 			

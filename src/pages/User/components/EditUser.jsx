@@ -4,7 +4,9 @@ import { useForm } from 'react-hook-form'
 import Select from 'react-select'
 import { createAgentByAdmin, create_agency, getAgencyAvailalble, getAgencyLeader, updateAgency } from '../../../service/client/agency'
 import { Link, useHistory, useLocation } from 'react-router-dom'
+// ModalChangePassword
 import { get_role } from '../../../service/client/Role'
+import ModalChangePassword from '../../../components/common/ModalChangePassword'
 function EditUser() {
 	const { t } = useTranslation()
 	const {register,handleSubmit} = useForm()
@@ -12,10 +14,18 @@ function EditUser() {
 	const [RoleID,setRoleID] = useState([])
 	const [Leader,setLeader] = useState([])
 	const [LeaderName,setLeaderName] = useState([])
+	const [newPassword, setNewPassword] = useState([])
 	const history = useHistory()
 	const location = useLocation()
 	const data  = location.state.data
 	const agencyId = data.id
+	let test = {id: 6,
+	is_used: false,
+	plan: {id: 1, plan_name: 'Phnom Penh', commission_price: 100, location: 'Battambang city', is_commission: true},
+	planId: 1,
+	realestate_name: 'A006',
+	realestate_price: 100,
+	status: 'False'}
 
 	useEffect(()=>{
 		const token = localStorage.getItem('token')
@@ -41,6 +51,7 @@ function EditUser() {
 				setRole(role)
 			}
 		}).catch(err =>  console.log(err))
+
 	},[])
 	const onRoleChange = async (data) => {
 		setRoleID(data.value)	
@@ -52,8 +63,10 @@ function EditUser() {
 	const onSubmit = async (agency)=>{
 		agency['roleId'] = RoleID
 		// data['leader'] = LeaderName
-		console.log(LeaderName)
-		// console.log(agency)
+		agency['password'] = newPassword
+		console.log(data)
+		// console.log(LeaderName)
+		// // console.log(agency)
 		await updateAgency(agencyId,agency)
 		history.push('/users')
 	}
@@ -172,6 +185,7 @@ function EditUser() {
 									</div>				
 									
 								</div>
+								{/* <h1>hello</h1> */}
 								<div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
 									<button type="cancel" className="mr-4">
 										<Link to={{
@@ -180,12 +194,15 @@ function EditUser() {
 											Cancel
 										</Link>										
 									</button>
+									
 									<button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 										Save
 									</button>
 								</div>
+								
 							</div>
 						</form>
+						<ModalChangePassword data={test} setNewPassword={setNewPassword} toChild={newPassword} />
 					</div>
 				</div>
 			</div>

@@ -271,6 +271,7 @@ function NewCommison() {
 								<div className="px-4 py-5 bg-white space-y-6 sm:p-6">
 									<div className="grid grid-cols-3">
 										<p className=" col-span-2 font-bold text-lg">{t('AGENT_COMMISSION')}</p>
+										{/* <h1>hello</h1> */}
 										<AddCommisionAgent onAgentAdd={onAgentAdd} />
 										<div className=" col-span-3">
 											<table className="rounded-t-lg m-5 w-11/12 mx-auto bg-gray-200 text-gray-800">

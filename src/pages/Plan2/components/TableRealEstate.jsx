@@ -153,14 +153,7 @@ export default function TableRealEstate({ data, columns, handleDelete }) {
 													) : 
 													(
 														<td className="block px-6 py-4 whitespace-nowrap space-x-3 text-right text-xl font-medium">
-													{/* <Link
-																to={{pathname: `${url}/edit/`,
-																state: {data: row.original}
-																}}
-																className=" inline-block"
-															>
-																<InlineIcon icon={pencilOutline}/>
-															</Link> */}
+												
 															<RealEstateEditModa data={row.original} />
 
 												</td>
