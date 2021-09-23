@@ -4,7 +4,7 @@ import axios from 'axios'
 export const get_agency = (token) => {
 	const config =  {
 		method: 'get',
-		url: 'http://localhost:8080/api/agency/get_all_agency',
+		url: ' http://18.117.186.113/api/agency/get_all_agency',
 		headers: { 
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`
@@ -16,7 +16,7 @@ export const get_agency = (token) => {
 export const getAgencyLeader = (token) => {
 	const config =  {
 		method: 'get',
-		url: 'http://localhost:8080/api/agency/get_all_leader',
+		url: ' http://18.117.186.113/api/agency/get_all_leader',
 		headers: { 
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`
@@ -28,7 +28,7 @@ export const getAgencyLeader = (token) => {
 export const getAgentPending = (token) => {
 	const config =  {
 		method: 'get',
-		url: 'http://localhost:8080/api/agency/get_agent_pending',
+		url: ' http://18.117.186.113/api/agency/get_agent_pending',
 		headers: { 
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`
@@ -39,7 +39,7 @@ export const getAgentPending = (token) => {
 export const getAgencyAvailalble = (token) => {
 	const config =  {
 		method: 'get',
-		url: 'http://localhost:8080/api/agency/get_agency_available',
+		url: ' http://18.117.186.113/api/agency/get_agency_available',
 		headers: { 
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`
@@ -54,7 +54,7 @@ export const create_agency = (token,agency) => {
 	console.log(data)
 	const config =  {
 		method: 'post',
-		url: 'http://localhost:8080/api/agency/create_agency',
+		url: ' http://18.117.186.113/api/agency/create_agency',
 		headers: { 
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`
@@ -70,7 +70,7 @@ export const createAgentByAdmin = (token,agency) => {
 	console.log(data)
 	const config =  {
 		method: 'post',
-		url: 'http://localhost:8080/api/agency/create_agency_by_admin',
+		url: ' http://18.117.186.113/api/agency/create_agency_by_admin',
 		headers: { 
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`
@@ -84,7 +84,7 @@ export const createAgentByAdmin = (token,agency) => {
 export const getApprovedAgent = (data,token,id) => {
 	const config =  {
 		method: 'post',
-		url: `http://localhost:8080/api/agency/update_role_leader/${id}`,
+		url: ` http://18.117.186.113/api/agency/update_role_leader/${id}`,
 		headers: { 
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`
@@ -101,7 +101,7 @@ export const updateAgency = (id,data) => {
 	console.log(token)
 	const config =  {
 		method: 'put',
-		url: `http://localhost:8080/api/agency/update_agency/${id}`,
+		url: ` http://18.117.186.113/api/agency/update_agency/${id}`,
 		headers: { 
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`

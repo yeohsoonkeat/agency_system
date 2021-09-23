@@ -3,7 +3,7 @@ import axios from 'axios'
 export const get_plan = (token) => {
 	const config =  {
 		method: 'get',
-		url: 'http://localhost:8080/api/plan/get_plan',
+		url: ' http://18.117.186.113/api/plan/get_plan',
 		headers: { 
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`
@@ -14,7 +14,7 @@ export const get_plan = (token) => {
 export const getPlanById = (id,token) => {
 	const config =  {
 		method: 'get',
-		url: `http://localhost:8080/api/plan/get_plan_id/${id}`,
+		url: ` http://18.117.186.113/api/plan/get_plan_id/${id}`,
 		headers: { 
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`
@@ -25,7 +25,7 @@ export const getPlanById = (id,token) => {
 export const getAvailablePlan = (token) => {
 	const config =  {
 		method: 'get',
-		url: 'http://localhost:8080/api/plan/get_available_plan',
+		url: ' http://18.117.186.113/api/plan/get_available_plan',
 		headers: { 
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`
@@ -40,7 +40,7 @@ export const create_plan = (token, plan) => {
 	const data = JSON.stringify(plan)
 	const config =  {
 		method: 'post',
-		url: 'http://localhost:8080/api/plan/create_plan',
+		url: ' http://18.117.186.113/api/plan/create_plan',
 		headers: { 
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`
@@ -54,7 +54,7 @@ export const deletePlan = (id) => {
 	const token = localStorage.getItem('token')
 	const config =  {
 		method: 'delete',
-		url: `http://localhost:8080/api/plan/delete_plan/${id}`,
+		url: ` http://18.117.186.113/api/plan/delete_plan/${id}`,
 		headers: { 
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`
@@ -67,7 +67,7 @@ export const editPlan = (data,id) => {
 	const token = localStorage.getItem('token')
 	const config =  {
 		method: 'put',
-		url: `http://localhost:8080/api/plan/update_plan/${id}`,
+		url: ` http://18.117.186.113/api/plan/update_plan/${id}`,
 		headers: { 
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`
