@@ -31,8 +31,9 @@ export default function ModalChangePassword(data) {
         setError(true)
         return
        }
+       setShowModal(false)
        data.setNewPassword(password)
-       setError(true)
+
 	}
   const AlertMessage = () => {
 		return(
