@@ -87,6 +87,9 @@ function EditUser() {
 								Agent details
 							</p>
 						</div>
+						<div className="mt-5">
+							<ModalChangePassword data={test} setNewPassword={setNewPassword} toChild={newPassword} />
+						</div>
 					</div>
 					<div className="mt-5 md:mt-0 md:col-span-2">
 						<form onSubmit={handleSubmit(onSubmit)} >
@@ -202,7 +205,6 @@ function EditUser() {
 								
 							</div>
 						</form>
-						<ModalChangePassword data={test} setNewPassword={setNewPassword} toChild={newPassword} />
 					</div>
 				</div>
 			</div>
