@@ -79,7 +79,10 @@ export default function Sidebar() {
 								<Link
 									className=" py-3 block"
 									to="/"
+									onClick={() => setCollapseShow('hidden')}
+
 								>
+									
 									<InlineIcon icon={viewDashboardOutline} className="inline w-5 h-5 text-gray-400 mr-2" />{t('DASHBOARD')}
 								</Link>
 							</li>
@@ -91,6 +94,8 @@ export default function Sidebar() {
 										<Link
 											className="  py-3 block"
 											to="/plan"
+											onClick={() => setCollapseShow('hidden')}
+
 										>
 											<InlineIcon icon={packageVariant} className="inline w-5 h-5 text-gray-400 mr-2" />{t('PLAN')}
 										</Link>
@@ -105,6 +110,8 @@ export default function Sidebar() {
 									<Link
 										className="  py-3 block"
 										to="/agent"
+										onClick={() => setCollapseShow('hidden')}
+
 									>
 										<InlineIcon icon={accountIcon} className="inline w-5 h-5 text-gray-400 mr-2" />{t('AGENT')}
 									</Link>
@@ -116,6 +123,8 @@ export default function Sidebar() {
 								<Link
 									className="  py-3 block hover:text-yellow-500 focus-within:text-yellow-500"
 									to="/commission" 
+									onClick={() => setCollapseShow('hidden')}
+
 								>
 									<InlineIcon icon={percentOutline} className="inline w-5 h-5 text-gray-400 mr-2" />{t('COMMISION')}
 								</Link>
@@ -124,6 +133,8 @@ export default function Sidebar() {
 								<Link
 									className=" py-3 block hover:text-yellow-500 focus-within:text-yellow-500"
 									to="/interest_report"
+									onClick={() => setCollapseShow('hidden')}
+
 								>
 									<InlineIcon icon={filePercentOutline} className="inline w-5 h-5 text-gray-400 mr-2" />{t('INTEREST')}
 								</Link>
@@ -136,6 +147,8 @@ export default function Sidebar() {
 										<Link
 											className=" py-3 block hover:text-yellow-500 focus-within:text-yellow-500"
 											to="/agent_report"
+											onClick={() => setCollapseShow('hidden')}
+
 										>
 											<InlineIcon icon={noteEdit } className="inline w-5 h-5 text-gray-400 mr-2" />{t('AGENT_REPORT')}
 										</Link>
@@ -166,6 +179,8 @@ export default function Sidebar() {
 									<Link
 										className="py-2 block hover:text-yellow-500 focus-within:text-yellow-500"
 										to="/activity_log"
+										onClick={() => setCollapseShow('hidden')}
+
 									>
 									{t('ACTIVITY_LOG')}
 									</Link>
@@ -174,6 +189,8 @@ export default function Sidebar() {
 									<Link
 										className="py-2 block"
 										to="/users"
+										onClick={() => setCollapseShow('hidden')}
+
 									>
 									{t('USER')}
 									</Link>
@@ -182,6 +199,8 @@ export default function Sidebar() {
 									<Link
 										className="py-2 block"
 										to="/pending_register"
+										onClick={() => setCollapseShow('hidden')}
+
 									>
 									{t('PENDING_REGISTER')}
 									</Link>

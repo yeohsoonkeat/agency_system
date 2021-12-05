@@ -4,8 +4,6 @@ import { Link, useRouteMatch } from 'react-router-dom'
 import { AuthContext } from '../../../hooks/useAuth'
 import { get_commision } from '../../../service/client/Commision'
 import Table from '../components/Table'
-
-
 function AgentList() {
 	const { t } = useTranslation()
 	const { url } = useRouteMatch()
@@ -84,7 +82,7 @@ function AgentList() {
 				
 			</div>
 			<div className="mt-4"/>
-			<Table data={commission} columns={columns} handleDelete={handleDelete}/>
+			<Table datas={commission} columns={columns} handleDelete={handleDelete}/>
 		</div>
 	)
 }
