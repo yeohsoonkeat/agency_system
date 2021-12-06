@@ -45,24 +45,6 @@ const UserDropdown = () => {
 				}
 				style={{ minWidth: '12rem' }}
 			>
-				<a
-					href="/profile"
-					className={
-						'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'
-					}
-					onClick={e => e.preventDefault()}
-				>
-                    Profile
-				</a>
-				<a
-					href="/setting"
-					className={
-						'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'
-					}
-					onClick={e => e.preventDefault()}
-				>
-                    Settings
-				</a>
 				<div className="h-0 my-2 border border-solid border-blueGray-100" />
 				<a
 					href="#pablo"

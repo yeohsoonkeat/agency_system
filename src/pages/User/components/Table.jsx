@@ -60,13 +60,27 @@ export default function Table({ data, columns }) {
 
 	return (
 		<>
-			<div className="mb-5 mt-10 ">
-				<ReactToPrint
-					trigger={() => <button className="flex space-x-2 font-bold text-primary-default p-1 px-3 rounded">
-						<InlineIcon icon={printerOutline} className="text-xl"/><span>{t('PRINT')}</span>
-					</button>}
-					content={() => componentRef}
-				/>
+			<div className="flex flex-row justify-between">
+				<div className="mb-5 mt-10 ">
+					<ReactToPrint
+						trigger={() => <button className="flex space-x-2 font-bold text-primary-default p-1 px-3 rounded">
+							<InlineIcon icon={printerOutline} className="text-xl"/><span>{t('PRINT')}</span>
+						</button>}
+						content={() => componentRef}
+					/>
+				</div>
+				<div className="mb-5 mt-10">
+				{t('SEARCH')}:{' '} 
+					<input
+						value={value || ''}
+						onChange={e => {
+							setValue(e.target.value)
+							onChange(e.target.value)
+						}}
+						placeholder={`${count} ${t('RECORD')}...`}
+						className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b pl-8 pr-6 py-2 bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
+					/>
+				</div>
 			</div>
 			<div className="flex flex-col mt-2 "  ref={(el) => (componentRef = el)}>
 				<div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
