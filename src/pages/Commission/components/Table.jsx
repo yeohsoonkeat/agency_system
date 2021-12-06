@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import { useSortBy, useAsyncDebounce, usePagination, useTable, useFilters, useGlobalFilter } from 'react-table'
 import PropTypes from 'prop-types'
 import { InlineIcon } from '@iconify/react'
@@ -16,9 +16,24 @@ import { Link, useRouteMatch } from 'react-router-dom'
 import Modal from '../../../components/common/Modal'
 import { useTranslation } from 'react-i18next'
 import trashOutline from '@iconify-icons/mdi/trash-can-outline'
+import { DateRange } from 'react-date-range'
+import date from 'date-and-time'
+import moment from 'moment'
 
-export default function Table({ data, columns,handleDelete }) {
+
+export default function Table({ datas, columns,handleDelete }) {
 	const{t} =useTranslation()
+	const [dateState, setDateState] = useState([
+		{
+			startDate: new Date(),
+			endDate: new Date(),
+			key:'selection'
+		}
+	])
+	const [startDate, setStartDate]  = useState()
+	const [endDate, setendDate] = useState()
+	const data = datas
+
 	const {
 		getTableProps,
 		getTableBodyProps,
@@ -57,9 +72,30 @@ export default function Table({ data, columns,handleDelete }) {
 	const onChange = useAsyncDebounce(value => {
 		setGlobalFilter(value || undefined)
 	}, 200)
-	
-	const user = JSON.parse(localStorage.getItem('user'))
 
+	const selectionRange = {
+		startDate: new Date(),
+		endDate: new Date(),
+		key: 'selection'
+	}
+	var [dateRange, setDateRange] = useState([])
+	const [isRange,setIsRange] =useState(false)
+	function getDates(startDate, stopDates) {
+		var dateArray = []
+		var currentDate = moment(startDate)
+		var stopDate = moment(stopDates)
+		while (currentDate <= stopDate) {
+			dateArray.push( moment(currentDate).format('YYYY-MM-DD') )
+			currentDate = moment(currentDate).add(1, 'days')
+		}
+		setDateRange(dateRange = dateArray)
+		setIsRange(true)
+		console.log(dateRange)
+		return dateArray
+	}
+	
+
+	const user = JSON.parse(localStorage.getItem('user'))
 	return (
 		<>
 			<div className="mt-10">
@@ -73,9 +109,22 @@ export default function Table({ data, columns,handleDelete }) {
 					placeholder={`${count} ${t('RECORD')}...`}
 					className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b pl-8 pr-6 py-2 bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
 				/>
-				<h1 className="inline-block mx-10">Date:</h1>
+				{/* <h1 className="inline-block mx-10">Date:</h1>
 				<input type="date" onChange={e => {setValue(e.target.value) 
-				onChange(e.target.value)}}></input>
+				onChange(e.target.value)}}></input> */}
+				<h1 className="inline-block mx-10">From:</h1>
+
+				<input type="date" onChange={e => {setStartDate(e.target.value) 
+				console.log(startDate)
+				}}></input>
+				<h1 className="inline-block mx-10">To:</h1>
+
+				<input type="date" onChange={e => {setendDate(e.target.value) 
+				console.log(endDate)
+				}}></input>
+
+				<button onClick={() => getDates(startDate,endDate)}>Search</button>
+				
 			</div>
 			
 			<div className="flex flex-col mt-5 bg-white">
@@ -112,8 +161,13 @@ export default function Table({ data, columns,handleDelete }) {
 								</thead>
 								
 								<tbody {...getTableBodyProps()}>
-									{page.map((row,index) => {
+									{
+									isRange ? 
+									page
+									.filter(x => dateRange.includes(x.values.date.split(' ')[0]))
+									.map((row,index) => {
 										prepareRow(row)
+										console.log(page.filter(x => dateRange.includes(x.values.date.split(' ')[0])))
 										console.log(row.original)
 										return (
 											<tr key={'row-' + index} {...row.getRowProps()} className={row.original.remaining_agency_commission_money == 0 ? 'text-red-500' : ''}>
@@ -170,7 +224,67 @@ export default function Table({ data, columns,handleDelete }) {
 												
 											</tr>
 										)
-									})}
+									}): 
+									page
+									.map((row,index) => {
+										prepareRow(row)
+										return (
+											<tr key={'row-' + index} {...row.getRowProps()} className={row.original.remaining_agency_commission_money == 0 ? 'text-red-500' : ''}>
+												{row.cells.map((cell,index) => {
+													if (cell.column.id != 'commission_id' && cell.column.id != 'agencyId')
+													
+													return (
+														<>
+														
+															<td
+																	{...cell.getCellProps()}
+																	className="px-6 py-4 whitespace-nowrap "
+																	key={'cell' + index}
+																>									
+																	<div className="text-sm flex space-x-3">
+																		<h6>{cell.value}</h6>
+																	</div>													
+																</td>
+															
+														
+														</>
+														
+														
+													)
+													
+												})}
+												{
+													user.roleId == 2 ? null : (
+														<td className="px-6 py-4 whitespace-nowrap space-x-3 text-right text-xl font-medium">
+															<button  className="hover:text-green-default">
+																<Link to={{
+																	pathname:`${url}/${row.values.commission_id}/cashout/${row.values.agencyId}`,
+																	state: {
+																		hello: 'ow.cells[0]'
+																	}
+																}}>
+																	<InlineIcon icon={cash} />
+																</Link>
+															</button>
+														
+															{row.original.remaining_agency_commission_money == row.original.total_agency_commission_money ?(
+																<Modal id={row.values.commission_id} page='commission' handleSelectedDelete={handleSelectedDelete} />	
+															):(
+																<button disabled className=" text-gray-400">
+																	{/*  onClick={() => setShowModal(true)}> */}
+																	<InlineIcon icon={trashCanOutline} />
+																</button>
+															)
+															}
+															
+														</td>
+													)
+												}
+												
+											</tr>
+										)
+									})
+									}
 								</tbody>
 							</table>
 						</div>
@@ -233,7 +347,7 @@ export default function Table({ data, columns,handleDelete }) {
 	)
 }
 Table.propTypes = {
-	data: PropTypes.array,
+	datas: PropTypes.array,
 	columns: PropTypes.array,
 	handleDelete: PropTypes.func
 

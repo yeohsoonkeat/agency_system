@@ -3,7 +3,7 @@ import axios from 'axios'
 export const getAllActivityLogs = (token) => {
 	const config =  {
 		method: 'get',
-		url: 'http://localhost:8080/api/activitylog/get-all-logs',
+		url: ' http://18.117.186.113/api/activitylog/get-all-logs',
 		headers: { 
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${token}`
